@@ -42,8 +42,12 @@ public class Game {
     }
 
     public void addPlayer(Player player) {
-        //players.add(new ActivePlayer(player, n));
+        players.add(new ActivePlayer(player, new WaitingStance()));
     }
+
+    //public void onAction(Action action) {
+    //    this.stance = this.stance.onAction(action, this);
+    //}
 
     public void removePlayer(Player player) {
         List<ActivePlayer> playerList = players.stream().filter(x -> x.getPlayer().equals(player)).collect(Collectors.toList());

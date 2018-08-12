@@ -23,7 +23,6 @@ public class Player extends Element {
         this.game = game;
         this.weapons = new ArrayList<>();
         this.shields = new ArrayList<>();
-        this.stance = new MovingStance();
     }
 
     public void move(MovementDirection direction) {
@@ -61,10 +60,6 @@ public class Player extends Element {
 
     public void shot() {
         this.currentWeapon.shot();
-    }
-
-    public void onAction(Action action) {
-        this.stance = this.stance.onAction(action, this);
     }
 
     public void receiveDamage(Double howMuch) {
