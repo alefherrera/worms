@@ -3,8 +3,10 @@ package model;
 import enums.MovementDirection;
 import enums.PlayerState;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 public class Player extends Element {
 
@@ -13,14 +15,14 @@ public class Player extends Element {
     private Stance stance;
     private Double angle;
     private Double power;
-    private Collection<Weapon> weapons;
-    private Collection<Shield> shields;
+    private List<Weapon> weapons;
+    private List<Shield> shields;
     private Weapon currentWeapon;
 
     public Player(Game game) {
         this.game = game;
-        this.weapons = new HashSet<>();
-        this.shields = new HashSet<>();
+        this.weapons = new ArrayList<>();
+        this.shields = new ArrayList<>();
         this.stance = new MovingStance();
     }
 
