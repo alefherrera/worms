@@ -25,7 +25,7 @@ public class Player extends Element {
     }
 
     public void move(MovementDirection direction) {
-        if (direction.equals(MovementDirection.LEFT)) {
+        if (direction.equals(MovementDirection.RIGHT)) {
             changePosition(game.getMovingSpeed());
         } else {
             changePosition(-game.getMovingSpeed());
@@ -34,7 +34,7 @@ public class Player extends Element {
 
     private void changePosition(double howMuch) {
         Position position = this.getPosition();
-        position.setX(position.getX() + howMuch);
+        this.setPosition(new Position(position.getX() + howMuch, position.getY()));
     }
 
     public void increaseAngle() {
