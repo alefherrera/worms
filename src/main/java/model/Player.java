@@ -10,22 +10,25 @@ public class Player extends Element {
 
     private final Game game;
     private Double health;
-    private PlayerState state;
+    private Stance stance;
+    private Double angle;
+    private Double power;
     private Collection<Weapon> weapons;
     private Collection<Shield> shields;
+    private Weapon currentWeapon;
 
     public Player(Game game) {
         this.game = game;
-        this.state = PlayerState.MOVING;
         this.weapons = new HashSet<>();
         this.shields = new HashSet<>();
+        this.stance = new MovingStance();
     }
 
     public void move(MovementDirection direction) {
         if (direction.equals(MovementDirection.LEFT)) {
-            changePosition(game.getSpeed());
+            changePosition(game.getMovingSpeed());
         } else {
-            changePosition(game.getSpeed() * -1);
+            changePosition(-game.getMovingSpeed());
         }
     }
 
@@ -34,16 +37,32 @@ public class Player extends Element {
         position.setX(position.getX() + howMuch);
     }
 
+    public void increaseAngle() {
+        angle = Math.min(180, angle + game.getAimingSpeed());
+    }
+
+    public void decreaseAngle() {
+        angle = Math.max(0, angle - game.getAimingSpeed());
+    }
+
+    public void increasePower() {
+        power = Math.min(100, power + game.getPowerSpeed());
+    }
+
+    public void decreasePower() {
+        power = Math.max(0, power - game.getPowerSpeed());
+    }
+
     public void addWeapon(Weapon weapon) {
         this.weapons.add(weapon);
     }
 
-    public void aim() {
-        this.state = PlayerState.AIMING;
+    public void shot() {
+        this.currentWeapon.shot();
     }
 
-    public void shoot() {
-        this.state = PlayerState.MOVING;
+    public void onAction(Action action) {
+        this.stance = this.stance.onAction(action, this);
     }
 
     public void receiveDamage(Double howMuch) {

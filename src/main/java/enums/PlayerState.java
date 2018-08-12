@@ -2,5 +2,6 @@ package enums;
 
 public enum PlayerState {
     MOVING,
-    AIMING
+    AIMING,
+    SHOOTING,
 }

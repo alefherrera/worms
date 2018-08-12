@@ -2,13 +2,31 @@ package model;
 
 public class Game {
 
-    private double speed;
+    private Double movingSpeed;
+    private Double aimingSpeed;
+    private Double powerSpeed;
 
-    public double getSpeed() {
-        return speed;
+    public Double getMovingSpeed() {
+        return movingSpeed;
     }
 
-    public void setSpeed(double speed) {
-        this.speed = speed;
+    public void setMovingSpeed(Double movingSpeed) {
+        this.movingSpeed = movingSpeed;
+    }
+
+    public Double getAimingSpeed() {
+        return aimingSpeed;
+    }
+
+    public void setAimingSpeed(Double aimingSpeed) {
+        this.aimingSpeed = aimingSpeed;
+    }
+
+    public Double getPowerSpeed() {
+        return powerSpeed;
+    }
+
+    public void setPowerSpeed(Double powerSpeed) {
+        this.powerSpeed = powerSpeed;
     }
 }
