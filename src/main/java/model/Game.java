@@ -3,8 +3,6 @@ package model;
 import service.TurnManagerService;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,8 +11,6 @@ public class Game {
     private final List<ActivePlayer> players;
     private final Configuration configuration;
     private final TurnManagerService turnManagerService;
-    private Integer currentPlayer;
-    private boolean started;
 
     public Game(Configuration configuration) {
         this.configuration = configuration;
