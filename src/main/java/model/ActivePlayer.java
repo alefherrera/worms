@@ -3,18 +3,18 @@ package model;
 public class ActivePlayer {
 
     private Player player;
-    private PlayerState stance;
+    private PlayerState state;
 
-    public ActivePlayer(Player player, PlayerState stance) {
+    public ActivePlayer(Player player, PlayerState state) {
         this.player = player;
-        this.stance = stance;
+        this.state = state;
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public PlayerState getStance() {
-        return stance;
+    public void onAction(Action action) {
+        this.state = this.state.onAction(action, player);
     }
 }

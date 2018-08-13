@@ -14,7 +14,7 @@ public class ShootingPlayerState implements PlayerState {
                 return this;
             case EXECUTE:
                 player.shot();
-                return new MovingState();
+                return new WaitingPlayerState();
             case CANCEL:
                 return new AimingPlayerState();
         }

@@ -3,6 +3,8 @@ package model;
 import enums.MovementDirection;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 public class Player extends Element {
@@ -15,12 +17,22 @@ public class Player extends Element {
     private List<Weapon> weapons;
     private List<Shield> shields;
     private Weapon currentWeapon;
+    private Collection<PlayerListener> listeners;
 
     public Player(Game game) {
-        game.addPlayer(this);
         configuration = game.getConfiguration();
         this.weapons = new ArrayList<>();
         this.shields = new ArrayList<>();
+        this.listeners = new HashSet<>();
+        game.addPlayer(this);
+    }
+
+    public void addListener(PlayerListener listener) {
+        this.listeners.add(listener);
+    }
+
+    public void removeListener(PlayerListener listener) {
+        this.listeners.remove(listener);
     }
 
     public void move(MovementDirection direction) {
@@ -57,7 +69,10 @@ public class Player extends Element {
     }
 
     public void shot() {
-        this.currentWeapon.shot();
+        if (this.currentWeapon != null) {
+            this.currentWeapon.shot();
+        }
+        this.listeners.forEach(x -> x.onShot());
     }
 
     public void receiveDamage(Double howMuch) {
