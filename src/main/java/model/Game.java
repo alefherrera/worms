@@ -28,8 +28,16 @@ public class Game {
         updateTurnManager();
     }
 
+    private ActivePlayer getCurrentPlayer() {
+        return this.players.get(turnManagerService.getCurrentPlayer());
+    }
+
+    public void start() {
+        getCurrentPlayer().onAction(Action.ACTIVATE);
+    }
+
     public void onAction(Action action) {
-        this.players.get(turnManagerService.getCurrentPlayer()).onAction(action);
+        getCurrentPlayer().onAction(action);
     }
 
     public void removePlayer(Player player) {

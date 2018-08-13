@@ -24,6 +24,10 @@ public class Player extends Element {
         this.weapons = new ArrayList<>();
         this.shields = new ArrayList<>();
         this.listeners = new HashSet<>();
+        this.angle = 0d;
+        this.health = 0d;
+        this.power = 0d;
+        this.setPosition(new Position(0d, 0d));
         game.addPlayer(this);
     }
 
@@ -66,6 +70,18 @@ public class Player extends Element {
 
     public void addWeapon(Weapon weapon) {
         this.weapons.add(weapon);
+    }
+
+    public Double getHealth() {
+        return health;
+    }
+
+    public Double getAngle() {
+        return angle;
+    }
+
+    public Double getPower() {
+        return power;
     }
 
     public void shot() {

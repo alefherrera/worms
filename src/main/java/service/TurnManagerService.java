@@ -9,6 +9,9 @@ public class TurnManagerService implements PlayerListener  {
     private Integer currentPlayer;
 
     public TurnManagerService() {
+        currentPlayer = 0;
+        numberOfPlayers = 0;
+        turns = 0l;
     }
 
     public void setNumberOfPlayers(Integer numberOfPlayers) {

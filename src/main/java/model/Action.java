@@ -6,5 +6,6 @@ public enum Action {
     UP,
     DOWN,
     EXECUTE,
-    CANCEL
+    CANCEL,
+    ACTIVATE
 }
