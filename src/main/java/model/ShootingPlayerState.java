@@ -1,8 +1,8 @@
 package model;
 
-public class ShootingStance implements Stance {
+public class ShootingPlayerState implements PlayerState {
 
-    public Stance onAction(Action action, Player player) {
+    public PlayerState onAction(Action action, Player player) {
         switch (action) {
             case RIGHT:
             case UP:
@@ -14,9 +14,9 @@ public class ShootingStance implements Stance {
                 return this;
             case EXECUTE:
                 player.shot();
-                return new MovingStance();
+                return new MovingState();
             case CANCEL:
-                return new AimingStance();
+                return new AimingPlayerState();
         }
         return this;
     }

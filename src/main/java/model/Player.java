@@ -1,18 +1,15 @@
 package model;
 
 import enums.MovementDirection;
-import enums.PlayerState;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 public class Player extends Element {
 
-    private final Game game;
+    private final Configuration configuration;
     private Double health;
-    private Stance stance;
+    private PlayerState state;
     private Double angle;
     private Double power;
     private List<Weapon> weapons;
@@ -20,16 +17,17 @@ public class Player extends Element {
     private Weapon currentWeapon;
 
     public Player(Game game) {
-        this.game = game;
+        game.addPlayer(this);
+        configuration = game.getConfiguration();
         this.weapons = new ArrayList<>();
         this.shields = new ArrayList<>();
     }
 
     public void move(MovementDirection direction) {
         if (direction.equals(MovementDirection.RIGHT)) {
-            changePosition(game.getMovingSpeed());
+            changePosition(configuration.getMovingSpeed());
         } else {
-            changePosition(-game.getMovingSpeed());
+            changePosition(-configuration.getMovingSpeed());
         }
     }
 
@@ -39,19 +37,19 @@ public class Player extends Element {
     }
 
     public void increaseAngle() {
-        angle = Math.min(180, angle + game.getAimingSpeed());
+        angle = Math.min(180, angle + configuration.getAimingSpeed());
     }
 
     public void decreaseAngle() {
-        angle = Math.max(0, angle - game.getAimingSpeed());
+        angle = Math.max(0, angle - configuration.getAimingSpeed());
     }
 
     public void increasePower() {
-        power = Math.min(100, power + game.getPowerSpeed());
+        power = Math.min(100, power + configuration.getPowerSpeed());
     }
 
     public void decreasePower() {
-        power = Math.max(0, power - game.getPowerSpeed());
+        power = Math.max(0, power - configuration.getPowerSpeed());
     }
 
     public void addWeapon(Weapon weapon) {

@@ -3,9 +3,9 @@ package model;
 public class ActivePlayer {
 
     private Player player;
-    private Stance stance;
+    private PlayerState stance;
 
-    public ActivePlayer(Player player, Stance stance) {
+    public ActivePlayer(Player player, PlayerState stance) {
         this.player = player;
         this.stance = stance;
     }
@@ -14,7 +14,7 @@ public class ActivePlayer {
         return player;
     }
 
-    public Stance getStance() {
+    public PlayerState getStance() {
         return stance;
     }
 }

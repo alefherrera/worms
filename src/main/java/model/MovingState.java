@@ -2,9 +2,9 @@ package model;
 
 import enums.MovementDirection;
 
-public class MovingStance implements Stance {
+public class MovingState implements PlayerState {
 
-    public Stance onAction(Action action, Player player) {
+    public PlayerState onAction(Action action, Player player) {
         switch (action) {
             case RIGHT:
                 player.move(MovementDirection.RIGHT);
@@ -13,7 +13,7 @@ public class MovingStance implements Stance {
                 player.move(MovementDirection.LEFT);
                 return this;
             case EXECUTE:
-                return new AimingStance();
+                return new AimingPlayerState();
             default:
                 return this;
         }

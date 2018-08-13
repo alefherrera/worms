@@ -9,8 +9,9 @@ public class PlayerTest {
 
     @Test
     public void move() {
-        Game game = new Game();
-        game.setMovingSpeed(10d);
+        Configuration configuration = new Configuration();
+        configuration.setMovingSpeed(10d);
+        Game game = new Game(configuration);
         Player player = new Player(game);
         player.setPosition(new Position(0d, 0d));
         player.move(MovementDirection.RIGHT);
