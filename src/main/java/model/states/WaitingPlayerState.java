@@ -1,9 +1,8 @@
 package model.states;
 
-import model.Action;
-import model.Player;
+import enums.Action;
+import model.elements.Player;
 import model.PlayerState;
-import model.states.MovingState;
 
 public class WaitingPlayerState implements PlayerState {
     public PlayerState onAction(Action action, Player player) {

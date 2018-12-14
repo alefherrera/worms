@@ -1,7 +1,7 @@
 package model.states;
 
-import model.Action;
-import model.Player;
+import enums.Action;
+import model.elements.Player;
 import model.PlayerState;
 
 public class ShootingPlayerState implements PlayerState {

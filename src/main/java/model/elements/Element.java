@@ -1,4 +1,7 @@
-package model;
+package model.elements;
+
+import model.Position;
+import model.Size;
 
 public class Element {
 

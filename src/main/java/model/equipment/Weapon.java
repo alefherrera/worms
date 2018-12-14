@@ -1,4 +1,6 @@
-package model;
+package model.equipment;
+
+import model.elements.Bullet;
 
 public class Weapon {
 

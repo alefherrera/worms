@@ -1,6 +1,8 @@
 package model;
 
 import enums.MovementDirection;
+import model.config.Configuration;
+import model.elements.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

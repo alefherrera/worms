@@ -1,5 +1,8 @@
 package model;
 
+import enums.Action;
+import model.config.Configuration;
+import model.elements.Player;
 import model.states.WaitingPlayerState;
 import service.TurnManagerService;
 

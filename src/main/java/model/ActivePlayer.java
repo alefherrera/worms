@@ -1,5 +1,8 @@
 package model;
 
+import enums.Action;
+import model.elements.Player;
+
 public class ActivePlayer {
 
     private Player player;

@@ -1,6 +1,10 @@
-package model;
+package model.elements;
 
 import enums.MovementDirection;
+import model.*;
+import model.config.Configuration;
+import model.equipment.Shield;
+import model.equipment.Weapon;
 
 import java.util.ArrayList;
 import java.util.Collection;

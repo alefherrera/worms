@@ -1,4 +1,4 @@
-package model;
+package model.config;
 
 public class Configuration {
 

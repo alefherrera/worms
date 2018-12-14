@@ -1,4 +1,4 @@
-package model;
+package model.elements;
 
 public class Bullet extends Element {
 
