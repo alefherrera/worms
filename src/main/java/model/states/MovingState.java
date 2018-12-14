@@ -3,7 +3,6 @@ package model.states;
 import enums.MovementDirection;
 import enums.Action;
 import model.elements.Player;
-import model.PlayerState;
 
 public class MovingState implements PlayerState {
 

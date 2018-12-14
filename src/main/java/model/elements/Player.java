@@ -5,6 +5,7 @@ import model.*;
 import model.config.Configuration;
 import model.equipment.Shield;
 import model.equipment.Weapon;
+import model.states.PlayerState;
 
 import java.util.ArrayList;
 import java.util.Collection;

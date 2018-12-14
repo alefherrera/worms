@@ -2,7 +2,6 @@ package model.states;
 
 import enums.Action;
 import model.elements.Player;
-import model.PlayerState;
 
 public class WaitingPlayerState implements PlayerState {
     public PlayerState onAction(Action action, Player player) {

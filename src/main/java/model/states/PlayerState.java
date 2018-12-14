@@ -1,4 +1,4 @@
-package model;
+package model.states;
 
 import enums.Action;
 import model.elements.Player;

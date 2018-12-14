@@ -1,7 +1,6 @@
 package model.states;
 
 import enums.Action;
-import model.*;
 import model.elements.Player;
 
 public class AimingPlayerState implements PlayerState {
