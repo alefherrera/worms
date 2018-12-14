@@ -1,6 +1,10 @@
-package model;
+package model.states;
 
 import enums.MovementDirection;
+import model.Action;
+import model.Player;
+import model.PlayerState;
+import model.states.AimingPlayerState;
 
 public class MovingState implements PlayerState {
 

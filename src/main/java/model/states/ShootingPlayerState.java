@@ -1,4 +1,8 @@
-package model;
+package model.states;
+
+import model.Action;
+import model.Player;
+import model.PlayerState;
 
 public class ShootingPlayerState implements PlayerState {
 

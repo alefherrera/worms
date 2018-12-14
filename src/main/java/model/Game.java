@@ -1,5 +1,6 @@
 package model;
 
+import model.states.WaitingPlayerState;
 import service.TurnManagerService;
 
 import java.util.ArrayList;

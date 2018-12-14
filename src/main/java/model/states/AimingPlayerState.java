@@ -1,4 +1,6 @@
-package model;
+package model.states;
+
+import model.*;
 
 public class AimingPlayerState implements PlayerState {
 
