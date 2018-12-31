@@ -5,44 +5,52 @@ import model.config.Configuration;
 import model.elements.Player;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class GameTest {
 
+    public static final Double MOVING_SPEED = 10d;
+    public static final Double AIMING_SPEED = 2d;
+    public static final Double POWER_SPEED = 1d;
+    public static final Double ZERO = Double.valueOf(0d);
+
+    private Configuration getConfiguration() {
+        Configuration configuration = new Configuration();
+        configuration.setMovingSpeed(MOVING_SPEED);
+        configuration.setAimingSpeed(AIMING_SPEED);
+        configuration.setPowerSpeed(POWER_SPEED);
+        return configuration;
+    }
+
     @Test
     public void onAction() {
-        Double movingSpeed = 10d;
-        Double aimingSpeed = 2d;
-        Double powerSpeed = 1d;
-        Double zero = Double.valueOf(0d);
-        Configuration configuration = new Configuration();
-        configuration.setMovingSpeed(movingSpeed);
-        configuration.setAimingSpeed(aimingSpeed);
-        configuration.setPowerSpeed(powerSpeed);
+        Configuration configuration = getConfiguration();
         Game game = new Game(configuration);
         Player player = new Player(game);
+
         game.start();
+
         game.onAction(Action.RIGHT);
 
-        assertEquals(movingSpeed, player.getPosition().getX());
+        assertEquals(MOVING_SPEED, player.getPosition().getX());
 
         game.onAction(Action.LEFT);
 
-        assertEquals(zero, player.getPosition().getX());
+        assertEquals(ZERO, player.getPosition().getX());
 
         game.onAction(Action.EXECUTE);
 
         game.onAction(Action.RIGHT);
 
-        assertEquals(zero, player.getPosition().getX());
+        assertEquals(ZERO, player.getPosition().getX());
 
-        assertEquals(aimingSpeed, player.getAngle());
+        assertEquals(AIMING_SPEED, player.getAngle());
 
         game.onAction(Action.EXECUTE);
 
         game.onAction(Action.RIGHT);
 
-        assertEquals(powerSpeed, player.getPower());
+        assertEquals(POWER_SPEED, player.getPower());
 
     }
 }
