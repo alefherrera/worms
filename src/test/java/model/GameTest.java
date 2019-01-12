@@ -9,10 +9,10 @@ import static org.junit.Assert.assertEquals;
 
 public class GameTest {
 
-    public static final Double MOVING_SPEED = 10d;
-    public static final Double AIMING_SPEED = 2d;
-    public static final Double POWER_SPEED = 1d;
-    public static final Double ZERO = Double.valueOf(0d);
+    private static final Double MOVING_SPEED = 10d;
+    private static final Double AIMING_SPEED = 2d;
+    private static final Double POWER_SPEED = 1d;
+    private static final Double ZERO = 0d;
 
     private Configuration getConfiguration() {
         Configuration configuration = new Configuration();
@@ -51,6 +51,52 @@ public class GameTest {
         game.onAction(Action.RIGHT);
 
         assertEquals(POWER_SPEED, player.getPower());
+
+    }
+
+    @Test
+    public void nextTurnPlayer() {
+        Configuration configuration = getConfiguration();
+        Game game = new Game(configuration);
+        Player player = new Player(game);
+        Player player2 = new Player(game);
+
+        game.start();
+
+        assertEquals(player, game.getPlayer());
+        //move
+        game.onAction(Action.EXECUTE);
+        //aim
+        game.onAction(Action.EXECUTE);
+        //shoot
+        game.onAction(Action.EXECUTE);
+
+        assertEquals(player2, game.getPlayer());
+
+    }
+
+    @Test
+    public void removePlayer() {
+        Configuration configuration = getConfiguration();
+        Game game = new Game(configuration);
+        Player player = new Player(game);
+        Player player2 = new Player(game);
+        Player player3 = new Player(game);
+
+        game.start();
+
+        assertEquals(player, game.getPlayer());
+        //move
+        game.onAction(Action.EXECUTE);
+        //aim
+        game.onAction(Action.EXECUTE);
+
+        game.removePlayer(player2);
+
+        //shoot
+        game.onAction(Action.EXECUTE);
+
+        assertEquals(player3, game.getPlayer());
 
     }
 }

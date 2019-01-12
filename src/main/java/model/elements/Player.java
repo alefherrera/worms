@@ -16,7 +16,6 @@ public class Player extends Element {
 
     private final Configuration configuration;
     private Double health;
-    private PlayerState state;
     private Double angle;
     private Double power;
     private List<Weapon> weapons;
@@ -93,7 +92,7 @@ public class Player extends Element {
         if (this.currentWeapon != null) {
             this.currentWeapon.shot();
         }
-        this.listeners.forEach(x -> x.onShot());
+        this.listeners.forEach(PlayerListener::onShot);
     }
 
     public void receiveDamage(Double howMuch) {

@@ -16,7 +16,7 @@ public class Game {
     private final Configuration configuration;
     private final TurnManagerService turnManagerService;
 
-    public Game(Configuration configuration) {
+    Game(Configuration configuration) {
         this.configuration = configuration;
         this.players = new ArrayList<>();
         turnManagerService = new TurnManagerService();
@@ -32,26 +32,30 @@ public class Game {
         updateTurnManager();
     }
 
-    private ActivePlayer getCurrentPlayer() {
-        return this.players.get(turnManagerService.getCurrentPlayer());
+    public Player getPlayer() {
+        return getCurrentPlayer().getPlayer();
     }
 
-    public void start() {
+    void start() {
         getCurrentPlayer().onAction(Action.ACTIVATE);
     }
 
-    public void onAction(Action action) {
+    void onAction(Action action) {
         getCurrentPlayer().onAction(action);
     }
 
-    public void removePlayer(Player player) {
+    void removePlayer(Player player) {
         List<ActivePlayer> playerList = players.stream().filter(x -> x.getPlayer().equals(player)).collect(Collectors.toList());
-        if (playerList.isEmpty()) {
+        if (!playerList.isEmpty()) {
             ActivePlayer playerToRemove = playerList.get(0);
             playerToRemove.getPlayer().removeListener(turnManagerService);
             players.remove(playerToRemove);
         }
         updateTurnManager();
+    }
+
+    private ActivePlayer getCurrentPlayer() {
+        return this.players.get(turnManagerService.getCurrentPlayer());
     }
 
     private void updateTurnManager() {
