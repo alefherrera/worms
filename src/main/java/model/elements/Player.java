@@ -15,6 +15,7 @@ import java.util.List;
 public class Player extends Element {
 
     private final Configuration configuration;
+    private final String name;
     private Double health;
     private Double angle;
     private Double power;
@@ -23,7 +24,8 @@ public class Player extends Element {
     private Weapon currentWeapon;
     private Collection<PlayerListener> listeners;
 
-    public Player(Game game) {
+    public Player(String name, Game game) {
+        this.name = name;
         configuration = game.getConfiguration();
         this.weapons = new ArrayList<>();
         this.shields = new ArrayList<>();
@@ -32,7 +34,6 @@ public class Player extends Element {
         this.health = 0d;
         this.power = 0d;
         this.setPosition(new Position(0d, 0d));
-        game.addPlayer(this);
     }
 
     public void addListener(PlayerListener listener) {
@@ -99,4 +100,10 @@ public class Player extends Element {
         this.health -= howMuch;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

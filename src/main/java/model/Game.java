@@ -26,9 +26,10 @@ public class Game {
         return configuration;
     }
 
-    public void addPlayer(Player player) {
+    public void addPlayer(Player player, Controller controller) {
         player.addListener(turnManagerService);
-        players.add(new ActivePlayer(player, new WaitingPlayerState()));
+        ActivePlayer activePlayer = new ActivePlayer(controller, player, new WaitingPlayerState());
+        players.add(activePlayer);
         updateTurnManager();
     }
 
@@ -37,11 +38,6 @@ public class Game {
     }
 
     void start() {
-        getCurrentPlayer().onAction(Action.ACTIVATE);
-    }
-
-    void onAction(Action action) {
-        getCurrentPlayer().onAction(action);
     }
 
     void removePlayer(Player player) {
@@ -60,5 +56,16 @@ public class Game {
 
     private void updateTurnManager() {
         turnManagerService.setNumberOfPlayers(players.size());
+    }
+
+    void doAction(Controller controller, Action action) {
+        List<ActivePlayer> collect = players.stream().filter(x -> x.getController().equals(controller)).collect(Collectors.toList());
+        if (!collect.isEmpty()) {
+            ActivePlayer activePlayer = collect.get(0);
+            ActivePlayer currentPlayer = getCurrentPlayer();
+            if (currentPlayer.equals(activePlayer)) {
+                currentPlayer.onAction(action);
+            }
+        }
     }
 }
