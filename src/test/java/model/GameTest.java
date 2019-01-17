@@ -4,6 +4,7 @@ import enums.Action;
 import model.config.Configuration;
 import model.elements.Player;
 import org.junit.Test;
+import service.SecuencialTurnManager;
 
 import static org.junit.Assert.assertEquals;
 
@@ -25,32 +26,31 @@ public class GameTest {
     @Test
     public void onAction() {
         Configuration configuration = getConfiguration();
-        Game game = new Game(configuration);
+        Game game = new Game(new Looper());
+        Match match = game.createMatch(configuration, new SecuencialTurnManager());
         Controller controller = new Controller("slot1");
-        Player player = new Player("player1", game);
-        game.addPlayer(player, controller);
+        Player player = new Player("player1", configuration);
+        match.addPlayer(player, controller);
 
         game.start();
 
-        game.doAction(controller, Action.RIGHT);
+        controller.sendAction(Action.RIGHT);
 
         assertEquals(MOVING_SPEED, player.getPosition().getX());
 
-        game.doAction(controller, Action.LEFT);
+        controller.sendAction(Action.LEFT);
 
         assertEquals(ZERO, player.getPosition().getX());
 
-        game.doAction(controller, Action.EXECUTE);
-
-        game.doAction(controller, Action.RIGHT);
+        controller.sendAction(Action.EXECUTE);
+        controller.sendAction(Action.RIGHT);
 
         assertEquals(ZERO, player.getPosition().getX());
 
         assertEquals(AIMING_SPEED, player.getAngle());
 
-        game.doAction(controller, Action.EXECUTE);
-
-        game.doAction(controller, Action.RIGHT);
+        controller.sendAction(Action.EXECUTE);
+        controller.sendAction(Action.RIGHT);
 
         assertEquals(POWER_SPEED, player.getPower());
 
@@ -59,81 +59,84 @@ public class GameTest {
     @Test
     public void nextTurnPlayer() {
         Configuration configuration = getConfiguration();
-        Game game = new Game(configuration);
+        Game game = new Game(new Looper());
+        Match match = game.createMatch(configuration, new SecuencialTurnManager());
         Controller controller = new Controller("slot1");
         Controller controller2 = new Controller("slot2");
-        Player player = new Player("player1", game);
-        Player player2 = new Player("player2", game);
-        game.addPlayer(player, controller);
-        game.addPlayer(player2, controller2);
+        Player player = new Player("player1", configuration);
+        Player player2 = new Player("player2", configuration);
+        match.addPlayer(player, controller);
+        match.addPlayer(player2, controller2);
 
         game.start();
 
-        assertEquals(player, game.getPlayer());
-        //move
-        game.doAction(controller2, Action.EXECUTE);
-        //aim
-        game.doAction(controller2, Action.EXECUTE);
-        //shoot
-        game.doAction(controller2, Action.EXECUTE);
-
-        assertEquals(player, game.getPlayer());
+        assertEquals(player, match.getPlayer());
 
         //move
-        game.doAction(controller, Action.EXECUTE);
+        controller2.sendAction(Action.EXECUTE);
         //aim
-        game.doAction(controller, Action.EXECUTE);
+        controller2.sendAction(Action.EXECUTE);
         //shoot
-        game.doAction(controller, Action.EXECUTE);
+        controller2.sendAction(Action.EXECUTE);
 
-        assertEquals(player2, game.getPlayer());
+        assertEquals(player, match.getPlayer());
 
         //move
-        game.doAction(controller, Action.EXECUTE);
+        controller.sendAction(Action.EXECUTE);
         //aim
-        game.doAction(controller, Action.EXECUTE);
+        controller.sendAction(Action.EXECUTE);
         //shoot
-        game.doAction(controller, Action.EXECUTE);
+        controller.sendAction(Action.EXECUTE);
 
-        assertEquals(player2, game.getPlayer());
+        assertEquals(player2, match.getPlayer());
 
         //move
-        game.doAction(controller2, Action.EXECUTE);
+        controller.sendAction(Action.EXECUTE);
         //aim
-        game.doAction(controller2, Action.EXECUTE);
+        controller.sendAction(Action.EXECUTE);
         //shoot
-        game.doAction(controller2, Action.EXECUTE);
+        controller.sendAction(Action.EXECUTE);
 
-        assertEquals(player, game.getPlayer());
+        assertEquals(player2, match.getPlayer());
+
+        //move
+        controller2.sendAction(Action.EXECUTE);
+        //aim
+        controller2.sendAction(Action.EXECUTE);
+        //shoot
+        controller2.sendAction(Action.EXECUTE);
+
+        assertEquals(player, match.getPlayer());
 
     }
 
     @Test
     public void removePlayer() {
         Configuration configuration = getConfiguration();
-        Game game = new Game(configuration);
+        Game game = new Game(new Looper());
+        Match match = game.createMatch(configuration, new SecuencialTurnManager());
         Controller controller = new Controller("slot1");
-        Player player = new Player("player1", game);
-        Player player2 = new Player("player2", game);
-        Player player3 = new Player("player3", game);
-        game.addPlayer(player, controller);
-        game.addPlayer(player2, controller);
-        game.addPlayer(player3, controller);
+        Player player = new Player("player1", configuration);
+        Player player2 = new Player("player2", configuration);
+        Player player3 = new Player("player3", configuration);
+        match.addPlayer(player, controller);
+        match.addPlayer(player2, controller);
+        match.addPlayer(player3, controller);
 
         game.start();
 
-        assertEquals(player, game.getPlayer());
+        assertEquals(player, match.getPlayer());
         //move
-        game.doAction(controller, Action.EXECUTE);
+        controller.sendAction(Action.EXECUTE);
         //aim
-        game.doAction(controller, Action.EXECUTE);
+        controller.sendAction(Action.EXECUTE);
 
-        game.removePlayer(player2);
+        match.removePlayer(player2);
 
         //shoot
-        game.doAction(controller, Action.EXECUTE);
+        controller.sendAction(Action.EXECUTE);
 
-        assertEquals(player3, game.getPlayer());
+        assertEquals(player3, match.getPlayer());
 
     }
 }

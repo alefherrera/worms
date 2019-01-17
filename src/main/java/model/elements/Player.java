@@ -14,19 +14,19 @@ import java.util.List;
 
 public class Player extends Element {
 
-    private final Configuration configuration;
     private final String name;
+    private final Configuration configuration;
     private Double health;
     private Double angle;
     private Double power;
     private List<Weapon> weapons;
     private List<Shield> shields;
     private Weapon currentWeapon;
-    private Collection<PlayerListener> listeners;
+    private final Collection<PlayerListener> listeners;
 
-    public Player(String name, Game game) {
+    public Player(String name, Configuration configuration) {
         this.name = name;
-        configuration = game.getConfiguration();
+        this.configuration = configuration;
         this.weapons = new ArrayList<>();
         this.shields = new ArrayList<>();
         this.listeners = new HashSet<>();
@@ -98,6 +98,10 @@ public class Player extends Element {
 
     public void receiveDamage(Double howMuch) {
         this.health -= howMuch;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

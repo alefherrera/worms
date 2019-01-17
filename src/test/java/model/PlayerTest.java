@@ -13,8 +13,7 @@ public class PlayerTest {
     public void move() {
         Configuration configuration = new Configuration();
         configuration.setMovingSpeed(10d);
-        Game game = new Game(configuration);
-        Player player = new Player("player1", game);
+        Player player = new Player("player1", configuration);
         player.setPosition(new Position(0d, 0d));
         player.move(MovementDirection.RIGHT);
         player.move(MovementDirection.RIGHT);

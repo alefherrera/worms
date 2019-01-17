@@ -3,18 +3,19 @@ package model;
 import enums.Action;
 import model.elements.Player;
 import model.states.PlayerState;
+import model.states.WaitingPlayerState;
 
-public class ActivePlayer {
+public class ActivePlayer implements ControllerListener {
 
-    private Player player;
+    private final Player player;
+    private final Controller controller;
     private PlayerState state;
-    private Controller controller;
 
-    public ActivePlayer(Controller controller, Player player, PlayerState state) {
+    public ActivePlayer(Controller controller, Player player) {
         this.controller = controller;
+        controller.addListener(this);
         this.player = player;
-        this.state = state;
-        onAction(Action.ACTIVATE);
+        this.state = new WaitingPlayerState();
     }
 
     public Player getPlayer() {
