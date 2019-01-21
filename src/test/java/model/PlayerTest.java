@@ -19,4 +19,18 @@ public class PlayerTest {
         player.move(MovementDirection.RIGHT);
         assertEquals(Double.valueOf(20d), player.getPosition().getX());
     }
+
+    @Test
+    public void receiveDamage() {
+        Configuration configuration = new Configuration();
+        configuration.setMovingSpeed(10D);
+        final Double INITIAL_HEALTH = 100D;
+        final Double DAMAGE = 20D;
+        configuration.setInitialHealth(INITIAL_HEALTH);
+        Player player = new Player("player1", configuration);
+        assertEquals(INITIAL_HEALTH, player.getHealth());
+        player.receiveDamage(DAMAGE);
+        final Double expectedHealth = INITIAL_HEALTH - DAMAGE;
+        assertEquals(expectedHealth, player.getHealth());
+    }
 }

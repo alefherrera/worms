@@ -10,4 +10,9 @@ public class WaitingPlayerState implements PlayerState {
         }
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "WaitingPlayerState{}";
+    }
 }

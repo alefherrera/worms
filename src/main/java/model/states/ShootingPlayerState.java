@@ -23,4 +23,9 @@ public class ShootingPlayerState implements PlayerState {
         }
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "ShootingPlayerState{}";
+    }
 }

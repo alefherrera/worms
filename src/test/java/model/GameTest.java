@@ -26,13 +26,14 @@ public class GameTest {
     @Test
     public void onAction() {
         Configuration configuration = getConfiguration();
-        Game game = new Game(new Looper());
-        Match match = game.createMatch(configuration, new SecuencialTurnManager());
+        Game game = new Game(new Looper(1000));
+        Match match = game.createMatch(configuration, SecuencialTurnManager::new);
         Controller controller = new Controller("slot1");
         Player player = new Player("player1", configuration);
         match.addPlayer(player, controller);
 
         game.start();
+        match.start();
 
         controller.sendAction(Action.RIGHT);
 
@@ -59,8 +60,8 @@ public class GameTest {
     @Test
     public void nextTurnPlayer() {
         Configuration configuration = getConfiguration();
-        Game game = new Game(new Looper());
-        Match match = game.createMatch(configuration, new SecuencialTurnManager());
+        Game game = new Game(new Looper(1000));
+        Match match = game.createMatch(configuration, SecuencialTurnManager::new);
         Controller controller = new Controller("slot1");
         Controller controller2 = new Controller("slot2");
         Player player = new Player("player1", configuration);
@@ -69,6 +70,7 @@ public class GameTest {
         match.addPlayer(player2, controller2);
 
         game.start();
+        match.start();
 
         assertEquals(player, match.getPlayer());
 
@@ -113,8 +115,8 @@ public class GameTest {
     @Test
     public void removePlayer() {
         Configuration configuration = getConfiguration();
-        Game game = new Game(new Looper());
-        Match match = game.createMatch(configuration, new SecuencialTurnManager());
+        Game game = new Game(new Looper(1000));
+        Match match = game.createMatch(configuration, SecuencialTurnManager::new);
         Controller controller = new Controller("slot1");
         Player player = new Player("player1", configuration);
         Player player2 = new Player("player2", configuration);
@@ -124,6 +126,7 @@ public class GameTest {
         match.addPlayer(player3, controller);
 
         game.start();
+        match.start();
 
         assertEquals(player, match.getPlayer());
         //move

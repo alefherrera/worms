@@ -6,10 +6,8 @@ import java.util.List;
 
 public class SecuencialTurnManager extends TurnManager {
 
-    @Override
-    public void init(List<ActivePlayer> players) {
-        super.init(players);
-        setCurrent(players.get(0));
+    public SecuencialTurnManager(List<ActivePlayer> players) {
+        super(players, 0);
     }
 
     @Override

@@ -7,10 +7,7 @@ import model.equipment.Shield;
 import model.equipment.Weapon;
 import model.states.PlayerState;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Player extends Element {
 
@@ -30,10 +27,10 @@ public class Player extends Element {
         this.weapons = new ArrayList<>();
         this.shields = new ArrayList<>();
         this.listeners = new HashSet<>();
-        this.angle = 0d;
-        this.health = 0d;
-        this.power = 0d;
-        this.setPosition(new Position(0d, 0d));
+        this.angle = 0D;
+        this.health = configuration.getInitialHealth();
+        this.power = 0D;
+        this.setPosition(new Position(0D, 0D));
     }
 
     public void addListener(PlayerListener listener) {
@@ -102,6 +99,25 @@ public class Player extends Element {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(name, player.name) &&
+                Objects.equals(health, player.health) &&
+                Objects.equals(angle, player.angle) &&
+                Objects.equals(power, player.power) &&
+                Objects.equals(weapons, player.weapons) &&
+                Objects.equals(shields, player.shields) &&
+                Objects.equals(currentWeapon, player.currentWeapon);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, health, angle, power, weapons, shields, currentWeapon);
     }
 
     @Override

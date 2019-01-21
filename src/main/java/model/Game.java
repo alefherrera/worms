@@ -5,6 +5,8 @@ import service.TurnManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.function.Function;
 
 public class Game {
 
@@ -17,20 +19,19 @@ public class Game {
     }
 
     public void start() {
-        looper.start();
-        this.matches.forEach(match -> match.start());
+        looper.start(this);
     }
 
     public void finish() {
-        looper.end();
+        looper.stop();
     }
 
     public GameStatus getStatus() {
-        return new GameStatus();
+        return new GameStatus(matches);
     }
 
-    public Match createMatch(Configuration configuration, TurnManager turnManager) {
-        Match match = new Match(configuration, turnManager);
+    public Match createMatch(Configuration configuration, Function<List<ActivePlayer>, TurnManager> turnManagerSupplier) {
+        Match match = new Match(configuration, turnManagerSupplier);
         matches.add(match);
         return match;
     }

@@ -22,4 +22,9 @@ public class AimingPlayerState implements PlayerState {
         }
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "AimingPlayerState{}";
+    }
 }

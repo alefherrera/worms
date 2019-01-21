@@ -7,7 +7,7 @@ import java.util.List;
 
 public abstract class TurnManager {
 
-    protected List<ActivePlayer> players;
+    protected final List<ActivePlayer> players;
     private Integer turn = 0;
     private ActivePlayer player;
 
@@ -19,8 +19,9 @@ public abstract class TurnManager {
         turn++;
     }
 
-    public void init(List<ActivePlayer> players) {
+    public TurnManager(List<ActivePlayer> players, Integer initial) {
         this.players = players;
+        setCurrent(players.get(initial));
     }
 
     public ActivePlayer getCurrent() {
@@ -33,4 +34,13 @@ public abstract class TurnManager {
     }
 
     public abstract void next();
+
+    @Override
+    public String toString() {
+        return "TurnManager{" +
+                "players=" + players +
+                ", turn=" + turn +
+                ", player=" + player.getPlayer() +
+                '}';
+    }
 }
