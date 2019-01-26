@@ -9,7 +9,8 @@ public abstract class TurnManager {
 
     transient final List<Player> players;
     private Integer turn = 0;
-    private Player player;
+    private transient Player player;
+    private String current;
 
     public Integer getTurn() {
         return turn;
@@ -31,6 +32,7 @@ public abstract class TurnManager {
     void setCurrent(Player player) {
         player.onAction(new ActivateAction());
         this.player = player;
+        this.current = player.getName();
     }
 
     public abstract void next();

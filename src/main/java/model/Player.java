@@ -96,7 +96,7 @@ public class Player implements ControllerListener {
         decrease(statType, null);
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 

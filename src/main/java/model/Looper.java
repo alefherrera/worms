@@ -41,8 +41,8 @@ public class Looper implements Runnable {
                 Thread.currentThread().interrupt();
                 statusSpy.inform("Thread was interrupted, Failed to complete operation");
             }
-            if (needRefresh.get()) {
-                needRefresh.set(false);
+
+            if (needRefresh.compareAndSet(true, false)) {
                 GameStatus gameStatus = game.getStatus();
                 statusSpy.inform(gameStatus);
             }
