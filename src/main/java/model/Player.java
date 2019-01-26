@@ -19,20 +19,17 @@ public class Player implements ControllerListener {
 
     private final Character character;
     private final String name;
-    private transient final Controller controller;
     private final StatContainer statContainer;
-    private transient PlayerState state;
+    private PlayerState state;
     private transient final Collection<PlayerListener> listeners;
     private final Equipment equipment;
     private final Configuration configuration;
 
-    public Player(Controller controller, String name, Match match) {
+    public Player(String name, Match match) {
         this.name = name;
-        this.controller = controller;
-        controller.addListener(this);
         this.listeners = new HashSet<>();
         this.character = new Character();
-        this.state = PlayerState.getDefaultState();
+        this.state = PlayerState.getDefault(this);
         equipment = new Equipment();
         configuration = match.getConfiguration();
         Map<StatType, Stat> stats = new HashMap<>();
@@ -41,22 +38,6 @@ public class Player implements ControllerListener {
         stats.put(StatType.POWER, new Stat(0D, 0D, 360D, value -> configuration.getPowerSpeed()));
         statContainer = new StatContainer(stats);
         this.listeners.add(match);
-    }
-
-    public Character getCharacter() {
-        return character;
-    }
-
-    public Controller getController() {
-        return controller;
-    }
-
-    public void addListener(PlayerListener listener) {
-        this.listeners.add(listener);
-    }
-
-    public void removeListener(PlayerListener listener) {
-        this.listeners.remove(listener);
     }
 
     public void moveRight() {
@@ -80,15 +61,15 @@ public class Player implements ControllerListener {
         return statContainer.getValue(StatType.HEALTH).orElse(null);
     }
 
-    public Double getAngle() {
+    Double getAngle() {
         return statContainer.getValue(StatType.ANGLE).orElse(null);
     }
 
-    public Double getPower() {
+    Double getPower() {
         return statContainer.getValue(StatType.POWER).orElse(null);
     }
 
-    public Position getPosition() {
+    Position getPosition() {
         return this.character.getPosition();
     }
 
@@ -99,11 +80,11 @@ public class Player implements ControllerListener {
         this.listeners.forEach(PlayerListener::onShot);
     }
 
-    public void increase(StatType statType, Double value) {
+    private void increase(StatType statType, Double value) {
         statContainer.increase(statType, value);
     }
 
-    public void decrease(StatType statType, Double value) {
+    private void decrease(StatType statType, Double value) {
         statContainer.decrease(statType, value);
     }
 
@@ -115,11 +96,11 @@ public class Player implements ControllerListener {
         decrease(statType, null);
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
     public void onAction(Action action) {
-        this.state = this.state.onAction(action, this);
+        this.state = this.state.onAction(action);
     }
 }

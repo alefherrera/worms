@@ -5,12 +5,13 @@ import model.actions.ActivateAction;
 
 class WaitingPlayerState extends PlayerState {
 
-    WaitingPlayerState() {
+    WaitingPlayerState(Player player) {
+        super("WAITING", player);
         conditions.put(new ActivateAction(), this::activate);
     }
 
-    private PlayerState activate(Player player) {
-        return new MovingState();
+    private PlayerState activate() {
+        return new MovingState(player);
     }
 
 }

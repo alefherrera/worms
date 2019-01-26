@@ -1,7 +1,6 @@
 package model;
 
 import model.config.Configuration;
-import model.elements.Character;
 import service.TurnManager;
 
 import java.util.ArrayList;
@@ -25,8 +24,9 @@ public class Match implements PlayerListener {
     }
 
     public Player addPlayer(String name, Controller controller) {
-        Player player = new Player(controller, name, this);
+        Player player = new Player(name, this);
         players.add(player);
+        controller.addListener(player);
         controller.addListener(game);
         return player;
     }
@@ -51,7 +51,7 @@ public class Match implements PlayerListener {
         turnManager.next();
     }
 
-    public Configuration getConfiguration() {
+    Configuration getConfiguration() {
         return configuration;
     }
 }

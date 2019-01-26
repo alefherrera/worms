@@ -3,11 +3,11 @@ package model.states;
 import model.Player;
 import model.StatType;
 import model.actions.*;
-import model.elements.Character;
 
 class ShootingPlayerState extends PlayerState {
 
-    ShootingPlayerState() {
+    ShootingPlayerState(Player player) {
+        super("SHOOTING", player);
         conditions.put(new DownAction(), this::decreasePower);
         conditions.put(new LeftAction(), this::decreasePower);
         conditions.put(new RightAction(), this::increasePower);
@@ -16,21 +16,21 @@ class ShootingPlayerState extends PlayerState {
         conditions.put(new CancelAction(), this::cancel);
     }
 
-    private PlayerState cancel(Player player) {
-        return new AimingPlayerState();
+    private PlayerState cancel() {
+        return new AimingPlayerState(player);
     }
 
-    private PlayerState execute(Player player) {
+    private PlayerState execute() {
         player.shot();
-        return new WaitingPlayerState();
+        return new WaitingPlayerState(player);
     }
 
-    private PlayerState increasePower(Player player) {
+    private PlayerState increasePower() {
         player.increase(StatType.POWER);
         return this;
     }
 
-    private PlayerState decreasePower(Player player) {
+    private PlayerState decreasePower() {
         player.decrease(StatType.POWER);
         return this;
     }

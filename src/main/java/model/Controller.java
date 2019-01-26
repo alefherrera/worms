@@ -20,14 +20,7 @@ public class Controller {
         return name;
     }
 
-    @Override
-    public String toString() {
-        return "Controller{" +
-                "name='" + name + '\'' +
-                '}';
-    }
-
-    public void addListener(ControllerListener listener) {
+    void addListener(ControllerListener listener) {
         this.listeners.add(listener);
     }
 

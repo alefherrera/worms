@@ -5,21 +5,30 @@ import model.actions.Action;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
+import java.util.function.Supplier;
 
 public abstract class PlayerState {
 
-    transient final Map<Action, Function<Player, PlayerState>> conditions = new HashMap<>();
+    private final String id;
+    protected transient final Player player;
 
-    public PlayerState onAction(Action action, Player player) {
-        return conditions.getOrDefault(action, this::defaultCase).apply(player);
+    PlayerState(String id, Player player) {
+        this.player = player;
+        this.id = id;
     }
 
-    public static PlayerState getDefaultState() {
-        return new WaitingPlayerState();
+    transient final Map<Action, Supplier<PlayerState>> conditions = new HashMap<>();
+
+    public PlayerState onAction(Action action) {
+        return conditions.getOrDefault(action, this::defaultCase).get();
     }
 
-    private PlayerState defaultCase(Player player) {
+    public static PlayerState getDefault(Player player) {
+        return new WaitingPlayerState(player);
+    }
+
+    private PlayerState defaultCase() {
         return this;
     }
+
 }
