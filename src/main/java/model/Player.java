@@ -33,19 +33,19 @@ public class Player implements ControllerListener {
         equipment = new Equipment();
         configuration = match.getConfiguration();
         Map<StatType, Stat> stats = new HashMap<>();
-        stats.put(StatType.ANGLE, new Stat(0D, 0D, 360D, value -> configuration.getAimingSpeed()));
+        stats.put(StatType.ANGLE, new Stat(0D, 0D, 360D, value -> configuration.getConfig(StatType.ANGLE)));
         stats.put(StatType.HEALTH, new Stat(0D, 0D, 360D, Function.identity()));
-        stats.put(StatType.POWER, new Stat(0D, 0D, 360D, value -> configuration.getPowerSpeed()));
+        stats.put(StatType.POWER, new Stat(0D, 0D, 360D, value -> configuration.getConfig(StatType.POWER)));
         statContainer = new StatContainer(stats);
         this.listeners.add(match);
     }
 
     public void moveRight() {
-        changePosition(configuration.getMovingSpeed());
+        changePosition(configuration.getConfig(StatType.SPEED));
     }
 
     public void moveLeft() {
-        changePosition(-configuration.getMovingSpeed());
+        changePosition(-configuration.getConfig(StatType.SPEED));
     }
 
     private void changePosition(double howMuch) {

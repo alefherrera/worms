@@ -63,11 +63,11 @@ public class Main {
     private static final Double POWER_SPEED = 1d;
 
     private static Configuration getConfiguration() {
-        Configuration configuration = new Configuration();
-        configuration.setMovingSpeed(MOVING_SPEED);
-        configuration.setAimingSpeed(AIMING_SPEED);
-        configuration.setPowerSpeed(POWER_SPEED);
-        return configuration;
+        Configuration.ConfigurationBuilder builder = new Configuration.ConfigurationBuilder();
+        builder.addSetting(StatType.ANGLE, AIMING_SPEED)
+                .addSetting(StatType.POWER, POWER_SPEED)
+                .addSetting(StatType.SPEED, MOVING_SPEED);
+        return builder.build();
     }
 
 }

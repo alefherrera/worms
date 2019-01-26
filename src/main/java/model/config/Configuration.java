@@ -1,51 +1,39 @@
 package model.config;
 
+import model.StatType;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Configuration {
 
-    private Double movingSpeed;
-    private Double aimingSpeed;
-    private Double powerSpeed;
-    private Double initialHealth;
+    private final Map<StatType, Double> configs;
 
-    public Double getMovingSpeed() {
-        return movingSpeed;
+    private Configuration(Map<StatType, Double> configs) {
+        this.configs = configs;
     }
 
-    public void setMovingSpeed(Double movingSpeed) {
-        this.movingSpeed = movingSpeed;
+    public Double getConfig(StatType statType) {
+        return configs.getOrDefault(statType, null);
     }
 
-    public Double getAimingSpeed() {
-        return aimingSpeed;
+    public static class ConfigurationBuilder {
+
+        private final Map<StatType, Double> configs;
+
+        public ConfigurationBuilder() {
+            configs = new HashMap<>();
+        }
+
+        public ConfigurationBuilder addSetting(StatType statType, Double value) {
+            configs.put(statType, value);
+            return this;
+        }
+
+        public Configuration build() {
+            return new Configuration(configs);
+        }
+
     }
 
-    public void setAimingSpeed(Double aimingSpeed) {
-        this.aimingSpeed = aimingSpeed;
-    }
-
-    public Double getPowerSpeed() {
-        return powerSpeed;
-    }
-
-    public void setPowerSpeed(Double powerSpeed) {
-        this.powerSpeed = powerSpeed;
-    }
-
-    public Double getInitialHealth() {
-        return initialHealth;
-    }
-
-    public void setInitialHealth(Double initialHealth) {
-        this.initialHealth = initialHealth;
-    }
-
-    @Override
-    public String toString() {
-        return "Configuration{" +
-                "movingSpeed=" + movingSpeed +
-                ", aimingSpeed=" + aimingSpeed +
-                ", powerSpeed=" + powerSpeed +
-                ", initialHealth=" + initialHealth +
-                '}';
-    }
 }

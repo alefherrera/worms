@@ -16,12 +16,12 @@ public class GameTest {
     private static final Double POWER_SPEED = 1d;
     private static final Double ZERO = 0d;
 
-    private Configuration getConfiguration() {
-        Configuration configuration = new Configuration();
-        configuration.setMovingSpeed(MOVING_SPEED);
-        configuration.setAimingSpeed(AIMING_SPEED);
-        configuration.setPowerSpeed(POWER_SPEED);
-        return configuration;
+    private static Configuration getConfiguration() {
+        Configuration.ConfigurationBuilder builder = new Configuration.ConfigurationBuilder();
+        builder.addSetting(StatType.ANGLE, AIMING_SPEED)
+                .addSetting(StatType.POWER, POWER_SPEED)
+                .addSetting(StatType.SPEED, MOVING_SPEED);
+        return builder.build();
     }
 
     @Test
