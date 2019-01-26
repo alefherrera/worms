@@ -14,10 +14,10 @@ public class Match implements PlayerListener {
     private transient final Game game;
     private transient final Configuration configuration;
     private transient final Function<List<ActivePlayer>, TurnManager> turnManagerSupplier;
-    private transient TurnManager turnManager;
+    private TurnManager turnManager;
     private final List<ActivePlayer> players;
 
-    public Match(Game game, Configuration configuration, Function<List<ActivePlayer>, TurnManager> turnManagerSupplier) {
+    Match(Game game, Configuration configuration, Function<List<ActivePlayer>, TurnManager> turnManagerSupplier) {
         this.game = game;
         this.configuration = configuration;
         this.turnManagerSupplier = turnManagerSupplier;
@@ -30,7 +30,7 @@ public class Match implements PlayerListener {
         controller.addListener(game);
     }
 
-    public void removePlayer(Player player) {
+    void removePlayer(Player player) {
         List<ActivePlayer> collect = players.stream().filter(x -> x.getPlayer().equals(player)).collect(Collectors.toList());
         if (!collect.isEmpty()) {
             players.remove(collect.get(0));

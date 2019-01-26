@@ -9,7 +9,7 @@ import java.util.function.Function;
 
 public abstract class PlayerState {
 
-    protected final Map<Action, Function<Player, PlayerState>> map = new HashMap<>();
+    transient final Map<Action, Function<Player, PlayerState>> map = new HashMap<>();
 
     public PlayerState onAction(Action action, Player player) {
         return map.getOrDefault(action, this::defaultCase).apply(player);
@@ -18,5 +18,4 @@ public abstract class PlayerState {
     private PlayerState defaultCase(Player player) {
         return this;
     }
-
 }

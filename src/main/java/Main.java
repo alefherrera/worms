@@ -1,8 +1,5 @@
+import model.*;
 import model.actions.*;
-import model.Controller;
-import model.Game;
-import model.Looper;
-import model.Match;
 import model.config.Configuration;
 import model.elements.Player;
 import service.SecuencialTurnManager;
@@ -23,11 +20,11 @@ public class Main {
         Scanner keyboard = new Scanner(System.in);
         boolean exit = false;
         setUpActionsMap();
-        Game game = new Game(new Looper(1000));
+        Game game = new Game(new Looper(1000, new StatusSpy()));
         System.out.println("Game Started");
         game.start();
         Configuration configuration = getConfiguration();
-        Match match = game.createMatch(configuration, players -> new SecuencialTurnManager(players));
+        Match match = game.createMatch(configuration, SecuencialTurnManager::new);
         match.addPlayer(new Player("player 1", configuration), controller);
         match.start();
         while (!exit) {

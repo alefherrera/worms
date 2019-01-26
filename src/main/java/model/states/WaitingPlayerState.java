@@ -12,4 +12,5 @@ public class WaitingPlayerState extends PlayerState {
     private PlayerState activate(Player player) {
         return new MovingState();
     }
+
 }

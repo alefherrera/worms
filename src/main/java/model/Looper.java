@@ -1,33 +1,33 @@
 package model;
 
-import com.google.gson.Gson;
-
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Looper implements Runnable {
 
     private Thread worker;
-    private Gson gson = new Gson();
+
     private final AtomicBoolean running = new AtomicBoolean(false);
     private final Integer interval;
+    private final StatusSpy statusSpy;
     private Game game;
-    private final AtomicBoolean needRefresh = new AtomicBoolean(false);
+    private final AtomicBoolean needRefresh = new AtomicBoolean(true);
 
-    public Looper(Integer interval) {
+    public Looper(Integer interval, StatusSpy statusSpy) {
         this.interval = interval;
+        this.statusSpy = statusSpy;
     }
 
-    public void start(Game game) {
+    void start(Game game) {
         this.game = game;
         worker = new Thread(this);
         worker.start();
     }
 
-    public void stop() {
+    void stop() {
         running.set(false);
     }
 
-    public void needToRefresh() {
+    void needToRefresh() {
         needRefresh.set(true);
     }
 
@@ -37,15 +37,14 @@ public class Looper implements Runnable {
         while (running.get()) {
             try {
                 Thread.sleep(interval);
-            } catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                System.out.println(
-                        "Thread was interrupted, Failed to complete operation");
+                statusSpy.inform("Thread was interrupted, Failed to complete operation");
             }
             if (needRefresh.get()) {
                 needRefresh.set(false);
                 GameStatus gameStatus = game.getStatus();
-                System.out.println(gson.toJson(gameStatus));
+                statusSpy.inform(gameStatus);
             }
         }
     }

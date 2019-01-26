@@ -9,9 +9,9 @@ public class ActivePlayer implements ControllerListener {
 
     private final Player player;
     private transient final Controller controller;
-    private PlayerState state;
+    private transient PlayerState state;
 
-    public ActivePlayer(Controller controller, Player player) {
+    ActivePlayer(Controller controller, Player player) {
         this.controller = controller;
         controller.addListener(this);
         this.player = player;

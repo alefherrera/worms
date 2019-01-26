@@ -1,6 +1,5 @@
 package service;
 
-import model.actions.Action;
 import model.ActivePlayer;
 import model.actions.ActivateAction;
 
@@ -8,7 +7,7 @@ import java.util.List;
 
 public abstract class TurnManager {
 
-    protected final List<ActivePlayer> players;
+    transient final List<ActivePlayer> players;
     private Integer turn = 0;
     private ActivePlayer player;
 
@@ -16,11 +15,11 @@ public abstract class TurnManager {
         return turn;
     }
 
-    protected void nextTurn() {
+    void nextTurn() {
         turn++;
     }
 
-    public TurnManager(List<ActivePlayer> players, Integer initial) {
+    TurnManager(List<ActivePlayer> players, Integer initial) {
         this.players = players;
         setCurrent(players.get(initial));
     }
@@ -29,19 +28,10 @@ public abstract class TurnManager {
         return player;
     }
 
-    protected void setCurrent(ActivePlayer player) {
+    void setCurrent(ActivePlayer player) {
         player.onAction(new ActivateAction());
         this.player = player;
     }
 
     public abstract void next();
-
-    @Override
-    public String toString() {
-        return "TurnManager{" +
-                "players=" + players +
-                ", turn=" + turn +
-                ", player=" + player.getPlayer() +
-                '}';
-    }
 }
