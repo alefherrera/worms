@@ -1,6 +1,7 @@
 package model.states;
 
 import model.Player;
+import model.StatType;
 import model.actions.*;
 import model.elements.Character;
 
@@ -24,12 +25,12 @@ class AimingPlayerState extends PlayerState {
     }
 
     private PlayerState decreaseAngle(Player player) {
-        player.decreaseAngle();
+        player.decrease(StatType.ANGLE);
         return this;
     }
 
     private PlayerState increaseAngle(Player player) {
-        player.increaseAngle();
+        player.increase(StatType.ANGLE);
         return this;
     }
 

@@ -1,6 +1,7 @@
 package model.states;
 
 import model.Player;
+import model.StatType;
 import model.actions.*;
 import model.elements.Character;
 
@@ -25,12 +26,12 @@ class ShootingPlayerState extends PlayerState {
     }
 
     private PlayerState increasePower(Player player) {
-        player.increasePower();
+        player.increase(StatType.POWER);
         return this;
     }
 
     private PlayerState decreasePower(Player player) {
-        player.decreasePower();
+        player.decrease(StatType.POWER);
         return this;
     }
 
