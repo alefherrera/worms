@@ -4,7 +4,6 @@ import model.actions.ExecuteAction;
 import model.actions.LeftAction;
 import model.actions.RightAction;
 import model.config.Configuration;
-import model.elements.Player;
 import org.junit.Test;
 import service.SecuencialTurnManager;
 
@@ -31,8 +30,7 @@ public class GameTest {
         Game game = new Game(new Looper(1000, new StatusSpy()));
         Match match = game.createMatch(configuration, SecuencialTurnManager::new);
         Controller controller = new Controller("slot1");
-        Player player = new Player("player1", configuration);
-        match.addPlayer(player, controller);
+        Player player = match.addPlayer("player1", controller);
 
         game.start();
         match.start();
@@ -66,10 +64,8 @@ public class GameTest {
         Match match = game.createMatch(configuration, SecuencialTurnManager::new);
         Controller controller = new Controller("slot1");
         Controller controller2 = new Controller("slot2");
-        Player player = new Player("player1", configuration);
-        Player player2 = new Player("player2", configuration);
-        match.addPlayer(player, controller);
-        match.addPlayer(player2, controller2);
+        Player player = match.addPlayer("player1", controller);
+        Player player2 = match.addPlayer("player2", controller2);
 
         game.start();
         match.start();
@@ -120,23 +116,20 @@ public class GameTest {
         Game game = new Game(new Looper(1000, new StatusSpy()));
         Match match = game.createMatch(configuration, SecuencialTurnManager::new);
         Controller controller = new Controller("slot1");
-        Player player = new Player("player1", configuration);
-        Player player2 = new Player("player2", configuration);
-        Player player3 = new Player("player3", configuration);
-        match.addPlayer(player, controller);
-        match.addPlayer(player2, controller);
-        match.addPlayer(player3, controller);
+        Player player1 = match.addPlayer("player1", controller);
+        match.addPlayer("player2", controller);
+        Player player3 = match.addPlayer("player3", controller);
 
         game.start();
         match.start();
 
-        assertEquals(player, match.getPlayer());
+        assertEquals(player1, match.getPlayer());
         //move
         controller.sendAction(new ExecuteAction());
         //aim
         controller.sendAction(new ExecuteAction());
 
-        match.removePlayer(player2);
+        match.removePlayer("player2");
 
         //shoot
         controller.sendAction(new ExecuteAction());

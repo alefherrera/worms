@@ -9,6 +9,11 @@ public class Element {
 
     private Position position;
 
+    public Element() {
+        position = Position.DEFAULT;
+        size = new Size();
+    }
+
     public Position getPosition() {
         return position;
     }

@@ -1,12 +1,12 @@
 package service;
 
-import model.ActivePlayer;
+import model.Player;
 
 import java.util.List;
 
 public class SecuencialTurnManager extends TurnManager {
 
-    public SecuencialTurnManager(List<ActivePlayer> players) {
+    public SecuencialTurnManager(List<Player> players) {
         super(players, 0);
     }
 

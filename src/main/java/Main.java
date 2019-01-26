@@ -1,10 +1,9 @@
 import model.*;
 import model.actions.*;
 import model.config.Configuration;
-import model.elements.Player;
+import model.elements.Character;
 import service.SecuencialTurnManager;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -25,7 +24,7 @@ public class Main {
         game.start();
         Configuration configuration = getConfiguration();
         Match match = game.createMatch(configuration, SecuencialTurnManager::new);
-        match.addPlayer(new Player("player 1", configuration), controller);
+        match.addPlayer("player 1", controller);
         match.start();
         while (!exit) {
             System.out.println("Enter command (q to exit):");

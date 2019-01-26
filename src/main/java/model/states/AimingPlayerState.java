@@ -1,17 +1,18 @@
 package model.states;
 
+import model.Player;
 import model.actions.*;
-import model.elements.Player;
+import model.elements.Character;
 
-public class AimingPlayerState extends PlayerState {
+class AimingPlayerState extends PlayerState {
 
-    public AimingPlayerState() {
-        map.put(new DownAction(), this::increaseAngle);
-        map.put(new LeftAction(), this::decreaseAngle);
-        map.put(new RightAction(), this::increaseAngle);
-        map.put(new UpAction(), this::decreaseAngle);
-        map.put(new ExecuteAction(), this::execute);
-        map.put(new CancelAction(), this::cancel);
+    AimingPlayerState() {
+        conditions.put(new DownAction(), this::increaseAngle);
+        conditions.put(new LeftAction(), this::decreaseAngle);
+        conditions.put(new RightAction(), this::increaseAngle);
+        conditions.put(new UpAction(), this::decreaseAngle);
+        conditions.put(new ExecuteAction(), this::execute);
+        conditions.put(new CancelAction(), this::cancel);
     }
 
     private PlayerState cancel(Player player) {

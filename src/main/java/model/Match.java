@@ -1,7 +1,7 @@
 package model;
 
 import model.config.Configuration;
-import model.elements.Player;
+import model.elements.Character;
 import service.TurnManager;
 
 import java.util.ArrayList;
@@ -13,25 +13,26 @@ public class Match implements PlayerListener {
 
     private transient final Game game;
     private transient final Configuration configuration;
-    private transient final Function<List<ActivePlayer>, TurnManager> turnManagerSupplier;
+    private transient final Function<List<Player>, TurnManager> turnManagerSupplier;
     private TurnManager turnManager;
-    private final List<ActivePlayer> players;
+    private final List<Player> players;
 
-    Match(Game game, Configuration configuration, Function<List<ActivePlayer>, TurnManager> turnManagerSupplier) {
+    Match(Game game, Configuration configuration, Function<List<Player>, TurnManager> turnManagerSupplier) {
         this.game = game;
         this.configuration = configuration;
         this.turnManagerSupplier = turnManagerSupplier;
         players = new ArrayList<>();
     }
 
-    public void addPlayer(Player player, Controller controller) {
-        players.add(new ActivePlayer(controller, player));
-        player.addListener(this);
+    public Player addPlayer(String name, Controller controller) {
+        Player player = new Player(controller, name, this);
+        players.add(player);
         controller.addListener(game);
+        return player;
     }
 
-    void removePlayer(Player player) {
-        List<ActivePlayer> collect = players.stream().filter(x -> x.getPlayer().equals(player)).collect(Collectors.toList());
+    void removePlayer(String name) {
+        List<Player> collect = players.stream().filter(x -> x.getName().equals(name)).collect(Collectors.toList());
         if (!collect.isEmpty()) {
             players.remove(collect.get(0));
         }
@@ -42,11 +43,15 @@ public class Match implements PlayerListener {
     }
 
     public Player getPlayer() {
-        return turnManager.getCurrent().getPlayer();
+        return turnManager.getCurrent();
     }
 
     @Override
     public void onShot() {
         turnManager.next();
+    }
+
+    public Configuration getConfiguration() {
+        return configuration;
     }
 }

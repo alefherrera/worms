@@ -7,6 +7,8 @@ public class Position {
     private Double x;
     private Double y;
 
+    public static Position DEFAULT = new Position(0D,0D);
+
     public Position(Double x, Double y) {
         this.x = x;
         this.y = y;

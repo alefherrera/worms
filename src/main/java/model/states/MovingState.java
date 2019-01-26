@@ -1,16 +1,16 @@
 package model.states;
 
+import model.Player;
 import model.actions.ExecuteAction;
 import model.actions.LeftAction;
 import model.actions.RightAction;
-import model.elements.Player;
 
-public class MovingState extends PlayerState {
+class MovingState extends PlayerState {
 
-    public MovingState() {
-        map.put(new RightAction(), this::moveRight);
-        map.put(new LeftAction(), this::moveLeft);
-        map.put(new ExecuteAction(), this::changeState);
+    MovingState() {
+        conditions.put(new RightAction(), this::moveRight);
+        conditions.put(new LeftAction(), this::moveLeft);
+        conditions.put(new ExecuteAction(), this::changeState);
     }
 
     private PlayerState moveRight(Player player) {

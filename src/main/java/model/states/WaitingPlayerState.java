@@ -1,12 +1,12 @@
 package model.states;
 
+import model.Player;
 import model.actions.ActivateAction;
-import model.elements.Player;
 
-public class WaitingPlayerState extends PlayerState {
+class WaitingPlayerState extends PlayerState {
 
-    public WaitingPlayerState() {
-        map.put(new ActivateAction(), this::activate);
+    WaitingPlayerState() {
+        conditions.put(new ActivateAction(), this::activate);
     }
 
     private PlayerState activate(Player player) {
