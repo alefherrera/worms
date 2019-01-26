@@ -1,6 +1,5 @@
 package model;
 
-import model.actions.Action;
 import model.actions.ExecuteAction;
 import model.actions.LeftAction;
 import model.actions.RightAction;
