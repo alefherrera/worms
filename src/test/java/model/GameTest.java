@@ -1,6 +1,9 @@
 package model;
 
-import enums.Action;
+import model.actions.Action;
+import model.actions.ExecuteAction;
+import model.actions.LeftAction;
+import model.actions.RightAction;
 import model.config.Configuration;
 import model.elements.Player;
 import org.junit.Test;
@@ -35,23 +38,23 @@ public class GameTest {
         game.start();
         match.start();
 
-        controller.sendAction(Action.RIGHT);
+        controller.sendAction(new RightAction());
 
         assertEquals(MOVING_SPEED, player.getPosition().getX());
 
-        controller.sendAction(Action.LEFT);
+        controller.sendAction(new LeftAction());
 
         assertEquals(ZERO, player.getPosition().getX());
 
-        controller.sendAction(Action.EXECUTE);
-        controller.sendAction(Action.RIGHT);
+        controller.sendAction(new ExecuteAction());
+        controller.sendAction(new RightAction());
 
         assertEquals(ZERO, player.getPosition().getX());
 
         assertEquals(AIMING_SPEED, player.getAngle());
 
-        controller.sendAction(Action.EXECUTE);
-        controller.sendAction(Action.RIGHT);
+        controller.sendAction(new ExecuteAction());
+        controller.sendAction(new RightAction());
 
         assertEquals(POWER_SPEED, player.getPower());
 
@@ -75,38 +78,38 @@ public class GameTest {
         assertEquals(player, match.getPlayer());
 
         //move
-        controller2.sendAction(Action.EXECUTE);
+        controller2.sendAction(new ExecuteAction());
         //aim
-        controller2.sendAction(Action.EXECUTE);
+        controller2.sendAction(new ExecuteAction());
         //shoot
-        controller2.sendAction(Action.EXECUTE);
+        controller2.sendAction(new ExecuteAction());
 
         assertEquals(player, match.getPlayer());
 
         //move
-        controller.sendAction(Action.EXECUTE);
+        controller.sendAction(new ExecuteAction());
         //aim
-        controller.sendAction(Action.EXECUTE);
+        controller.sendAction(new ExecuteAction());
         //shoot
-        controller.sendAction(Action.EXECUTE);
+        controller.sendAction(new ExecuteAction());
 
         assertEquals(player2, match.getPlayer());
 
         //move
-        controller.sendAction(Action.EXECUTE);
+        controller.sendAction(new ExecuteAction());
         //aim
-        controller.sendAction(Action.EXECUTE);
+        controller.sendAction(new ExecuteAction());
         //shoot
-        controller.sendAction(Action.EXECUTE);
+        controller.sendAction(new ExecuteAction());
 
         assertEquals(player2, match.getPlayer());
 
         //move
-        controller2.sendAction(Action.EXECUTE);
+        controller2.sendAction(new ExecuteAction());
         //aim
-        controller2.sendAction(Action.EXECUTE);
+        controller2.sendAction(new ExecuteAction());
         //shoot
-        controller2.sendAction(Action.EXECUTE);
+        controller2.sendAction(new ExecuteAction());
 
         assertEquals(player, match.getPlayer());
 
@@ -130,14 +133,14 @@ public class GameTest {
 
         assertEquals(player, match.getPlayer());
         //move
-        controller.sendAction(Action.EXECUTE);
+        controller.sendAction(new ExecuteAction());
         //aim
-        controller.sendAction(Action.EXECUTE);
+        controller.sendAction(new ExecuteAction());
 
         match.removePlayer(player2);
 
         //shoot
-        controller.sendAction(Action.EXECUTE);
+        controller.sendAction(new ExecuteAction());
 
         assertEquals(player3, match.getPlayer());
 

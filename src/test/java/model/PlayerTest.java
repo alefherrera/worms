@@ -15,8 +15,8 @@ public class PlayerTest {
         configuration.setMovingSpeed(10d);
         Player player = new Player("player1", configuration);
         player.setPosition(new Position(0d, 0d));
-        player.move(MovementDirection.RIGHT);
-        player.move(MovementDirection.RIGHT);
+        player.moveRight();
+        player.moveRight();
         assertEquals(Double.valueOf(20d), player.getPosition().getX());
     }
 

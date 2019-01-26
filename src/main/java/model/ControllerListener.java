@@ -1,6 +1,6 @@
 package model;
 
-import enums.Action;
+import model.actions.Action;
 
 public interface ControllerListener {
 

@@ -1,7 +1,8 @@
 package service;
 
-import enums.Action;
+import model.actions.Action;
 import model.ActivePlayer;
+import model.actions.ActivateAction;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public abstract class TurnManager {
     }
 
     protected void setCurrent(ActivePlayer player) {
-        player.onAction(Action.ACTIVATE);
+        player.onAction(new ActivateAction());
         this.player = player;
     }
 

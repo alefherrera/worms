@@ -1,28 +1,30 @@
 package model.states;
 
-import enums.MovementDirection;
-import enums.Action;
+import model.actions.ExecuteAction;
+import model.actions.LeftAction;
+import model.actions.RightAction;
 import model.elements.Player;
 
-public class MovingState implements PlayerState {
+public class MovingState extends PlayerState {
 
-    public PlayerState onAction(Action action, Player player) {
-        switch (action) {
-            case RIGHT:
-                player.move(MovementDirection.RIGHT);
-                return this;
-            case LEFT:
-                player.move(MovementDirection.LEFT);
-                return this;
-            case EXECUTE:
-                return new AimingPlayerState();
-            default:
-                return this;
-        }
+    public MovingState() {
+        map.put(new RightAction(), this::moveRight);
+        map.put(new LeftAction(), this::moveLeft);
+        map.put(new ExecuteAction(), this::changeState);
     }
 
-    @Override
-    public String toString() {
-        return "MovingState{}";
+    private PlayerState moveRight(Player player) {
+        player.moveRight();
+        return this;
     }
+
+    private PlayerState moveLeft(Player player) {
+        player.moveLeft();
+        return this;
+    }
+
+    private PlayerState changeState(Player player) {
+        return new AimingPlayerState();
+    }
+
 }

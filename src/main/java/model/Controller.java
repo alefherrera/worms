@@ -1,6 +1,6 @@
 package model;
 
-import enums.Action;
+import model.actions.Action;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,31 +1,36 @@
 package model.states;
 
-import enums.Action;
+import model.actions.*;
 import model.elements.Player;
 
-public class ShootingPlayerState implements PlayerState {
+public class ShootingPlayerState extends PlayerState {
 
-    public PlayerState onAction(Action action, Player player) {
-        switch (action) {
-            case RIGHT:
-            case UP:
-                player.increasePower();
-                return this;
-            case LEFT:
-            case DOWN:
-                player.decreasePower();
-                return this;
-            case EXECUTE:
-                player.shot();
-                return new WaitingPlayerState();
-            case CANCEL:
-                return new AimingPlayerState();
-        }
+    public ShootingPlayerState() {
+        map.put(new DownAction(), this::decreasePower);
+        map.put(new LeftAction(), this::decreasePower);
+        map.put(new RightAction(), this::increasePower);
+        map.put(new UpAction(), this::increasePower);
+        map.put(new ExecuteAction(), this::execute);
+        map.put(new CancelAction(), this::cancel);
+    }
+
+    private PlayerState cancel(Player player) {
+        return new AimingPlayerState();
+    }
+
+    private PlayerState execute(Player player) {
+        player.shot();
+        return new WaitingPlayerState();
+    }
+
+    private PlayerState increasePower(Player player) {
+        player.increasePower();
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "ShootingPlayerState{}";
+    private PlayerState decreasePower(Player player) {
+        player.decreasePower();
+        return this;
     }
+
 }

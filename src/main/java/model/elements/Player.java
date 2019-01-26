@@ -16,10 +16,10 @@ public class Player extends Element {
     private Double health;
     private Double angle;
     private Double power;
-    private List<Weapon> weapons;
-    private List<Shield> shields;
+    private final List<Weapon> weapons;
+    private final List<Shield> shields;
     private Weapon currentWeapon;
-    private final Collection<PlayerListener> listeners;
+    private transient final Collection<PlayerListener> listeners;
 
     public Player(String name, Configuration configuration) {
         this.name = name;
@@ -41,12 +41,12 @@ public class Player extends Element {
         this.listeners.remove(listener);
     }
 
-    public void move(MovementDirection direction) {
-        if (direction.equals(MovementDirection.RIGHT)) {
-            changePosition(configuration.getMovingSpeed());
-        } else {
-            changePosition(-configuration.getMovingSpeed());
-        }
+    public void moveRight() {
+        changePosition(configuration.getMovingSpeed());
+    }
+
+    public void moveLeft() {
+        changePosition(-configuration.getMovingSpeed());
     }
 
     private void changePosition(double howMuch) {
@@ -105,25 +105,14 @@ public class Player extends Element {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Player player = (Player) o;
-        return Objects.equals(name, player.name) &&
-                Objects.equals(health, player.health) &&
-                Objects.equals(angle, player.angle) &&
-                Objects.equals(power, player.power) &&
-                Objects.equals(weapons, player.weapons) &&
-                Objects.equals(shields, player.shields) &&
-                Objects.equals(currentWeapon, player.currentWeapon);
+
+        return Objects.equals(name, player.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, health, angle, power, weapons, shields, currentWeapon);
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                '}';
+        return name != null ? name.hashCode() : 0;
     }
 }

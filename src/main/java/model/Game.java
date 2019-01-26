@@ -1,5 +1,6 @@
 package model;
 
+import model.actions.Action;
 import model.config.Configuration;
 import service.TurnManager;
 
@@ -8,7 +9,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 
-public class Game {
+public class Game implements ControllerListener {
 
     private final Collection<Match> matches;
     private final Looper looper;
@@ -31,8 +32,13 @@ public class Game {
     }
 
     public Match createMatch(Configuration configuration, Function<List<ActivePlayer>, TurnManager> turnManagerSupplier) {
-        Match match = new Match(configuration, turnManagerSupplier);
+        Match match = new Match(this, configuration, turnManagerSupplier);
         matches.add(match);
         return match;
+    }
+
+    @Override
+    public void onAction(Action action) {
+        looper.needToRefresh();
     }
 }

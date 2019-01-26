@@ -1,4 +1,4 @@
-import enums.Action;
+import model.actions.*;
 import model.Controller;
 import model.Game;
 import model.Looper;
@@ -18,7 +18,7 @@ public class Main {
 
     private static Map<String, Action> map = new HashMap<>();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         Scanner keyboard = new Scanner(System.in);
         boolean exit = false;
@@ -48,12 +48,12 @@ public class Main {
     }
 
     private static void setUpActionsMap() {
-        map.put("a", Action.LEFT);
-        map.put("s", Action.DOWN);
-        map.put("d", Action.RIGHT);
-        map.put("w", Action.UP);
-        map.put("x", Action.EXECUTE);
-        map.put("z", Action.CANCEL);
+        map.put("a", new LeftAction());
+        map.put("s", new DownAction());
+        map.put("d", new RightAction());
+        map.put("w", new UpAction());
+        map.put("x", new ExecuteAction());
+        map.put("z", new CancelAction());
     }
 
     private static void textToAction(String input) {

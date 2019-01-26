@@ -1,18 +1,15 @@
 package model.states;
 
-import enums.Action;
+import model.actions.ActivateAction;
 import model.elements.Player;
 
-public class WaitingPlayerState implements PlayerState {
-    public PlayerState onAction(Action action, Player player) {
-        if (action == Action.ACTIVATE) {
-            return new MovingState();
-        }
-        return this;
+public class WaitingPlayerState extends PlayerState {
+
+    public WaitingPlayerState() {
+        map.put(new ActivateAction(), this::activate);
     }
 
-    @Override
-    public String toString() {
-        return "WaitingPlayerState{}";
+    private PlayerState activate(Player player) {
+        return new MovingState();
     }
 }
