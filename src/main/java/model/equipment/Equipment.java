@@ -3,26 +3,16 @@ package model.equipment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Equipment {
+public abstract class Equipment<T> {
 
-    private final List<Weapon> weapons;
-    private final List<Shield> shields;
-    private Weapon currentWeapon;
+    private List<T> items;
 
-    public Equipment() {
-        weapons = new ArrayList<>();
-        shields = new ArrayList<>();
+    Equipment() {
+        items = new ArrayList<>();
     }
 
-    public List<Weapon> getWeapons() {
-        return weapons;
+    public void add(T element) {
+        items.add(element);
     }
 
-    public List<Shield> getShields() {
-        return shields;
-    }
-
-    public Weapon getCurrentWeapon() {
-        return currentWeapon;
-    }
 }

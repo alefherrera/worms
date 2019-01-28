@@ -3,7 +3,9 @@ package model;
 import model.actions.Action;
 import model.config.Configuration;
 import model.elements.Character;
-import model.equipment.Equipment;
+import model.equipment.AttackEquipment;
+import model.equipment.DefenseEquipment;
+import model.equipment.Shield;
 import model.equipment.Weapon;
 import model.stat.Stat;
 import model.stat.StatContainer;
@@ -15,14 +17,15 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.function.Function;
 
-public class Player implements ControllerListener {
+public class Player implements ControllerListener, DamageReceiver {
 
     private final Character character;
     private final String name;
     private final StatContainer statContainer;
     private PlayerState state;
     private transient final Collection<PlayerListener> listeners;
-    private final Equipment equipment;
+    private final AttackEquipment attackEquipment;
+    private final DefenseEquipment defenseEquipment;
     private final Configuration configuration;
 
     public Player(String name, Match match) {
@@ -30,12 +33,13 @@ public class Player implements ControllerListener {
         this.listeners = new HashSet<>();
         this.character = new Character();
         this.state = PlayerState.getDefault(this);
-        equipment = new Equipment();
+        attackEquipment = new AttackEquipment();
+        defenseEquipment = new DefenseEquipment();
         configuration = match.getConfiguration();
         Map<StatType, Stat> stats = new HashMap<>();
         stats.put(StatType.ANGLE, new Stat(0D, 0D, 360D, value -> configuration.getConfig(StatType.ANGLE)));
-        stats.put(StatType.HEALTH, new Stat(0D, 0D, 360D, Function.identity()));
-        stats.put(StatType.POWER, new Stat(0D, 0D, 360D, value -> configuration.getConfig(StatType.POWER)));
+        stats.put(StatType.HEALTH, new Stat(100D, 0D, 100D, Function.identity()));
+        stats.put(StatType.POWER, new Stat(0D, 0D, 100D, value -> configuration.getConfig(StatType.POWER)));
         statContainer = new StatContainer(stats);
         this.listeners.add(match);
     }
@@ -54,8 +58,10 @@ public class Player implements ControllerListener {
     }
 
     public void addWeapon(Weapon weapon) {
-        equipment.getWeapons().add(weapon);
+        attackEquipment.add(weapon);
     }
+
+    public void addShield(Shield shield) { defenseEquipment.add(shield); }
 
     public Double getHealth() {
         return statContainer.getValue(StatType.HEALTH).orElse(null);
@@ -74,9 +80,7 @@ public class Player implements ControllerListener {
     }
 
     public void shot() {
-        if (equipment.getCurrentWeapon() != null) {
-            equipment.getCurrentWeapon().shot();
-        }
+        attackEquipment.shot();
         this.listeners.forEach(PlayerListener::onShot);
     }
 
@@ -102,5 +106,10 @@ public class Player implements ControllerListener {
 
     public void onAction(Action action) {
         this.state = this.state.onAction(action);
+    }
+
+    public void onDamageReceive(DamageSource source, Power power) {
+        Power resultPower = defenseEquipment.tryBlock(source, power);
+        decrease(StatType.HEALTH, resultPower.getValue());
     }
 }

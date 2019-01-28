@@ -27,7 +27,7 @@ public class Game implements ControllerListener {
         looper.stop();
     }
 
-    public GameStatus getStatus() {
+    GameStatus getStatus() {
         return new GameStatus(matches);
     }
 
@@ -37,7 +37,6 @@ public class Game implements ControllerListener {
         return match;
     }
 
-    @Override
     public void onAction(Action action) {
         looper.needToRefresh();
     }

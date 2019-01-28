@@ -1,8 +1,10 @@
 package model.equipment;
 
+import model.DamageReceiver;
+import model.DamageSource;
 import model.elements.Bullet;
 
-public class Weapon {
+public class Weapon implements DamageSource {
 
     private Double ammo;
     private Bullet bullet;
@@ -28,5 +30,9 @@ public class Weapon {
         if (ammo > 0) {
             ammo -= 1;
         }
+    }
+
+    public void damage(DamageReceiver receiver) {
+        receiver.onDamageReceive(this, bullet.getPower());
     }
 }

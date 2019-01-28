@@ -1,16 +1,12 @@
 package model.equipment;
 
-public class Shield {
+import model.DamageSource;
+import model.Power;
 
-    private Double radio;
-    private Double durability;
+public interface Shield {
 
-    public Shield(Double radio, Double durability) {
-        this.radio = radio;
-        this.durability = durability;
-    }
+    Power block(DamageSource source, Power power);
 
-    public void receiveDamage(Double howMuch) {
-        this.durability -= howMuch;
-    }
+    boolean isBroken();
+
 }

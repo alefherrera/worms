@@ -1,20 +1,22 @@
 package model.elements;
 
+import model.Power;
+
 public class Bullet extends Element {
 
-    private Double weight;
-    private Double damage;
+    private final Double weight;
+    private final Power power;
 
-    public Bullet(Double weight, Double damage) {
+    public Bullet(Double weight, Power power) {
         this.weight = weight;
-        this.damage = damage;
+        this.power = power;
     }
 
     public Double getWeight() {
         return weight;
     }
 
-    public Double getDamage() {
-        return damage;
+    public Power getPower() {
+        return power;
     }
 }

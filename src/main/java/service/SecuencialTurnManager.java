@@ -10,7 +10,6 @@ public class SecuencialTurnManager extends TurnManager {
         super(players, 0);
     }
 
-    @Override
     public void next() {
         int i = players.indexOf(getCurrent());
         int next = i + 1;

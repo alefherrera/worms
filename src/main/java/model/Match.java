@@ -46,7 +46,6 @@ public class Match implements PlayerListener {
         return turnManager.getCurrent();
     }
 
-    @Override
     public void onShot() {
         turnManager.next();
     }
