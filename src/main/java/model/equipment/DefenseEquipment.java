@@ -6,6 +6,7 @@ import model.Power;
 public class DefenseEquipment extends Equipment<Shield> {
 
     public Power tryBlock(DamageSource source, Power power) {
-        return new Power(0D);
+        getItems().forEach(shield -> shield.block(source, power));
+        return power;
     }
 }

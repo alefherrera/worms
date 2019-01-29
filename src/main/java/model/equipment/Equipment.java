@@ -15,4 +15,7 @@ public abstract class Equipment<T> {
         items.add(element);
     }
 
+    protected List<T> getItems() {
+        return items;
+    }
 }
