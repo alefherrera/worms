@@ -5,28 +5,27 @@ import model.Size;
 
 public class Element {
 
-    private Size size;
+    private final Size size;
+
+    private final String type;
 
     private Position position;
 
-    public Element() {
-        position = Position.DEFAULT;
-        size = new Size();
+    public Element(Size size, Position position) {
+        this.size = size;
+        this.position = position;
+        type = this.getClass().getSimpleName();
     }
 
     public Position getPosition() {
         return position;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
     public Size getSize() {
         return size;
     }
 
-    public void setSize(Size size) {
-        this.size = size;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

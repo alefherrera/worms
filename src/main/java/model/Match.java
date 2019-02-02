@@ -1,6 +1,8 @@
 package model;
 
 import model.config.Configuration;
+import model.elements.Character;
+import model.elements.Element;
 import service.TurnManager;
 
 import java.util.ArrayList;
@@ -12,13 +14,15 @@ public class Match implements PlayerListener {
 
     private transient final Game game;
     private transient final Configuration configuration;
+    private final BattleGround battleGround;
     private transient final Function<List<Player>, TurnManager> turnManagerSupplier;
     private TurnManager turnManager;
     private final List<Player> players;
 
-    Match(Game game, Configuration configuration, Function<List<Player>, TurnManager> turnManagerSupplier) {
+    Match(Game game, Configuration configuration, BattleGround battleGround, Function<List<Player>, TurnManager> turnManagerSupplier) {
         this.game = game;
         this.configuration = configuration;
+        this.battleGround = battleGround;
         this.turnManagerSupplier = turnManagerSupplier;
         players = new ArrayList<>();
     }
@@ -52,5 +56,9 @@ public class Match implements PlayerListener {
 
     Configuration getConfiguration() {
         return configuration;
+    }
+
+    public void addElement(Character character) {
+        battleGround.addElement(character);
     }
 }

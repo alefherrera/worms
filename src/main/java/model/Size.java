@@ -6,19 +6,17 @@ public class Size {
 
     private Double height;
 
-    public Double getWidth() {
-        return width;
+    public Size(Double width, Double height) {
+        this.width = width;
+        this.height = height;
     }
 
-    public void setWidth(Double width) {
-        this.width = width;
+    public Double getWidth() {
+        return width;
     }
 
     public Double getHeight() {
         return height;
     }
 
-    public void setHeight(Double height) {
-        this.height = height;
-    }
 }

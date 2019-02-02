@@ -2,7 +2,9 @@ package model;
 
 import model.actions.Action;
 import model.config.Configuration;
+import model.elements.Bullet;
 import model.elements.Character;
+import model.elements.Element;
 import model.equipment.AttackEquipment;
 import model.equipment.DefenseEquipment;
 import model.equipment.Shield;
@@ -11,10 +13,8 @@ import model.stat.Stat;
 import model.stat.StatContainer;
 import model.states.PlayerState;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.time.LocalTime;
+import java.util.*;
 import java.util.function.Function;
 
 public class Player implements ControllerListener, DamageReceiver {
@@ -31,7 +31,7 @@ public class Player implements ControllerListener, DamageReceiver {
     public Player(String name, Match match) {
         this.name = name;
         this.listeners = new HashSet<>();
-        this.character = new Character();
+        this.character = new Character(Position.DEFAULT);
         this.state = PlayerState.getDefault(this);
         attackEquipment = new AttackEquipment();
         defenseEquipment = new DefenseEquipment();
@@ -42,6 +42,7 @@ public class Player implements ControllerListener, DamageReceiver {
         stats.put(StatType.POWER, new Stat(0D, 0D, 100D, value -> configuration.getConfig(StatType.POWER)));
         statContainer = new StatContainer(stats);
         this.listeners.add(match);
+        match.addElement(character);
     }
 
     public void moveRight() {
@@ -61,17 +62,19 @@ public class Player implements ControllerListener, DamageReceiver {
         attackEquipment.add(weapon);
     }
 
-    public void addShield(Shield shield) { defenseEquipment.add(shield); }
+    public void addShield(Shield shield) {
+        defenseEquipment.add(shield);
+    }
 
     public Double getHealth() {
         return statContainer.getValue(StatType.HEALTH).orElse(null);
     }
 
-    Double getAngle() {
+    private Double getAngle() {
         return statContainer.getValue(StatType.ANGLE).orElse(null);
     }
 
-    Double getPower() {
+    private Double getPower() {
         return statContainer.getValue(StatType.POWER).orElse(null);
     }
 
@@ -79,9 +82,14 @@ public class Player implements ControllerListener, DamageReceiver {
         return this.character.getPosition();
     }
 
-    public void shot() {
-        attackEquipment.shot();
+    public Function<LocalTime, Element> shot() {
         this.listeners.forEach(PlayerListener::onShot);
+        Optional<Bullet> shot = attackEquipment.shot();
+        Double angle = getAngle();
+        Double power = getPower();
+        LocalTime time = LocalTime.now();
+
+        return localTime -> shot.orElse(null);
     }
 
     private void increase(StatType statType, Double value) {

@@ -19,10 +19,10 @@ public class MainPhysic {
             time += deltaTime;
             x += vx * deltaTime;
             y += vy * deltaTime;
-
+            System.out.println("vy: " + vy);
             vx += ax * deltaTime;
             vy += ay * deltaTime;
-            System.out.println("x: " + x + ", y: " + y);
+            System.out.println("x: " + x + ", y: " + y + ", time: " + time+ ", vy: " + vy);
         }
     }
 }

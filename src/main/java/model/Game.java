@@ -31,8 +31,8 @@ public class Game implements ControllerListener {
         return new GameStatus(matches);
     }
 
-    public Match createMatch(Configuration configuration, Function<List<Player>, TurnManager> turnManagerSupplier) {
-        Match match = new Match(this, configuration, turnManagerSupplier);
+    public Match createMatch(Configuration configuration, BattleGround battleGround, Function<List<Player>, TurnManager> turnManagerSupplier) {
+        Match match = new Match(this, configuration, battleGround, turnManagerSupplier);
         matches.add(match);
         return match;
     }

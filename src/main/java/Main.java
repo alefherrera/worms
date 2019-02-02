@@ -23,7 +23,7 @@ public class Main {
         System.out.println("Game Started");
         game.start();
         Configuration configuration = getConfiguration();
-        Match match = game.createMatch(configuration, SecuencialTurnManager::new);
+        Match match = game.createMatch(configuration, new BattleGround(new Size(800D, 600D)), SecuencialTurnManager::new);
         match.addPlayer("player 1", controller);
         match.start();
         while (!exit) {
