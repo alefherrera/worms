@@ -1,7 +1,6 @@
 package model;
 
 import model.config.Configuration;
-import model.elements.Character;
 import model.elements.Element;
 import service.TurnManager;
 
@@ -61,5 +60,9 @@ public class Match {
 
     public void addElement(Element character) {
         battleGround.addElement(character);
+    }
+
+    public void refresh(LocalTime time, Looper looper) {
+        battleGround.refresh(time, looper);
     }
 }

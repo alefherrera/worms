@@ -2,6 +2,7 @@ package model;
 
 import model.elements.Element;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,5 +23,9 @@ public class BattleGround {
 
     public void removeElement(Element element) {
         elements.remove(element);
+    }
+
+    public void refresh(LocalTime time, Looper looper) {
+        elements.forEach(element -> element.refresh(time, looper));
     }
 }

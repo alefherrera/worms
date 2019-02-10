@@ -1,5 +1,6 @@
 package model.elements;
 
+import model.Looper;
 import model.Position;
 import model.Size;
 
@@ -18,7 +19,13 @@ public abstract class Element {
         type = this.getClass().getSimpleName();
     }
 
-    public abstract Position getPosition(LocalTime time);
+    public Position getPosition() {
+        return position;
+    }
+
+    public void refresh(LocalTime time, Looper looper) {
+
+    }
 
     public Size getSize() {
         return size;

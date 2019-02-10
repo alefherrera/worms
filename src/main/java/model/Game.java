@@ -4,6 +4,7 @@ import model.actions.Action;
 import model.config.Configuration;
 import service.TurnManager;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -39,5 +40,9 @@ public class Game implements ControllerListener {
 
     public void onAction(Action action) {
         looper.needToRefresh();
+    }
+
+    public void refresh(LocalTime time) {
+        matches.forEach(match -> match.refresh(time, looper));
     }
 }

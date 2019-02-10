@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalTime;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Looper implements Runnable {
@@ -27,7 +28,7 @@ public class Looper implements Runnable {
         running.set(false);
     }
 
-    void needToRefresh() {
+    public void needToRefresh() {
         needRefresh.set(true);
     }
 
@@ -41,7 +42,7 @@ public class Looper implements Runnable {
                 Thread.currentThread().interrupt();
                 statusSpy.inform("Thread was interrupted, Failed to complete operation");
             }
-
+            game.refresh(LocalTime.now());
             if (needRefresh.compareAndSet(true, false)) {
                 GameStatus gameStatus = game.getStatus();
                 statusSpy.inform(gameStatus);

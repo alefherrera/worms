@@ -1,5 +1,6 @@
 package model.elements;
 
+import model.Looper;
 import model.Position;
 import model.Size;
 
@@ -16,7 +17,12 @@ public class MovingBullet extends Element {
     }
 
     @Override
-    public Position getPosition(LocalTime time) {
-        return function.apply(time);
+    public void refresh(LocalTime time, Looper looper) {
+        Position newPosition = function.apply(time);
+        if (!newPosition.equals(position) && newPosition.getY() > 0) {
+            setPosition(newPosition);
+            looper.needToRefresh();
+        }
     }
+
 }

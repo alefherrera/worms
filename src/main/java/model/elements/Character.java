@@ -3,8 +3,6 @@ package model.elements;
 import model.Position;
 import model.Size;
 
-import java.time.LocalTime;
-
 public class Character extends Element {
 
     public Character(Position position) {
@@ -12,8 +10,4 @@ public class Character extends Element {
         this.position = position;
     }
 
-    @Override
-    public Position getPosition(LocalTime time) {
-        return position;
-    }
 }

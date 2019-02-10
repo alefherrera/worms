@@ -51,7 +51,7 @@ public class Player implements ControllerListener, DamageReceiver {
     }
 
     private void changePosition(double howMuch) {
-        Position position = this.character.getPosition(null);
+        Position position = this.character.getPosition();
         this.character.setPosition(new Position(position.getX() + howMuch, position.getY()));
     }
 
@@ -76,7 +76,7 @@ public class Player implements ControllerListener, DamageReceiver {
     }
 
     Position getPosition() {
-        return this.character.getPosition(null);
+        return this.character.getPosition();
     }
 
     public void shot() {
@@ -87,7 +87,7 @@ public class Player implements ControllerListener, DamageReceiver {
         if (!optionalBullet.isPresent()) {
             return;
         }
-        Function<LocalTime, Position> function = physicCreator.createFunction(power, angle, character.getPosition(null), time);
+        Function<LocalTime, Position> function = physicCreator.createFunction(power, angle, character.getPosition(), time);
         Bullet concreteBullet = optionalBullet.get();
         MovingBullet movingBullet = new MovingBullet(concreteBullet.getSize(), function);
         match.addElement(movingBullet);

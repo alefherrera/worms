@@ -2,6 +2,8 @@ import model.*;
 import model.actions.*;
 import model.config.Configuration;
 import model.elements.Character;
+import model.equipment.Bullet;
+import model.equipment.Weapon;
 import service.SecuencialTurnManager;
 
 import java.util.HashMap;
@@ -24,8 +26,11 @@ public class Main {
         game.start();
         Configuration configuration = getConfiguration();
         Match match = game.createMatch(configuration, new BattleGround(new Size(800D, 600D)), SecuencialTurnManager::new);
-        match.addPlayer("player 1", controller);
+        Player player = match.addPlayer("player 1", controller);
+        Bullet bullet = new Bullet(new Size(2D, 2D), 1D, new Power(1D));
+        player.addWeapon(new Weapon(bullet, 2D));
         match.start();
+        mockActions();
         while (!exit) {
             System.out.println("Enter command (q to exit):");
             String input = keyboard.nextLine();
@@ -41,6 +46,19 @@ public class Main {
         }
         keyboard.close();
 
+    }
+
+    private static void mockActions() {
+        textToAction("x");
+        textToAction("d");
+        textToAction("d");
+        textToAction("d");
+        textToAction("x");
+        textToAction("d");
+        textToAction("d");
+        textToAction("d");
+        textToAction("d");
+        textToAction("d");
     }
 
     private static void setUpActionsMap() {
@@ -59,8 +77,8 @@ public class Main {
     }
 
     private static final Double MOVING_SPEED = 10d;
-    private static final Double AIMING_SPEED = 2d;
-    private static final Double POWER_SPEED = 1d;
+    private static final Double AIMING_SPEED = 15d;
+    private static final Double POWER_SPEED = 10d;
 
     private static Configuration getConfiguration() {
         Configuration.ConfigurationBuilder builder = new Configuration.ConfigurationBuilder();
