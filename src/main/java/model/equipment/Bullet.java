@@ -1,16 +1,16 @@
-package model.elements;
+package model.equipment;
 
-import model.Position;
 import model.Power;
 import model.Size;
 
-public class Bullet extends Element {
+public class Bullet {
 
+    private final Size size;
     private final Double weight;
     private final Power power;
 
     public Bullet(Size size, Double weight, Power power) {
-        super(size, Position.DEFAULT);
+        this.size = size;
         this.weight = weight;
         this.power = power;
     }
@@ -21,5 +21,9 @@ public class Bullet extends Element {
 
     public Power getPower() {
         return power;
+    }
+
+    public Size getSize() {
+        return size;
     }
 }

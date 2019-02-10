@@ -3,23 +3,22 @@ package model.elements;
 import model.Position;
 import model.Size;
 
-public class Element {
+import java.time.LocalTime;
+
+public abstract class Element {
 
     private final Size size;
 
     private final String type;
 
-    private Position position;
+    protected Position position;
 
-    public Element(Size size, Position position) {
+    public Element(Size size) {
         this.size = size;
-        this.position = position;
         type = this.getClass().getSimpleName();
     }
 
-    public Position getPosition() {
-        return position;
-    }
+    public abstract Position getPosition(LocalTime time);
 
     public Size getSize() {
         return size;

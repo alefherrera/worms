@@ -1,6 +1,5 @@
 package model;
 
-import model.elements.Character;
 import model.elements.Element;
 
 import java.util.ArrayList;
@@ -17,7 +16,11 @@ public class BattleGround {
         elements = new ArrayList<>();
     }
 
-    public void addElement(Character element) {
+    public void addElement(Element element) {
         elements.add(element);
+    }
+
+    public void removeElement(Element element) {
+        elements.remove(element);
     }
 }

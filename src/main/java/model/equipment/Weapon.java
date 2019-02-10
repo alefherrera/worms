@@ -2,7 +2,6 @@ package model.equipment;
 
 import model.DamageReceiver;
 import model.DamageSource;
-import model.elements.Bullet;
 
 public class Weapon implements DamageSource {
 

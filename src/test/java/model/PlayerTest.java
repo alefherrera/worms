@@ -1,6 +1,6 @@
 package model;
 
-import model.elements.Bullet;
+import model.equipment.Bullet;
 import model.equipment.Weapon;
 import org.junit.Assert;
 import org.junit.Test;

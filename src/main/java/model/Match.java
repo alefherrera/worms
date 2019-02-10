@@ -5,12 +5,13 @@ import model.elements.Character;
 import model.elements.Element;
 import service.TurnManager;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class Match implements PlayerListener {
+public class Match {
 
     private transient final Game game;
     private transient final Configuration configuration;
@@ -58,7 +59,7 @@ public class Match implements PlayerListener {
         return configuration;
     }
 
-    public void addElement(Character character) {
+    public void addElement(Element character) {
         battleGround.addElement(character);
     }
 }

@@ -1,20 +1,18 @@
 package model;
 
 import model.actions.Action;
-import model.config.Configuration;
-import model.elements.Bullet;
 import model.elements.Character;
-import model.elements.Element;
-import model.equipment.AttackEquipment;
-import model.equipment.DefenseEquipment;
-import model.equipment.Shield;
-import model.equipment.Weapon;
+import model.elements.MovingBullet;
+import model.equipment.*;
 import model.stat.Stat;
 import model.stat.StatContainer;
 import model.states.PlayerState;
+import physic.PhysicCreator;
 
 import java.time.LocalTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 public class Player implements ControllerListener, DamageReceiver {
@@ -22,39 +20,38 @@ public class Player implements ControllerListener, DamageReceiver {
     private final Character character;
     private final String name;
     private final StatContainer statContainer;
+    private transient final Match match;
     private PlayerState state;
-    private transient final Collection<PlayerListener> listeners;
     private final AttackEquipment attackEquipment;
     private final DefenseEquipment defenseEquipment;
-    private final Configuration configuration;
+    private final PhysicCreator physicCreator;
 
     public Player(String name, Match match) {
+        this.match = match;
+        physicCreator = new PhysicCreator();
         this.name = name;
-        this.listeners = new HashSet<>();
         this.character = new Character(Position.DEFAULT);
         this.state = PlayerState.getDefault(this);
         attackEquipment = new AttackEquipment();
         defenseEquipment = new DefenseEquipment();
-        configuration = match.getConfiguration();
         Map<StatType, Stat> stats = new HashMap<>();
-        stats.put(StatType.ANGLE, new Stat(0D, 0D, 360D, value -> configuration.getConfig(StatType.ANGLE)));
+        stats.put(StatType.ANGLE, new Stat(0D, 0D, 360D, value -> match.getConfiguration().getConfig(StatType.ANGLE)));
         stats.put(StatType.HEALTH, new Stat(100D, 0D, 100D, Function.identity()));
-        stats.put(StatType.POWER, new Stat(0D, 0D, 100D, value -> configuration.getConfig(StatType.POWER)));
+        stats.put(StatType.POWER, new Stat(0D, 0D, 100D, value -> match.getConfiguration().getConfig(StatType.POWER)));
         statContainer = new StatContainer(stats);
-        this.listeners.add(match);
         match.addElement(character);
     }
 
     public void moveRight() {
-        changePosition(configuration.getConfig(StatType.SPEED));
+        changePosition(match.getConfiguration().getConfig(StatType.SPEED));
     }
 
     public void moveLeft() {
-        changePosition(-configuration.getConfig(StatType.SPEED));
+        changePosition(-match.getConfiguration().getConfig(StatType.SPEED));
     }
 
     private void changePosition(double howMuch) {
-        Position position = this.character.getPosition();
+        Position position = this.character.getPosition(null);
         this.character.setPosition(new Position(position.getX() + howMuch, position.getY()));
     }
 
@@ -79,17 +76,21 @@ public class Player implements ControllerListener, DamageReceiver {
     }
 
     Position getPosition() {
-        return this.character.getPosition();
+        return this.character.getPosition(null);
     }
 
-    public Function<LocalTime, Element> shot() {
-        this.listeners.forEach(PlayerListener::onShot);
-        Optional<Bullet> shot = attackEquipment.shot();
+    public void shot() {
+        Optional<Bullet> optionalBullet = attackEquipment.shot();
         Double angle = getAngle();
         Double power = getPower();
         LocalTime time = LocalTime.now();
-
-        return localTime -> shot.orElse(null);
+        if (!optionalBullet.isPresent()) {
+            return;
+        }
+        Function<LocalTime, Position> function = physicCreator.createFunction(power, angle, character.getPosition(null), time);
+        Bullet concreteBullet = optionalBullet.get();
+        MovingBullet movingBullet = new MovingBullet(concreteBullet.getSize(), function);
+        match.addElement(movingBullet);
     }
 
     private void increase(StatType statType, Double value) {

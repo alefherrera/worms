@@ -1,7 +1,5 @@
 package model.equipment;
 
-import model.elements.Bullet;
-
 import java.util.Optional;
 
 public class AttackEquipment extends Equipment<Weapon> {
