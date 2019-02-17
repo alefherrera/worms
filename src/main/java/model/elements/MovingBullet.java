@@ -1,11 +1,10 @@
 package model.elements;
 
-import model.Looper;
+import model.BattleGround;
 import model.Position;
 import model.equipment.Bullet;
 
 import java.time.LocalTime;
-import java.util.List;
 import java.util.function.Function;
 
 public class MovingBullet extends Element {
@@ -20,12 +19,16 @@ public class MovingBullet extends Element {
     }
 
     @Override
-    public void refresh(LocalTime time, Looper looper, List<Element> otherElements) {
+    public void refresh(LocalTime time, BattleGround battleGround) {
         Position newPosition = function.apply(time);
-        if (!newPosition.equals(position) && newPosition.getY() > 0) {
+        if (!newPosition.equals(position)) {
             setPosition(newPosition);
-            looper.needToRefresh();
+            battleGround.update(this);
         }
     }
 
+    @Override
+    public void onCollision(Element element) {
+        super.onCollision(element);
+    }
 }

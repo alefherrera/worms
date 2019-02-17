@@ -30,7 +30,7 @@ public class Player implements ControllerListener, DamageReceiver {
         this.match = match;
         physicCreator = new PhysicCreator();
         this.name = name;
-        this.character = new Character(Position.DEFAULT);
+        this.character = new Character(Position.DEFAULT, this);
         this.state = PlayerState.getDefault(this);
         attackEquipment = new AttackEquipment();
         defenseEquipment = new DefenseEquipment();
@@ -87,7 +87,7 @@ public class Player implements ControllerListener, DamageReceiver {
         if (!optionalBullet.isPresent()) {
             return;
         }
-        Function<LocalTime, Position> function = physicCreator.createFunction(power, angle, character.getPosition(), time);
+        Function<LocalTime, Position> function = physicCreator.getSpaceAndTime(power, angle, character.getPosition(), time);
         Bullet concreteBullet = optionalBullet.get();
         MovingBullet movingBullet = new MovingBullet(concreteBullet, function);
         match.addElement(movingBullet);

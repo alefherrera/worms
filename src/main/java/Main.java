@@ -25,8 +25,10 @@ public class Main {
         System.out.println("Game Started");
         game.start();
         Configuration configuration = getConfiguration();
-        Match match = game.createMatch(configuration, new BattleGround(new Size(800D, 600D)), SecuencialTurnManager::new);
-        Player player = match.addPlayer("player 1", controller);
+        Match match = game.createMatch(configuration, new Size(800D, 600D), SecuencialTurnManager::new);
+        Controller controller2 = new Controller("controller-2");
+        Player player = match.addPlayer("player 1", Main.controller);
+        Player player2 = match.addPlayer("player 2", controller2);
         Bullet bullet = new Bullet(new Size(2D, 2D), 1D, new Power(1D));
         player.addWeapon(new Weapon(bullet, 2D));
         match.start();

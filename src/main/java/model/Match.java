@@ -62,7 +62,7 @@ public class Match {
         battleGround.addElement(character);
     }
 
-    public void refresh(LocalTime time, Looper looper) {
-        battleGround.refresh(time, looper);
+    public void refresh(LocalTime time) {
+        battleGround.refresh(time);
     }
 }

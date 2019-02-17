@@ -32,8 +32,8 @@ public class Game implements ControllerListener {
         return new GameStatus(matches);
     }
 
-    public Match createMatch(Configuration configuration, BattleGround battleGround, Function<List<Player>, TurnManager> turnManagerSupplier) {
-        Match match = new Match(this, configuration, battleGround, turnManagerSupplier);
+    public Match createMatch(Configuration configuration, Size battleGroundSize, Function<List<Player>, TurnManager> turnManagerSupplier) {
+        Match match = new Match(this, configuration, new BattleGround(battleGroundSize, looper), turnManagerSupplier);
         matches.add(match);
         return match;
     }
@@ -43,6 +43,6 @@ public class Game implements ControllerListener {
     }
 
     public void refresh(LocalTime time) {
-        matches.forEach(match -> match.refresh(time, looper));
+        matches.forEach(match -> match.refresh(time));
     }
 }

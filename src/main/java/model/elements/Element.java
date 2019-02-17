@@ -1,11 +1,10 @@
 package model.elements;
 
-import model.Looper;
+import model.BattleGround;
 import model.Position;
 import model.Size;
 
 import java.time.LocalTime;
-import java.util.List;
 
 public abstract class Element {
 
@@ -25,7 +24,11 @@ public abstract class Element {
         return position;
     }
 
-    public void refresh(LocalTime time, Looper looper, List<Element> otherElements) {
+    public void refresh(LocalTime time, BattleGround battleGround) {
+
+    }
+
+    public void onCollision(Element element) {
 
     }
 
