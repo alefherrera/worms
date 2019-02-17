@@ -1,9 +1,11 @@
 package model.equipment;
 
+import model.DamageReceiver;
+import model.DamageSource;
 import model.Power;
 import model.Size;
 
-public class Bullet {
+public class Bullet implements DamageSource {
 
     private final Size size;
     private final Double weight;
@@ -26,4 +28,9 @@ public class Bullet {
     public Size getSize() {
         return size;
     }
+
+    public void damage(DamageReceiver receiver) {
+        receiver.onDamageReceive(this, getPower());
+    }
+
 }

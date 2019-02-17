@@ -28,7 +28,8 @@ public class GameTest {
     public void onAction() {
         Configuration configuration = getConfiguration();
         Game game = new Game(new Looper(1000, new StatusSpy()));
-        Match match = game.createMatch(configuration, SecuencialTurnManager::new);
+        BattleGround battleGround = new BattleGround(new Size(2D, 2D));
+        Match match = game.createMatch(configuration, battleGround, SecuencialTurnManager::new);
         Controller controller = new Controller("slot1");
         Player player = match.addPlayer("player1", controller);
 
@@ -61,7 +62,8 @@ public class GameTest {
     public void nextTurnPlayer() {
         Configuration configuration = getConfiguration();
         Game game = new Game(new Looper(1000, new StatusSpy()));
-        Match match = game.createMatch(configuration, SecuencialTurnManager::new);
+        BattleGround battleGround = new BattleGround(new Size(2D, 2D));
+        Match match = game.createMatch(configuration, battleGround, SecuencialTurnManager::new);
         Controller controller = new Controller("slot1");
         Controller controller2 = new Controller("slot2");
         Player player = match.addPlayer("player1", controller);
@@ -114,7 +116,8 @@ public class GameTest {
     public void removePlayer() {
         Configuration configuration = getConfiguration();
         Game game = new Game(new Looper(1000, new StatusSpy()));
-        Match match = game.createMatch(configuration, SecuencialTurnManager::new);
+        BattleGround battleGround = new BattleGround(new Size(2D, 2D));
+        Match match = game.createMatch(configuration, battleGround, SecuencialTurnManager::new);
         Controller controller = new Controller("slot1");
         Player player1 = match.addPlayer("player1", controller);
         match.addPlayer("player2", controller);

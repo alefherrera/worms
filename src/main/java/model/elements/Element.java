@@ -5,6 +5,7 @@ import model.Position;
 import model.Size;
 
 import java.time.LocalTime;
+import java.util.List;
 
 public abstract class Element {
 
@@ -17,13 +18,14 @@ public abstract class Element {
     public Element(Size size) {
         this.size = size;
         type = this.getClass().getSimpleName();
+        position = new Position(0D, 0D);
     }
 
     public Position getPosition() {
         return position;
     }
 
-    public void refresh(LocalTime time, Looper looper) {
+    public void refresh(LocalTime time, Looper looper, List<Element> otherElements) {
 
     }
 

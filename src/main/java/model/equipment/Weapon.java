@@ -1,9 +1,6 @@
 package model.equipment;
 
-import model.DamageReceiver;
-import model.DamageSource;
-
-public class Weapon implements DamageSource {
+public class Weapon {
 
     private Double ammo;
     private Bullet bullet;
@@ -31,7 +28,4 @@ public class Weapon implements DamageSource {
         }
     }
 
-    public void damage(DamageReceiver receiver) {
-        receiver.onDamageReceive(this, bullet.getPower());
-    }
 }

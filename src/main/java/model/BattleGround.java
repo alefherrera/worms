@@ -5,6 +5,8 @@ import model.elements.Element;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BattleGround {
 
@@ -26,6 +28,10 @@ public class BattleGround {
     }
 
     public void refresh(LocalTime time, Looper looper) {
-        elements.forEach(element -> element.refresh(time, looper));
+        elements.forEach(element -> element.refresh(time, looper, getOtherElements(element)));
+    }
+
+    private List<Element> getOtherElements(Element element) {
+        return elements.stream().filter(x -> !x.equals(element)).collect(Collectors.toList());
     }
 }

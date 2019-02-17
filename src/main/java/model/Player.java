@@ -67,11 +67,11 @@ public class Player implements ControllerListener, DamageReceiver {
         return statContainer.getValue(StatType.HEALTH).orElse(null);
     }
 
-    private Double getAngle() {
+    public Double getAngle() {
         return statContainer.getValue(StatType.ANGLE).orElse(null);
     }
 
-    private Double getPower() {
+    public Double getPower() {
         return statContainer.getValue(StatType.POWER).orElse(null);
     }
 
@@ -89,7 +89,7 @@ public class Player implements ControllerListener, DamageReceiver {
         }
         Function<LocalTime, Position> function = physicCreator.createFunction(power, angle, character.getPosition(), time);
         Bullet concreteBullet = optionalBullet.get();
-        MovingBullet movingBullet = new MovingBullet(concreteBullet.getSize(), function);
+        MovingBullet movingBullet = new MovingBullet(concreteBullet, function);
         match.addElement(movingBullet);
     }
 
