@@ -1,8 +1,8 @@
 package model.elements;
 
 import model.Player;
-import model.Position;
-import model.Size;
+import model.units.Position;
+import model.units.Size;
 
 public class Character extends Element {
 

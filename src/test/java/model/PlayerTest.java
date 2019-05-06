@@ -2,6 +2,8 @@ package model;
 
 import model.equipment.Bullet;
 import model.equipment.Weapon;
+import model.units.Power;
+import model.units.Size;
 import org.junit.Assert;
 import org.junit.Test;
 

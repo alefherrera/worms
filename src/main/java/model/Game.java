@@ -2,6 +2,7 @@ package model;
 
 import model.actions.Action;
 import model.config.Configuration;
+import model.units.Size;
 import service.TurnManager;
 
 import java.time.LocalTime;

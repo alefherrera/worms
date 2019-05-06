@@ -4,6 +4,7 @@ import model.actions.ExecuteAction;
 import model.actions.LeftAction;
 import model.actions.RightAction;
 import model.config.Configuration;
+import model.units.Size;
 import org.junit.Test;
 import service.SecuencialTurnManager;
 

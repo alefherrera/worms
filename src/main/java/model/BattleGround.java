@@ -1,6 +1,7 @@
 package model;
 
 import model.elements.Element;
+import model.units.Size;
 import service.CollisionVerifier;
 
 import java.time.LocalTime;

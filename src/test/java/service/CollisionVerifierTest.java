@@ -1,6 +1,6 @@
 package service;
 
-import model.Position;
+import model.units.Position;
 import model.elements.Character;
 import model.elements.Element;
 import org.junit.Test;

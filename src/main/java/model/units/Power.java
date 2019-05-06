@@ -1,4 +1,4 @@
-package model;
+package model.units;
 
 public class Power {
 
@@ -8,7 +8,7 @@ public class Power {
         this.value = value;
     }
 
-    Double getValue() {
+    public Double getValue() {
         return value;
     }
 }

@@ -2,8 +2,8 @@ package model.equipment;
 
 import model.DamageReceiver;
 import model.DamageSource;
-import model.Power;
-import model.Size;
+import model.units.Power;
+import model.units.Size;
 
 public class Bullet implements DamageSource {
 

@@ -1,7 +1,7 @@
 package model.equipment;
 
 import model.DamageSource;
-import model.Power;
+import model.units.Power;
 
 public interface Shield {
 

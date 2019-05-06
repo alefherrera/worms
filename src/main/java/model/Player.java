@@ -7,6 +7,8 @@ import model.equipment.*;
 import model.stat.Stat;
 import model.stat.StatContainer;
 import model.states.PlayerState;
+import model.units.Position;
+import model.units.Power;
 import physic.PhysicCreator;
 
 import java.time.LocalTime;

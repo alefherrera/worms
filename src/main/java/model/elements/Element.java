@@ -1,8 +1,8 @@
 package model.elements;
 
 import model.BattleGround;
-import model.Position;
-import model.Size;
+import model.units.Position;
+import model.units.Size;
 
 import java.time.LocalTime;
 

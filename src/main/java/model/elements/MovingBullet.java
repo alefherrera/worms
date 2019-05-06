@@ -1,7 +1,7 @@
 package model.elements;
 
 import model.BattleGround;
-import model.Position;
+import model.units.Position;
 import model.equipment.Bullet;
 
 import java.time.LocalTime;

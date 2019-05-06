@@ -1,9 +1,10 @@
 import model.*;
 import model.actions.*;
 import model.config.Configuration;
-import model.elements.Character;
 import model.equipment.Bullet;
 import model.equipment.Weapon;
+import model.units.Power;
+import model.units.Size;
 import service.SecuencialTurnManager;
 
 import java.util.HashMap;

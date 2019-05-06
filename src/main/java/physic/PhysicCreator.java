@@ -1,6 +1,6 @@
 package physic;
 
-import model.Position;
+import model.units.Position;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
