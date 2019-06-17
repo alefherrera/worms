@@ -1,0 +1,34 @@
+package worms;
+
+import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+public class MatchTest {
+
+    @Test
+    public void start() {
+        Match match = new Match();
+        match.start();
+        MatchStatus matchStatus = match.getStatus();
+        assertTrue(matchStatus.getRunning());
+    }
+
+    @Test
+    public void exit() {
+        Match match = new Match();
+        MatchStatus matchStatus = match.getStatus();
+        assertFalse(matchStatus.getRunning());
+    }
+
+    @Test
+    public void exitAfterStart() {
+        Match match = new Match();
+        match.start();
+        match.stop();
+        MatchStatus matchStatus = match.getStatus();
+        assertFalse(matchStatus.getRunning());
+    }
+
+}
