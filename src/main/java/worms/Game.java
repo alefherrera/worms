@@ -9,7 +9,7 @@ public class Game {
     }
 
     public Match createMatch(final MatchConfiguration configuration) {
-        return new Match();
+        return new Match(configuration);
     }
 
     public GameStatus getStatus() {

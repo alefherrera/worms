@@ -5,8 +5,10 @@ import java.util.Collection;
 public class Match {
 
     private final MatchStatus matchStatus;
+    private final MatchConfiguration configuration;
 
-    public Match() {
+    public Match(final MatchConfiguration configuration) {
+        this.configuration = configuration;
         matchStatus = new MatchStatus();
     }
 

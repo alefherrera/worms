@@ -1,8 +1,20 @@
 package worms;
 
+import worms.actiions.CharacterAction;
+
 public class Player {
 
-    public void join(final Match match) {
-        match.addPlayer(this);
+    private final Character character;
+
+    public Player() {
+        character = new Character(new Position(0, 0));
+    }
+
+    public void execute(final CharacterAction action) {
+        action.execute(character);
+    }
+
+    public Character getCharacter() {
+        return character;
     }
 }
