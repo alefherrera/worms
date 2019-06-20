@@ -1,6 +1,13 @@
 package worms;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class MatchStatus {
+
+    private Boolean isRunning = false;
+    private Collection<Player> players = new ArrayList<>();
+
     public boolean getRunning() {
         return isRunning;
     }
@@ -9,6 +16,7 @@ public class MatchStatus {
         isRunning = running;
     }
 
-    private Boolean isRunning = false;
-
+    public Collection<Player> getPlayers() {
+        return players;
+    }
 }

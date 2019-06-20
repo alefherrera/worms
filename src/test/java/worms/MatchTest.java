@@ -31,4 +31,24 @@ public class MatchTest {
         assertFalse(matchStatus.getRunning());
     }
 
+    @Test
+    public void addPlayer() {
+        Match match = new Match();
+        Player player = new Player();
+        match.addPlayer(player);
+        MatchStatus matchStatus = match.getStatus();
+        assertTrue(matchStatus.getPlayers().contains(player));
+    }
+
+    @Test
+    public void removePlayerAfterAdd() {
+        Match match = new Match();
+        Player player = new Player();
+        match.addPlayer(player);
+        MatchStatus matchStatus = match.getStatus();
+        assertTrue(matchStatus.getPlayers().contains(player));
+        match.removePlayer(player);
+        assertFalse(matchStatus.getPlayers().contains(player));
+    }
+
 }
