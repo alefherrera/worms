@@ -1,5 +1,7 @@
 package worms;
 
+import worms.actions.character.CharacterAction;
+
 public class Character {
 
     private Position position;
@@ -21,4 +23,7 @@ public class Character {
         return position;
     }
 
+    public void execute(final CharacterAction action) {
+        action.execute(this);
+    }
 }

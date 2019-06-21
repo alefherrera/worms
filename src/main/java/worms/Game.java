@@ -2,7 +2,7 @@ package worms;
 
 public class Game {
 
-    private GameStatus gameStatus;
+    private final GameStatus gameStatus;
 
     public Game() {
         gameStatus = new GameStatus();

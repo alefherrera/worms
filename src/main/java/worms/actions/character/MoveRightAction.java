@@ -1,4 +1,4 @@
-package worms.actiions;
+package worms.actions.character;
 
 import worms.Character;
 

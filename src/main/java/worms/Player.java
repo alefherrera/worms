@@ -1,20 +1,31 @@
 package worms;
 
-import worms.actiions.CharacterAction;
+import worms.actions.controller.ActivateAction;
+import worms.actions.controller.GameAction;
+import worms.actions.states.CharacterState;
+import worms.actions.states.WaitingState;
 
 public class Player {
 
+    private final String name;
     private final Character character;
+    private CharacterState characterState;
 
-    public Player() {
-        character = new Character(new Position(0, 0));
+    public Player(final String name, final Character character) {
+        this.name = name;
+        this.character = character;
+        characterState = new WaitingState();
     }
 
-    public void execute(final CharacterAction action) {
-        action.execute(character);
+    public String getName() {
+        return name;
     }
 
-    public Character getCharacter() {
-        return character;
+    public void execute(final GameAction gameAction) {
+        characterState = characterState.onAction(gameAction, character);
+    }
+
+    public void execute(final ActivateAction gameAction) {
+        characterState = characterState.onAction(gameAction, character);
     }
 }
