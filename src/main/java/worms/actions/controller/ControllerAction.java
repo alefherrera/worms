@@ -1,5 +1,5 @@
 package worms.actions.controller;
 
-public interface ControllerAction extends GameAction {
+public abstract class ControllerAction extends GameAction {
 
 }

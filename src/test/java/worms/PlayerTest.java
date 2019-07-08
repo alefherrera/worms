@@ -4,6 +4,7 @@ import org.junit.Test;
 import worms.actions.controller.ActivateAction;
 import worms.actions.controller.ControllerAction;
 import worms.actions.controller.GameAction;
+import worms.actions.controller.LeftControllerAction;
 import worms.actions.controller.RightControllerAction;
 
 import static org.junit.Assert.assertEquals;
@@ -26,6 +27,7 @@ public class PlayerTest {
         final Character character = new Character(new Position(0, 0));
         final Position oldPosition = character.getPosition();
         final Player player = new Player(PLAYER_NAME, character);
+        player.execute(new ActivateAction());
         player.execute(controllerAction);
         final Position newPosition = character.getPosition();
         int i = newPosition.getX().compareTo(oldPosition.getX());
@@ -34,10 +36,11 @@ public class PlayerTest {
 
     @Test
     public void controllerLeftAction() {
-        final ControllerAction controllerAction = new RightControllerAction();
+        final ControllerAction controllerAction = new LeftControllerAction();
         final Character character = new Character(new Position(0, 0));
         final Position oldPosition = character.getPosition();
         final Player player = new Player(PLAYER_NAME, character);
+        player.execute(new ActivateAction());
         player.execute(controllerAction);
         final Position newPosition = character.getPosition();
         int i = newPosition.getX().compareTo(oldPosition.getX());

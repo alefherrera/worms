@@ -1,4 +1,4 @@
 package worms.actions.controller;
 
-public class ExecuteAction implements ControllerAction {
+public class ExecuteAction extends ControllerAction {
 }

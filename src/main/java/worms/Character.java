@@ -26,4 +26,5 @@ public class Character {
     public void execute(final CharacterAction action) {
         action.execute(this);
     }
+
 }
