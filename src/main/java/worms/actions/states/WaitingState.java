@@ -9,11 +9,11 @@ public class WaitingState extends PlayerState {
 
     @Override
     public PlayerAction getAction(final GameAction gameAction) {
-        return gameAction.execute(this);
+        return gameAction.getAction(this);
     }
 
     @Override
-    public PlayerAction execute(final ActivateAction action) {
+    public PlayerAction getAction(final ActivateAction action) {
         return new ChangeStateAction(new MovingState());
     }
 }

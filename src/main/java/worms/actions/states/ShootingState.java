@@ -8,11 +8,11 @@ public class ShootingState extends PlayerState {
 
     @Override
     public PlayerAction getAction(final GameAction gameAction) {
-        return gameAction.execute(this);
+        return gameAction.getAction(this);
     }
 
     @Override
-    public PlayerAction execute(final RightControllerAction action) {
+    public PlayerAction getAction(final RightControllerAction action) {
         return null;
     }
 }

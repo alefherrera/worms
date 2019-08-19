@@ -6,7 +6,7 @@ import worms.actions.states.WaitingState;
 public class ActivateAction extends GameAction {
 
     @Override
-    public PlayerAction execute(final WaitingState state) {
-        return state.execute(this);
+    public PlayerAction getAction(final WaitingState state) {
+        return state.getAction(this);
     }
 }

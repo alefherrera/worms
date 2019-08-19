@@ -13,15 +13,15 @@ public abstract class PlayerState {
 
     public abstract PlayerAction getAction(final GameAction gameAction);
 
-    public PlayerAction execute(final RightControllerAction action) {
+    public PlayerAction getAction(final RightControllerAction action) {
         return new EmptyPlayerAction();
     }
 
-    public PlayerAction execute(final ActivateAction action) {
+    public PlayerAction getAction(final ActivateAction action) {
         return new EmptyPlayerAction();
     }
 
-    public PlayerAction execute(final LeftControllerAction action) {
+    public PlayerAction getAction(final LeftControllerAction action) {
         return new EmptyPlayerAction();
     }
 

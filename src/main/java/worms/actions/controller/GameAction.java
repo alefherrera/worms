@@ -9,19 +9,19 @@ import worms.actions.states.WaitingState;
 
 public abstract class GameAction {
 
-    public PlayerAction execute(WaitingState state) {
+    public PlayerAction getAction(WaitingState state) {
         return new EmptyPlayerAction();
     }
 
-    public PlayerAction execute(MovingState state) {
+    public PlayerAction getAction(MovingState state) {
         return new EmptyPlayerAction();
     }
 
-    public PlayerAction execute(AimingState state) {
+    public PlayerAction getAction(AimingState state) {
         return new EmptyPlayerAction();
     }
 
-    public PlayerAction execute(ShootingState state) {
+    public PlayerAction getAction(ShootingState state) {
         return new EmptyPlayerAction();
     }
 

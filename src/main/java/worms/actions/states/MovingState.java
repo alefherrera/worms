@@ -12,16 +12,16 @@ public class MovingState extends PlayerState {
 
     @Override
     public PlayerAction getAction(final GameAction gameAction) {
-        return gameAction.execute(this);
+        return gameAction.getAction(this);
     }
 
     @Override
-    public PlayerAction execute(final RightControllerAction action) {
+    public PlayerAction getAction(final RightControllerAction action) {
         return new CharacterPlayerAction(new MoveRightAction());
     }
 
     @Override
-    public PlayerAction execute(final LeftControllerAction action) {
+    public PlayerAction getAction(final LeftControllerAction action) {
         return new CharacterPlayerAction(new MoveLeftAction());
     }
 }
