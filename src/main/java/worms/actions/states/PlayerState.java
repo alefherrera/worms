@@ -1,6 +1,8 @@
 package worms.actions.states;
 
 import worms.actions.controller.ActivateAction;
+import worms.actions.controller.CancelAction;
+import worms.actions.controller.ExecuteAction;
 import worms.actions.controller.GameAction;
 import worms.actions.controller.LeftControllerAction;
 import worms.actions.controller.RightControllerAction;
@@ -25,16 +27,23 @@ public abstract class PlayerState {
         return new EmptyPlayerAction();
     }
 
+    public PlayerAction getAction(final ExecuteAction action) {
+        return new EmptyPlayerAction();
+    }
+
+    public PlayerAction getAction(final CancelAction action) {
+        return new EmptyPlayerAction();
+    }
+
     @Override
     public boolean equals(final Object o) {
+        if (o == null) {
+            return false;
+        }
         if (this == o) {
             return true;
         }
-        if (!(o instanceof PlayerState)) {
-            return false;
-        }
-        final PlayerState that = (PlayerState) o;
-        return Objects.equals(getClass(), that.getClass());
+        return Objects.equals(getClass(), o.getClass());
     }
 
     @Override

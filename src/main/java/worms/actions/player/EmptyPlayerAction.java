@@ -7,4 +7,12 @@ public class EmptyPlayerAction implements PlayerAction {
     public void execute(final Player player) {
 
     }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        return getClass().equals(obj.getClass());
+    }
 }

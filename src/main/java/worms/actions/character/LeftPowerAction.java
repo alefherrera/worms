@@ -1,16 +1,13 @@
 package worms.actions.character;
 
 import worms.Character;
-import worms.actions.player.PlayerAction;
-import worms.actions.states.PlayerState;
 
 import java.util.Objects;
 
-public class MoveRightAction implements CharacterAction {
-
+public class LeftPowerAction implements CharacterAction {
     @Override
-    public void execute(final Character character) {
-        character.moveRight();
+    public void execute(final Character player) {
+
     }
 
     @Override
@@ -31,6 +28,6 @@ public class MoveRightAction implements CharacterAction {
 
     @Override
     public String toString() {
-        return "MoveRightAction{}";
+        return "LeftPowerAction{}";
     }
 }
