@@ -6,6 +6,9 @@ import worms.actions.controller.ControllerAction;
 import worms.actions.controller.GameAction;
 import worms.actions.controller.LeftControllerAction;
 import worms.actions.controller.RightControllerAction;
+import worms.actions.states.AimingState;
+import worms.actions.states.MovingState;
+import worms.actions.states.WaitingState;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -24,10 +27,9 @@ public class PlayerTest {
     @Test
     public void controllerRightAction() {
         final ControllerAction controllerAction = new RightControllerAction();
-        final Character character = new Character(new Position(0, 0));
+        final Character character = new Character(new Position(0, 0), new MovingState());
         final Position oldPosition = character.getPosition();
         final Player player = new Player(PLAYER_NAME, character);
-        player.execute(new ActivateAction());
         player.execute(controllerAction);
         final Position newPosition = character.getPosition();
         int i = newPosition.getX().compareTo(oldPosition.getX());
@@ -37,10 +39,9 @@ public class PlayerTest {
     @Test
     public void controllerLeftAction() {
         final ControllerAction controllerAction = new LeftControllerAction();
-        final Character character = new Character(new Position(0, 0));
+        final Character character = new Character(new Position(0, 0), new MovingState());
         final Position oldPosition = character.getPosition();
         final Player player = new Player(PLAYER_NAME, character);
-        player.execute(new ActivateAction());
         player.execute(controllerAction);
         final Position newPosition = character.getPosition();
         int i = newPosition.getX().compareTo(oldPosition.getX());
@@ -50,9 +51,10 @@ public class PlayerTest {
     @Test
     public void activateAction() {
         final GameAction controllerAction = new ActivateAction();
-        final Character character = new Character(new Position(0, 0));
+        final Character character = new Character(new Position(0, 0), new WaitingState());
         final Player player = new Player(PLAYER_NAME, character);
         player.execute(controllerAction);
+        assertEquals(character.getCharacterState(), new MovingState());
     }
 
 }

@@ -3,6 +3,7 @@ package worms;
 import org.junit.Test;
 import worms.actions.character.MoveLeftAction;
 import worms.actions.character.MoveRightAction;
+import worms.actions.states.WaitingState;
 
 import static org.junit.Assert.*;
 
@@ -10,7 +11,7 @@ public class CharacterTest {
 
     @Test
     public void moveRight() {
-        final Character character = new Character(new Position(0,0));
+        final Character character = new Character(new Position(0,0), new WaitingState());
         final Position oldPosition = character.getPosition();
         character.execute(new MoveRightAction());
         final Position newPosition = character.getPosition();
@@ -20,7 +21,7 @@ public class CharacterTest {
 
     @Test
     public void moveLeft() {
-        final Character character = new Character(new Position(0,0));
+        final Character character = new Character(new Position(0,0), new WaitingState());
         final Position oldPosition = character.getPosition();
         character.execute(new MoveLeftAction());
         final Position newPosition = character.getPosition();

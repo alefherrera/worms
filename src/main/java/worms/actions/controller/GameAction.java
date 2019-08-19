@@ -1,27 +1,28 @@
 package worms.actions.controller;
 
+import worms.actions.character.CharacterAction;
+import worms.actions.character.EmptyAction;
 import worms.actions.states.AimingState;
-import worms.actions.states.CharacterState;
 import worms.actions.states.MovingState;
 import worms.actions.states.ShootingState;
 import worms.actions.states.WaitingState;
 
 public abstract class GameAction {
 
-    public CharacterState execute(WaitingState state) {
-        return state;
+    public CharacterAction execute(WaitingState state) {
+        return new EmptyAction();
     }
 
-    public CharacterState execute(MovingState state) {
-        return state;
+    public CharacterAction execute(MovingState state) {
+        return new EmptyAction();
     }
 
-    public CharacterState execute(AimingState state) {
-        return state;
+    public CharacterAction execute(AimingState state) {
+        return new EmptyAction();
     }
 
-    public CharacterState execute(ShootingState state) {
-        return state;
+    public CharacterAction execute(ShootingState state) {
+        return new EmptyAction();
     }
 
 }

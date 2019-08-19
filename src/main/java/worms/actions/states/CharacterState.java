@@ -1,30 +1,44 @@
 package worms.actions.states;
 
-import worms.Character;
+import worms.actions.character.CharacterAction;
+import worms.actions.character.EmptyAction;
 import worms.actions.controller.ActivateAction;
 import worms.actions.controller.GameAction;
 import worms.actions.controller.LeftControllerAction;
 import worms.actions.controller.RightControllerAction;
 
+import java.util.Objects;
+
 public abstract class CharacterState {
 
-    protected final Character character;
+    public abstract CharacterAction getAction(final GameAction gameAction);
 
-    public CharacterState(Character character) {
-        this.character = character;
+    public CharacterAction execute(final RightControllerAction action) {
+        return new EmptyAction();
     }
 
-    public abstract CharacterState onAction(final GameAction gameAction);
-
-    public CharacterState execute(final RightControllerAction action) {
-        return this;
+    public CharacterAction execute(final ActivateAction action) {
+        return new EmptyAction();
     }
 
-    public CharacterState execute(final ActivateAction action) {
-        return this;
+    public CharacterAction execute(final LeftControllerAction action) {
+        return new EmptyAction();
     }
 
-    public CharacterState execute(final LeftControllerAction action) {
-        return this;
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof CharacterState)) {
+            return false;
+        }
+        final CharacterState that = (CharacterState) o;
+        return Objects.equals(getClass(), that.getClass());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getClass());
     }
 }
