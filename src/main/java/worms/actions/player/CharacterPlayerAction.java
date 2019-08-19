@@ -9,7 +9,7 @@ public class CharacterPlayerAction implements PlayerAction {
 
     private final CharacterAction characterAction;
 
-    public CharacterPlayerAction(CharacterAction characterAction) {
+    public CharacterPlayerAction(final CharacterAction characterAction) {
         this.characterAction = characterAction;
     }
 

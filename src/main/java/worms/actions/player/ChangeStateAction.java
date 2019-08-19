@@ -9,7 +9,7 @@ public class ChangeStateAction implements PlayerAction {
 
     private final PlayerState playerState;
 
-    public ChangeStateAction(PlayerState playerState) {
+    public ChangeStateAction(final PlayerState playerState) {
         this.playerState = playerState;
     }
 

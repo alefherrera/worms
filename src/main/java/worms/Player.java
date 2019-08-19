@@ -31,6 +31,10 @@ public class Player {
         this.playerState = playerState;
     }
 
+    public PlayerState getPlayerState() {
+        return playerState;
+    }
+
     public void execute(final PlayerAction playerAction) {
         playerAction.execute(this);
     }
