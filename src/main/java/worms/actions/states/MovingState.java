@@ -1,26 +1,27 @@
 package worms.actions.states;
 
-import worms.actions.character.CharacterAction;
 import worms.actions.character.MoveLeftAction;
 import worms.actions.character.MoveRightAction;
 import worms.actions.controller.GameAction;
 import worms.actions.controller.LeftControllerAction;
 import worms.actions.controller.RightControllerAction;
+import worms.actions.player.CharacterPlayerAction;
+import worms.actions.player.PlayerAction;
 
-public class MovingState extends CharacterState {
+public class MovingState extends PlayerState {
 
     @Override
-    public CharacterAction getAction(final GameAction gameAction) {
+    public PlayerAction getAction(final GameAction gameAction) {
         return gameAction.execute(this);
     }
 
     @Override
-    public CharacterAction execute(final RightControllerAction action) {
-        return new MoveRightAction();
+    public PlayerAction execute(final RightControllerAction action) {
+        return new CharacterPlayerAction(new MoveRightAction());
     }
 
     @Override
-    public CharacterAction execute(final LeftControllerAction action) {
-        return new MoveLeftAction();
+    public PlayerAction execute(final LeftControllerAction action) {
+        return new CharacterPlayerAction(new MoveLeftAction());
     }
 }

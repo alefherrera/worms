@@ -1,17 +1,18 @@
 package worms;
 
 import org.junit.Test;
+import worms.actions.player.ChangeStateAction;
 import worms.actions.controller.ActivateAction;
 import worms.actions.controller.ControllerAction;
 import worms.actions.controller.GameAction;
 import worms.actions.controller.LeftControllerAction;
 import worms.actions.controller.RightControllerAction;
-import worms.actions.states.AimingState;
 import worms.actions.states.MovingState;
 import worms.actions.states.WaitingState;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 public class PlayerTest {
 
@@ -19,7 +20,7 @@ public class PlayerTest {
 
     @Test
     public void createPlayer() {
-        final Player player = new Player(PLAYER_NAME, null);
+        final Player player = new Player(PLAYER_NAME, null, new MovingState());
         final String playerName = player.getName();
         assertEquals(PLAYER_NAME, playerName);
     }
@@ -27,9 +28,9 @@ public class PlayerTest {
     @Test
     public void controllerRightAction() {
         final ControllerAction controllerAction = new RightControllerAction();
-        final Character character = new Character(new Position(0, 0), new MovingState());
+        final Character character = new Character(new Position(0, 0));
         final Position oldPosition = character.getPosition();
-        final Player player = new Player(PLAYER_NAME, character);
+        final Player player = new Player(PLAYER_NAME, character, new MovingState());
         player.execute(controllerAction);
         final Position newPosition = character.getPosition();
         int i = newPosition.getX().compareTo(oldPosition.getX());
@@ -39,9 +40,9 @@ public class PlayerTest {
     @Test
     public void controllerLeftAction() {
         final ControllerAction controllerAction = new LeftControllerAction();
-        final Character character = new Character(new Position(0, 0), new MovingState());
+        final Character character = new Character(new Position(0, 0));
         final Position oldPosition = character.getPosition();
-        final Player player = new Player(PLAYER_NAME, character);
+        final Player player = new Player(PLAYER_NAME, character, new MovingState());
         player.execute(controllerAction);
         final Position newPosition = character.getPosition();
         int i = newPosition.getX().compareTo(oldPosition.getX());
@@ -51,10 +52,10 @@ public class PlayerTest {
     @Test
     public void activateAction() {
         final GameAction controllerAction = new ActivateAction();
-        final Character character = new Character(new Position(0, 0), new WaitingState());
-        final Player player = new Player(PLAYER_NAME, character);
-        player.execute(controllerAction);
-        assertEquals(character.getCharacterState(), new MovingState());
+        final Character character = mock(Character.class);
+        final Player player = new Player(PLAYER_NAME, character, new WaitingState());
+        final ActionExecutionResult executionResult = player.execute(controllerAction);
+        assertEquals(new ChangeStateAction(new MovingState()), executionResult.getPlayerAction());
     }
 
 }

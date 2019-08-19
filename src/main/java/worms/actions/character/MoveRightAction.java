@@ -1,6 +1,7 @@
 package worms.actions.character;
 
 import worms.Character;
+import worms.actions.player.PlayerAction;
 
 public class MoveRightAction implements CharacterAction {
 

@@ -1,18 +1,15 @@
 package worms;
 
 import worms.actions.character.CharacterAction;
-import worms.actions.controller.GameAction;
-import worms.actions.states.CharacterState;
+import worms.actions.player.PlayerAction;
 
 public class Character {
 
     private Position position;
     private final static int DELTA = 1;
-    private CharacterState characterState;
 
-    public Character(Position position, CharacterState characterState) {
+    public Character(Position position) {
         this.position = position;
-        this.characterState = characterState;
     }
 
     public void moveRight() {
@@ -31,16 +28,4 @@ public class Character {
         action.execute(this);
     }
 
-    public void setState(final CharacterState characterState) {
-        this.characterState = characterState;
-    }
-
-    public CharacterState getCharacterState() {
-        return characterState;
-    }
-
-    public void execute(final GameAction gameAction) {
-        final CharacterAction characterAction = characterState.getAction(gameAction);
-        execute(characterAction);
-    }
 }

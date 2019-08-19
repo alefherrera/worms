@@ -1,18 +1,18 @@
 package worms.actions.states;
 
-import worms.actions.character.CharacterAction;
+import worms.actions.player.PlayerAction;
 import worms.actions.controller.GameAction;
 import worms.actions.controller.RightControllerAction;
 
-public class AimingState extends CharacterState {
+public class AimingState extends PlayerState {
 
     @Override
-    public CharacterAction getAction(final GameAction gameAction) {
+    public PlayerAction getAction(final GameAction gameAction) {
         return gameAction.execute(this);
     }
 
     @Override
-    public CharacterAction execute(final RightControllerAction action) {
+    public PlayerAction execute(final RightControllerAction action) {
         return null;
     }
 }

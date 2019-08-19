@@ -5,6 +5,6 @@ import worms.Character;
 @FunctionalInterface
 public interface CharacterAction {
 
-    void execute(Character character);
+    void execute(Character player);
 
 }

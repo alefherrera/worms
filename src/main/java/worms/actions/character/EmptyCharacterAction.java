@@ -2,7 +2,7 @@ package worms.actions.character;
 
 import worms.Character;
 
-public class EmptyAction implements CharacterAction {
+public class EmptyCharacterAction implements CharacterAction {
 
     @Override
     public void execute(final Character character) {
