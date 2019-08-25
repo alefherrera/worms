@@ -2,13 +2,15 @@ package worms.engine;
 
 import worms.engine.actions.character.CharacterAction;
 
-public class Character {
+public abstract class Character {
 
     private Position position;
+    private Size size;
     private final static int DELTA = 1;
 
-    public Character(Position position) {
+    public Character(final Position position, final Size size) {
         this.position = position;
+        this.size = size;
     }
 
     public void moveRight() {
