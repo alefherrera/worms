@@ -40,6 +40,6 @@ public class Player {
     }
 
     public void execute(final CharacterAction characterAction) {
-        character.execute(characterAction);
+        characterAction.execute(character);
     }
 }

@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public class RightAngleAction implements CharacterAction {
     @Override
-    public void execute(final Character player) {
-
+    public void execute(final Character character) {
+        character.increaseAngle();
     }
 
     @Override

@@ -15,7 +15,9 @@ import worms.engine.Player;
 import worms.engine.PlayerFactory;
 import worms.engine.Position;
 import worms.engine.actions.controller.ActivateAction;
+import worms.engine.actions.controller.CancelAction;
 import worms.engine.actions.controller.ControllerAction;
+import worms.engine.actions.controller.ExecuteAction;
 import worms.engine.actions.controller.LeftControllerAction;
 import worms.engine.actions.controller.RightControllerAction;
 import worms.injector.GameInjector;
@@ -31,6 +33,8 @@ public class Main extends Application {
         final HashMap<KeyCode, ControllerAction> map = new HashMap<>();
         map.put(KeyCode.RIGHT, new RightControllerAction());
         map.put(KeyCode.LEFT, new LeftControllerAction());
+        map.put(KeyCode.X, new ExecuteAction());
+        map.put(KeyCode.ESCAPE, new CancelAction());
         return map;
     }
 

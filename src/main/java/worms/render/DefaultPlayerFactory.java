@@ -1,5 +1,6 @@
 package worms.render;
 
+import javafx.scene.Group;
 import worms.engine.CharacterFactory;
 import worms.engine.Player;
 import worms.engine.PlayerFactory;
@@ -14,11 +15,13 @@ import javax.inject.Singleton;
 public class DefaultPlayerFactory implements PlayerFactory {
 
     private final CharacterFactory characterFactory;
+    private final Group group;
     private final Size defaultSize;
 
     @Inject
-    public DefaultPlayerFactory(CharacterFactory characterFactory) {
+    public DefaultPlayerFactory(final CharacterFactory characterFactory, final Group group) {
         this.characterFactory = characterFactory;
+        this.group = group;
         defaultSize = new Size(32, 32);
     }
 

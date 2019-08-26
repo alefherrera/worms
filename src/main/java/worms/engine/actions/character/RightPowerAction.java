@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class RightPowerAction implements CharacterAction {
     @Override
-    public void execute(final Character player) {
+    public void execute(final Character character) {
 
     }
 

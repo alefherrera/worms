@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public class LeftAngleAction implements CharacterAction {
     @Override
-    public void execute(final Character player) {
-
+    public void execute(final Character character) {
+        character.decreaseAngle();
     }
 
     @Override
