@@ -1,17 +1,15 @@
 package worms;
 
 import com.google.inject.Injector;
-import com.google.inject.Provides;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import worms.engine.Game;
 import worms.engine.Match;
 import worms.engine.MatchConfiguration;
-import worms.engine.Player;
+import worms.model.Player;
 import worms.engine.PlayerFactory;
 import worms.engine.Position;
 import worms.engine.actions.controller.ActivateAction;

@@ -9,6 +9,8 @@ import worms.engine.actions.controller.RightControllerAction;
 import worms.engine.actions.player.ChangeStateAction;
 import worms.engine.actions.states.MovingState;
 import worms.engine.actions.states.WaitingState;
+import worms.model.Character;
+import worms.model.Player;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -28,7 +30,7 @@ public class PlayerTest {
     @Test
     public void controllerRightAction() {
         final ControllerAction controllerAction = new RightControllerAction();
-        final Character character = new Character(new Position(0, 0));
+        final Character character = new Character(new Size(0,0), new Position(0, 0));
         final Position oldPosition = character.getPosition();
         final Player player = new Player(PLAYER_NAME, character, new MovingState());
         player.execute(controllerAction);
@@ -40,7 +42,7 @@ public class PlayerTest {
     @Test
     public void controllerLeftAction() {
         final ControllerAction controllerAction = new LeftControllerAction();
-        final Character character = new Character(new Position(0, 0));
+        final Character character = new Character(new Size(0,0), new Position(0, 0));
         final Position oldPosition = character.getPosition();
         final Player player = new Player(PLAYER_NAME, character, new MovingState());
         player.execute(controllerAction);

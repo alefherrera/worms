@@ -1,6 +1,6 @@
 package worms.engine.actions.player;
 
-import worms.engine.Player;
+import worms.model.Player;
 import worms.engine.actions.states.PlayerState;
 
 import java.util.Objects;

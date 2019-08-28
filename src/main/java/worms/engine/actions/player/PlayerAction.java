@@ -1,6 +1,6 @@
 package worms.engine.actions.player;
 
-import worms.engine.Player;
+import worms.model.Player;
 
 @FunctionalInterface
 public interface PlayerAction {

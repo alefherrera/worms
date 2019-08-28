@@ -1,5 +1,7 @@
 package worms.engine;
 
+import worms.model.Player;
+
 @FunctionalInterface
 public interface PlayerFactory {
 

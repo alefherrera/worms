@@ -1,6 +1,6 @@
 package worms.engine.actions.character;
 
-import worms.engine.Character;
+import worms.model.Character;
 
 import java.util.Objects;
 

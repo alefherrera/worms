@@ -1,5 +1,7 @@
 package worms.engine;
 
+import worms.model.Player;
+
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 

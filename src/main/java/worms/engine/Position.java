@@ -16,4 +16,12 @@ public class Position {
     public Integer getY() {
         return y;
     }
+
+    public Position moveLeft(final int delta) {
+        return new Position(getX() - delta, getY());
+    }
+
+    public Position moveRight(final int delta) {
+        return new Position(getX() + delta, getY());
+    }
 }
