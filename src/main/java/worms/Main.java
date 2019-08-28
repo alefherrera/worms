@@ -25,14 +25,21 @@ import java.util.Map;
 
 public class Main extends Application {
 
-    private static Map<KeyCode, ControllerAction> map = getMap();
+    private static Map<KeyCode, ControllerAction> getController1() {
+        final HashMap<KeyCode, ControllerAction> map = new HashMap<>();
+        map.put(KeyCode.D, new RightControllerAction());
+        map.put(KeyCode.A, new LeftControllerAction());
+        map.put(KeyCode.SPACE, new ExecuteAction());
+        map.put(KeyCode.ESCAPE, new CancelAction());
+        return map;
+    }
 
-    private static Map<KeyCode, ControllerAction> getMap() {
+    private static Map<KeyCode, ControllerAction> getController2() {
         final HashMap<KeyCode, ControllerAction> map = new HashMap<>();
         map.put(KeyCode.RIGHT, new RightControllerAction());
         map.put(KeyCode.LEFT, new LeftControllerAction());
-        map.put(KeyCode.X, new ExecuteAction());
-        map.put(KeyCode.ESCAPE, new CancelAction());
+        map.put(KeyCode.ENTER, new ExecuteAction());
+        map.put(KeyCode.BACK_SPACE, new CancelAction());
         return map;
     }
 
@@ -48,12 +55,18 @@ public class Main extends Application {
         match.addPlayer(player);
         match.addPlayer(player2);
         player.execute(new ActivateAction());
+        player2.execute(new ActivateAction());
         primaryStage.setTitle("Game");
         final Group root = injector.getInstance(Group.class);
         final Scene scene = new Scene(root, 800, 600);
+        final Map<KeyCode, ControllerAction> controller1 = getController1();
+        final Map<KeyCode, ControllerAction> controller2 = getController2();
         scene.setOnKeyPressed(event -> {
-            if (map.containsKey(event.getCode())) {
-                player.execute(map.get(event.getCode()));
+            if (controller1.containsKey(event.getCode())) {
+                player.execute(controller1.get(event.getCode()));
+            }
+            if (controller2.containsKey(event.getCode())) {
+                player2.execute(controller2.get(event.getCode()));
             }
         });
         primaryStage.setScene(scene);
