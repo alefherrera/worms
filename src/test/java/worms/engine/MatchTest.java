@@ -14,7 +14,7 @@ public class MatchTest {
 
     @Test
     public void start() {
-        final MatchConfiguration configuration = new MatchConfiguration();
+        final MatchConfiguration configuration = new MatchConfiguration(1);
         final Match match = new Match(configuration);
         match.start();
         final MatchStatus matchStatus = match.getStatus();
@@ -23,7 +23,7 @@ public class MatchTest {
 
     @Test
     public void exit() {
-        final MatchConfiguration configuration = new MatchConfiguration();
+        final MatchConfiguration configuration = new MatchConfiguration(1);
         final Match match = new Match(configuration);
         final MatchStatus matchStatus = match.getStatus();
         assertFalse(matchStatus.getRunning());
@@ -31,7 +31,7 @@ public class MatchTest {
 
     @Test
     public void exitAfterStart() {
-        final MatchConfiguration configuration = new MatchConfiguration();
+        final MatchConfiguration configuration = new MatchConfiguration(1);
         final Match match = new Match(configuration);
         match.start();
         match.stop();
@@ -41,7 +41,7 @@ public class MatchTest {
 
     @Test
     public void addPlayer() {
-        final MatchConfiguration configuration = new MatchConfiguration();
+        final MatchConfiguration configuration = new MatchConfiguration(1);
         final Match match = new Match(configuration);
         final Player player = mock(Player.class);
         match.addPlayer(player);
@@ -51,7 +51,7 @@ public class MatchTest {
 
     @Test
     public void removePlayerAfterAdd() {
-        final MatchConfiguration configuration = new MatchConfiguration();
+        final MatchConfiguration configuration = new MatchConfiguration(1);
         final Match match = new Match(configuration);
         final Player player = mock(Player.class);
         match.addPlayer(player);

@@ -48,7 +48,7 @@ public class Main extends Application {
         final Injector injector = GameInjector.get();
         final Game game = injector.getInstance(Game.class);
         game.start();
-        final Match match = game.createMatch(new MatchConfiguration());
+        final Match match = game.createMatch(new MatchConfiguration(2));
         primaryStage.setTitle("Game");
         final Group root = injector.getInstance(Group.class);
         final Scene scene = new Scene(root, 800, 600);

@@ -4,30 +4,32 @@ import worms.engine.actions.ActivateAction;
 import worms.engine.actions.DeactivateAction;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
 
 public class Turn {
 
     public static final int DELAY = 5000;
-    private final Iterator<Player> playerIterator;
-    private final Match match;
     private final AtomicBoolean isActive;
+    private final Iterator<Player> iterator;
+    private final Consumer<Turn> onEnd;
     private Timer timer;
 
-    public Turn(Match match) {
-        this.match = match;
+    public Turn(Iterator<Player> iterator, Consumer<Turn> onEnd) {
+        this.iterator = iterator;
+        this.onEnd = onEnd;
         isActive = new AtomicBoolean(false);
-        this.playerIterator = match.getStatus().getPlayers().iterator();
         timer = new Timer(true);
     }
 
     public void next() {
-        if (playerIterator.hasNext()) {
-            activateCurrentPlayer(playerIterator.next());
+        if (iterator.hasNext()) {
+            activateCurrentPlayer(iterator.next());
         } else {
-            match.endTurn(this);
+            end();
         }
     }
 
@@ -46,11 +48,11 @@ public class Turn {
     public void start() {
         isActive.set(true);
         next();
-
     }
 
     public void end() {
         isActive.set(false);
         timer.cancel();
+        onEnd.accept(this);
     }
 }

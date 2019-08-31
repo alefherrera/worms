@@ -14,7 +14,7 @@ public class GameTest {
     @Test
     public void createMatch() {
         final Game game = new Game();
-        final MatchConfiguration configuration = new MatchConfiguration();
+        final MatchConfiguration configuration = new MatchConfiguration(1);
         Match match = game.createMatch(configuration);
         assertNotNull(match);
     }

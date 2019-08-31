@@ -42,17 +42,18 @@ public class Match {
         update();
     }
 
-    public void endTurn(final Turn turn) {
-        turn.end();
-        startNewTurn();
-    }
-
     private void startNewTurn() {
-        final Turn turn = new Turn(this);
+        final Turn turn = new Turn(matchStatus.getPlayers().iterator(), this::onTurnEnd);
         final Collection<Turn> turns = matchStatus.getTurns();
         turns.add(turn);
         turn.start();
         update();
+    }
+
+    private void onTurnEnd(final Turn turn) {
+        if (matchStatus.getTurns().size() < configuration.getMaxTurns()) {
+            startNewTurn();
+        }
     }
 
     public void add(MatchObserver observer) {
