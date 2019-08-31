@@ -11,8 +11,8 @@ import worms.engine.actions.states.PlayerState;
 import worms.model.CharacterObserver;
 import worms.model.Player;
 import worms.model.Character;
-import worms.engine.Position;
-import worms.engine.Size;
+import worms.model.Position;
+import worms.model.Size;
 import worms.model.PlayerObserver;
 
 import javax.inject.Inject;

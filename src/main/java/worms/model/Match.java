@@ -1,6 +1,4 @@
-package worms.engine;
-
-import worms.model.Player;
+package worms.model;
 
 import java.util.ArrayList;
 import java.util.Collection;

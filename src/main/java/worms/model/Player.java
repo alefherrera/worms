@@ -1,7 +1,5 @@
 package worms.model;
 
-import worms.engine.ActionExecutionResult;
-import worms.engine.Result;
 import worms.engine.actions.character.CharacterAction;
 import worms.engine.actions.controller.ControllerAction;
 import worms.engine.actions.controller.GameAction;

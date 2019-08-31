@@ -4,6 +4,8 @@ import org.junit.Test;
 import worms.model.Character;
 import worms.engine.actions.character.MoveLeftAction;
 import worms.engine.actions.character.MoveRightAction;
+import worms.model.Position;
+import worms.model.Size;
 
 import static org.junit.Assert.assertTrue;
 

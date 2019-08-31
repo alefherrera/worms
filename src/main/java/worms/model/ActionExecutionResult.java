@@ -1,4 +1,4 @@
-package worms.engine;
+package worms.model;
 
 import worms.engine.actions.player.PlayerAction;
 

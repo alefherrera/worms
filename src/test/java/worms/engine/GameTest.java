@@ -2,10 +2,10 @@ package worms.engine;
 
 
 import org.junit.Test;
-import worms.engine.Game;
-import worms.engine.GameStatus;
-import worms.engine.Match;
-import worms.engine.MatchConfiguration;
+import worms.model.Game;
+import worms.model.GameStatus;
+import worms.model.Match;
+import worms.model.MatchConfiguration;
 
 import static org.junit.Assert.*;
 

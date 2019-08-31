@@ -2,9 +2,9 @@ package worms.render;
 
 import javafx.scene.Group;
 import javafx.scene.text.Text;
-import worms.engine.Match;
-import worms.engine.MatchObserver;
-import worms.engine.MatchStatus;
+import worms.model.Match;
+import worms.model.MatchObserver;
+import worms.model.MatchStatus;
 
 public class MatchRenderer implements MatchObserver {
 

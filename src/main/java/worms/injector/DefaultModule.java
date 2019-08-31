@@ -2,7 +2,7 @@ package worms.injector;
 
 import com.google.inject.AbstractModule;
 import javafx.scene.Group;
-import worms.engine.PlayerFactory;
+import worms.model.PlayerFactory;
 import worms.render.DefaultPlayerFactory;
 
 public class DefaultModule extends AbstractModule {

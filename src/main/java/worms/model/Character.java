@@ -1,7 +1,5 @@
 package worms.model;
 
-import worms.engine.Position;
-import worms.engine.Size;
 import worms.engine.actions.character.CharacterAction;
 
 import java.util.ArrayList;

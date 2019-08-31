@@ -1,4 +1,4 @@
-package worms.engine;
+package worms.model;
 
 public enum Result {
     OK

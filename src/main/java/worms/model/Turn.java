@@ -1,11 +1,9 @@
-package worms.engine;
+package worms.model;
 
 import worms.engine.actions.controller.ActivateAction;
 import worms.engine.actions.controller.DeactivateAction;
-import worms.model.Player;
 
 import java.util.Iterator;
-import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;

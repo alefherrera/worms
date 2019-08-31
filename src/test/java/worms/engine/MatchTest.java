@@ -1,6 +1,9 @@
 package worms.engine;
 
 import org.junit.Test;
+import worms.model.Match;
+import worms.model.MatchConfiguration;
+import worms.model.MatchStatus;
 import worms.model.Player;
 
 import static org.junit.Assert.assertFalse;

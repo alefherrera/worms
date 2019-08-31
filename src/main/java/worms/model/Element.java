@@ -1,7 +1,5 @@
 package worms.model;
 
-import worms.engine.Size;
-
 public abstract class Element {
 
     private Size size;
