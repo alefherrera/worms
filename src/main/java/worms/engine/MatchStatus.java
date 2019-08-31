@@ -4,11 +4,13 @@ import worms.model.Player;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class MatchStatus {
 
     private Boolean isRunning = false;
-    private Collection<Player> players = new ArrayList<>();
+    private final Collection<Player> players = new ArrayList<>();
+    private final Collection<Turn> turns = new ArrayList<>();
 
     public boolean getRunning() {
         return isRunning;
@@ -20,5 +22,9 @@ public class MatchStatus {
 
     public Collection<Player> getPlayers() {
         return players;
+    }
+
+    public Collection<Turn> getTurns() {
+        return turns;
     }
 }

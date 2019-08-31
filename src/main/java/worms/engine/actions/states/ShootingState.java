@@ -3,6 +3,7 @@ package worms.engine.actions.states;
 import worms.engine.actions.character.LeftPowerAction;
 import worms.engine.actions.character.RightPowerAction;
 import worms.engine.actions.controller.CancelAction;
+import worms.engine.actions.controller.DeactivateAction;
 import worms.engine.actions.controller.ExecuteAction;
 import worms.engine.actions.controller.LeftControllerAction;
 import worms.engine.actions.player.ChangeStateAction;
@@ -36,5 +37,10 @@ public class ShootingState extends PlayerState {
     @Override
     public PlayerAction getAction(final CancelAction action) {
         return new ChangeStateAction(new AimingState());
+    }
+
+    @Override
+    public PlayerAction getAction(final DeactivateAction action) {
+        return new ChangeStateAction(new WaitingState());
     }
 }

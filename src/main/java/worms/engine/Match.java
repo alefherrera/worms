@@ -10,12 +10,12 @@ public class Match {
 
     private final MatchStatus matchStatus;
     private final MatchConfiguration configuration;
-    private final List<Turn> turns;
+    private final List<MatchObserver> observers;
 
     public Match(final MatchConfiguration configuration) {
         this.configuration = configuration;
         matchStatus = new MatchStatus();
-        turns = new ArrayList<>();
+        observers = new ArrayList<>();
     }
 
     public MatchStatus getStatus() {
@@ -29,16 +29,19 @@ public class Match {
 
     public void stop() {
         matchStatus.setRunning(false);
+        update();
     }
 
     public void addPlayer(final Player player) {
         Collection<Player> players = matchStatus.getPlayers();
         players.add(player);
+        update();
     }
 
     public void removePlayer(final Player player) {
         Collection<Player> players = matchStatus.getPlayers();
         players.remove(player);
+        update();
     }
 
     public void endTurn(final Turn turn) {
@@ -48,7 +51,24 @@ public class Match {
 
     private void startNewTurn() {
         final Turn turn = new Turn(this);
+        final Collection<Turn> turns = matchStatus.getTurns();
         turns.add(turn);
         turn.start();
+        update();
     }
+
+    public void add(MatchObserver observer) {
+        observers.add(observer);
+    }
+
+    public void remove(MatchObserver observer) {
+        observers.remove(observer);
+    }
+
+    private void update() {
+        observers.forEach(matchObserver -> {
+            matchObserver.update(matchStatus);
+        });
+    }
+
 }

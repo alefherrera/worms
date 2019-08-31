@@ -2,6 +2,7 @@ package worms.engine.actions.states;
 
 import worms.engine.actions.controller.ActivateAction;
 import worms.engine.actions.controller.CancelAction;
+import worms.engine.actions.controller.DeactivateAction;
 import worms.engine.actions.controller.ExecuteAction;
 import worms.engine.actions.controller.GameAction;
 import worms.engine.actions.controller.LeftControllerAction;
@@ -20,6 +21,10 @@ public abstract class PlayerState {
     }
 
     public PlayerAction getAction(final ActivateAction action) {
+        return new EmptyPlayerAction();
+    }
+
+    public PlayerAction getAction(final DeactivateAction action) {
         return new EmptyPlayerAction();
     }
 

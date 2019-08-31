@@ -20,6 +20,7 @@ import worms.engine.actions.controller.RightControllerAction;
 import worms.injector.GameInjector;
 import worms.model.Player;
 import worms.render.KeyCodeController;
+import worms.render.MatchRenderer;
 
 import java.util.HashMap;
 
@@ -52,6 +53,7 @@ public class Main extends Application {
         primaryStage.setTitle("Game");
         final Group root = injector.getInstance(Group.class);
         final Scene scene = new Scene(root, 800, 600);
+        final MatchRenderer matchRenderer = new MatchRenderer(root, match);
         createPlayers(match, injector.getInstance(PlayerFactory.class), scene);
         primaryStage.setScene(scene);
         primaryStage.show();
