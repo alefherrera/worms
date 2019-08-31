@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import worms.engine.Game;
 import worms.engine.Match;
 import worms.engine.MatchConfiguration;
-import worms.model.Player;
 import worms.engine.PlayerFactory;
 import worms.engine.Position;
 import worms.engine.actions.controller.ActivateAction;
@@ -19,28 +18,31 @@ import worms.engine.actions.controller.ExecuteAction;
 import worms.engine.actions.controller.LeftControllerAction;
 import worms.engine.actions.controller.RightControllerAction;
 import worms.injector.GameInjector;
+import worms.model.Controller;
+import worms.model.Player;
+import worms.render.KeyCodeController;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main extends Application {
 
-    private static Map<KeyCode, ControllerAction> getController1() {
+    private static KeyCodeController getController1() {
         final HashMap<KeyCode, ControllerAction> map = new HashMap<>();
         map.put(KeyCode.D, new RightControllerAction());
         map.put(KeyCode.A, new LeftControllerAction());
         map.put(KeyCode.SPACE, new ExecuteAction());
         map.put(KeyCode.ESCAPE, new CancelAction());
-        return map;
+        return new KeyCodeController("controller1", map);
     }
 
-    private static Map<KeyCode, ControllerAction> getController2() {
+    private static KeyCodeController getController2() {
         final HashMap<KeyCode, ControllerAction> map = new HashMap<>();
         map.put(KeyCode.RIGHT, new RightControllerAction());
         map.put(KeyCode.LEFT, new LeftControllerAction());
         map.put(KeyCode.ENTER, new ExecuteAction());
         map.put(KeyCode.BACK_SPACE, new CancelAction());
-        return map;
+        return new KeyCodeController("controller1", map);
     }
 
     @Override
@@ -59,15 +61,13 @@ public class Main extends Application {
         primaryStage.setTitle("Game");
         final Group root = injector.getInstance(Group.class);
         final Scene scene = new Scene(root, 800, 600);
-        final Map<KeyCode, ControllerAction> controller1 = getController1();
-        final Map<KeyCode, ControllerAction> controller2 = getController2();
+        final KeyCodeController controller1 = getController1();
+        final KeyCodeController controller2 = getController2();
+        controller1.addListener(player);
+        controller2.addListener(player2);
         scene.setOnKeyPressed(event -> {
-            if (controller1.containsKey(event.getCode())) {
-                player.execute(controller1.get(event.getCode()));
-            }
-            if (controller2.containsKey(event.getCode())) {
-                player2.execute(controller2.get(event.getCode()));
-            }
+            controller1.onKeyCode(event.getCode());
+            controller2.onKeyCode(event.getCode());
         });
         primaryStage.setScene(scene);
         primaryStage.show();

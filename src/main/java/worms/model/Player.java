@@ -3,6 +3,7 @@ package worms.model;
 import worms.engine.ActionExecutionResult;
 import worms.engine.Result;
 import worms.engine.actions.character.CharacterAction;
+import worms.engine.actions.controller.ControllerAction;
 import worms.engine.actions.controller.GameAction;
 import worms.engine.actions.player.PlayerAction;
 import worms.engine.actions.states.PlayerState;
@@ -10,7 +11,7 @@ import worms.engine.actions.states.PlayerState;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public class Player implements ControllerListener {
 
     private final String name;
     private final Character character;
@@ -21,7 +22,7 @@ public class Player {
         this.name = name;
         this.character = character;
         this.playerState = playerState;
-        observers =  new ArrayList<>();
+        observers = new ArrayList<>();
     }
 
     public String getName() {
@@ -63,5 +64,10 @@ public class Player {
 
     public void remove(PlayerObserver observer) {
         observers.remove(observer);
+    }
+
+    @Override
+    public void onControllerAction(final ControllerAction action) {
+        execute(action);
     }
 }
