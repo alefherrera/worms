@@ -12,6 +12,8 @@ repositories {
 
 dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
+    // https://mvnrepository.com/artifact/com.google.inject/guice
+    implementation group: 'com.google.inject', name: 'guice', version: '4.2.2'
     testCompile 'org.mockito:mockito-core:2.+'
     testCompile 'junit:junit:4.12'
 }
