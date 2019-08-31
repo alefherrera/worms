@@ -53,6 +53,8 @@ public class Match {
     private void onTurnEnd(final Turn turn) {
         if (matchStatus.getTurns().size() < configuration.getMaxTurns()) {
             startNewTurn();
+        } else {
+            stop();
         }
     }
 
