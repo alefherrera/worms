@@ -1,7 +1,7 @@
 package worms.engine;
 
 import org.junit.Test;
-import worms.engine.actions.controller.ActivateAction;
+import worms.engine.actions.ActivateAction;
 import worms.engine.actions.controller.ControllerAction;
 import worms.engine.actions.controller.GameAction;
 import worms.engine.actions.controller.LeftControllerAction;

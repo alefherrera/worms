@@ -1,5 +1,6 @@
-package worms.engine.actions.controller;
+package worms.engine.actions;
 
+import worms.engine.actions.controller.GameAction;
 import worms.engine.actions.player.PlayerAction;
 import worms.engine.actions.states.WaitingState;
 

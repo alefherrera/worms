@@ -1,7 +1,7 @@
 package worms.engine.actions.states;
 
 import org.junit.Test;
-import worms.engine.actions.controller.ActivateAction;
+import worms.engine.actions.ActivateAction;
 import worms.engine.actions.controller.CancelAction;
 import worms.engine.actions.controller.ExecuteAction;
 import worms.engine.actions.controller.LeftControllerAction;

@@ -2,7 +2,7 @@ package worms.engine.actions.states;
 
 import worms.engine.actions.player.ChangeStateAction;
 import worms.engine.actions.player.PlayerAction;
-import worms.engine.actions.controller.ActivateAction;
+import worms.engine.actions.ActivateAction;
 import worms.engine.actions.controller.GameAction;
 
 public class WaitingState extends PlayerState {

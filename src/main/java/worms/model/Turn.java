@@ -1,7 +1,7 @@
 package worms.model;
 
-import worms.engine.actions.controller.ActivateAction;
-import worms.engine.actions.controller.DeactivateAction;
+import worms.engine.actions.ActivateAction;
+import worms.engine.actions.DeactivateAction;
 
 import java.util.Iterator;
 import java.util.Timer;
