@@ -1,5 +1,6 @@
 package worms.engine;
 
+import worms.engine.actions.controller.ActivateAction;
 import worms.model.Player;
 
 import java.util.Iterator;
@@ -28,6 +29,8 @@ public class Turn {
 
     public void start() {
         isActive.set(true);
+        next();
+        currentPlayer.execute(new ActivateAction());
     }
 
     public void end() {

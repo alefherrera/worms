@@ -18,12 +18,10 @@ import worms.engine.actions.controller.ExecuteAction;
 import worms.engine.actions.controller.LeftControllerAction;
 import worms.engine.actions.controller.RightControllerAction;
 import worms.injector.GameInjector;
-import worms.model.Controller;
 import worms.model.Player;
 import worms.render.KeyCodeController;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class Main extends Application {
 
@@ -51,16 +49,20 @@ public class Main extends Application {
         final Game game = injector.getInstance(Game.class);
         game.start();
         final Match match = game.createMatch(new MatchConfiguration());
-        final PlayerFactory playerFactory = injector.getInstance(PlayerFactory.class);
+        primaryStage.setTitle("Game");
+        final Group root = injector.getInstance(Group.class);
+        final Scene scene = new Scene(root, 800, 600);
+        createPlayers(match, injector.getInstance(PlayerFactory.class), scene);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        match.start();
+    }
+
+    private void createPlayers(final Match match, final PlayerFactory playerFactory, final Scene scene) {
         final Player player = playerFactory.create("Player 1", new Position(0, 400));
         final Player player2 = playerFactory.create("Player 2", new Position(300, 400));
         match.addPlayer(player);
         match.addPlayer(player2);
-        player.execute(new ActivateAction());
-        player2.execute(new ActivateAction());
-        primaryStage.setTitle("Game");
-        final Group root = injector.getInstance(Group.class);
-        final Scene scene = new Scene(root, 800, 600);
         final KeyCodeController controller1 = getController1();
         final KeyCodeController controller2 = getController2();
         controller1.addListener(player);
@@ -69,8 +71,6 @@ public class Main extends Application {
             controller1.onKeyCode(event.getCode());
             controller2.onKeyCode(event.getCode());
         });
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     public static void main(String[] args) {
