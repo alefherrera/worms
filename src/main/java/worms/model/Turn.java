@@ -51,5 +51,6 @@ public class Turn {
 
     public void end() {
         isActive.set(false);
+        timer.cancel();
     }
 }
