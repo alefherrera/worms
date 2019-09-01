@@ -1,5 +1,6 @@
 package worms.model;
 
+import worms.engine.actions.Action;
 import worms.engine.actions.character.CharacterAction;
 import worms.engine.actions.controller.ControllerAction;
 import worms.engine.actions.controller.GameAction;
@@ -52,10 +53,6 @@ public class Player implements ControllerListener {
         playerAction.execute(this);
     }
 
-    public void execute(final CharacterAction characterAction) {
-        characterAction.execute(character);
-    }
-
     public void add(PlayerObserver observer) {
         observers.add(observer);
     }
@@ -67,5 +64,9 @@ public class Player implements ControllerListener {
     @Override
     public void onControllerAction(final ControllerAction action) {
         execute(action);
+    }
+
+    public void execute(final Action action) {
+        action.execute(character);
     }
 }

@@ -1,5 +1,7 @@
 package worms.model;
 
+import worms.model.units.Position;
+
 public interface CharacterObserver {
     void update(Position position);
 

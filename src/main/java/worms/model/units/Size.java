@@ -1,4 +1,4 @@
-package worms.model;
+package worms.model.units;
 
 public class Size {
 

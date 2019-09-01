@@ -10,7 +10,7 @@ import worms.model.Game;
 import worms.model.Match;
 import worms.model.MatchConfiguration;
 import worms.model.PlayerFactory;
-import worms.model.Position;
+import worms.model.units.Position;
 import worms.engine.actions.controller.CancelAction;
 import worms.engine.actions.controller.ControllerAction;
 import worms.engine.actions.controller.ExecuteAction;

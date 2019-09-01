@@ -1,32 +1,31 @@
 package worms.model;
 
+import worms.engine.actions.Action;
 import worms.engine.actions.character.CharacterAction;
+import worms.engine.actions.movement.MoveLeftAction;
+import worms.model.units.Health;
+import worms.model.units.Position;
+import worms.model.units.Size;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Character extends Element {
+public class Character implements Healthy, Measurable, Movable {
 
     private static final int DELTA = 5;
+    public static final int INITIAL_HEALTH = 100;
     private final List<CharacterObserver> observers;
+    private Health health;
+    private final Size size;
     private Position position;
     private Integer angle;
 
     public Character(final Size size, final Position position) {
-        super(size);
+        this.size = size;
         this.position = position;
         angle = 0;
         observers = new ArrayList<>();
-    }
-
-    public void moveRight() {
-        position = position.moveRight(DELTA);
-        updatePosition();
-    }
-
-    public void moveLeft() {
-        position = position.moveLeft(DELTA);
-        updatePosition();
+        health = new Health(INITIAL_HEALTH);
     }
 
     public void increaseAngle() {
@@ -37,10 +36,6 @@ public class Character extends Element {
     public void decreaseAngle() {
         angle -= DELTA;
         updateAngle();
-    }
-
-    public Position getPosition() {
-        return position;
     }
 
     public Integer getAngle() {
@@ -74,4 +69,31 @@ public class Character extends Element {
     public void shot() {
 
     }
+
+    @Override
+    public Health getHealth() {
+        return health;
+    }
+
+    @Override
+    public void setHealth(final Health health) {
+        this.health = health;
+    }
+
+    @Override
+    public Size getSize() {
+        return size;
+    }
+
+    @Override
+    public Position getPosition() {
+        return position;
+    }
+
+    @Override
+    public void setPosition(final Position position) {
+        this.position = position;
+        updatePosition();
+    }
+
 }

@@ -4,8 +4,8 @@ import worms.model.Character;
 
 public class LeftPowerAction extends AbstractCharacterAction {
     @Override
-    public void execute(final Character character) {
-
+    public Character execute(final Character character) {
+        return character;
     }
 
     @Override

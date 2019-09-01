@@ -3,8 +3,8 @@ package worms.render;
 import javafx.scene.Group;
 import worms.model.Player;
 import worms.model.PlayerFactory;
-import worms.model.Position;
-import worms.model.Size;
+import worms.model.units.Position;
+import worms.model.units.Size;
 import worms.engine.actions.states.WaitingState;
 import worms.model.Character;
 

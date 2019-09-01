@@ -1,8 +1,8 @@
 package worms.engine.actions.states;
 
 import org.junit.Test;
-import worms.engine.actions.character.MoveLeftAction;
-import worms.engine.actions.character.MoveRightAction;
+import worms.engine.actions.movement.MoveLeftAction;
+import worms.engine.actions.movement.MoveRightAction;
 import worms.engine.actions.ActivateAction;
 import worms.engine.actions.controller.CancelAction;
 import worms.engine.actions.controller.ExecuteAction;

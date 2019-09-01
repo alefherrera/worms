@@ -1,21 +1,22 @@
 package worms.engine.actions.player;
 
+import worms.engine.actions.Action;
 import worms.model.Player;
-import worms.engine.actions.character.CharacterAction;
 
 import java.util.Objects;
 
 public class CharacterPlayerAction implements PlayerAction {
 
-    private final CharacterAction characterAction;
 
-    public CharacterPlayerAction(final CharacterAction characterAction) {
-        this.characterAction = characterAction;
+    private final Action action;
+
+    public CharacterPlayerAction(final Action action) {
+        this.action = action;
     }
 
     @Override
     public void execute(final Player player) {
-        player.execute(characterAction);
+        player.execute(action);
     }
 
     @Override
@@ -27,18 +28,11 @@ public class CharacterPlayerAction implements PlayerAction {
             return false;
         }
         final CharacterPlayerAction that = (CharacterPlayerAction) o;
-        return Objects.equals(characterAction, that.characterAction);
+        return Objects.equals(action, that.action);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(characterAction);
-    }
-
-    @Override
-    public String toString() {
-        return "CharacterPlayerAction{" +
-                "characterAction=" + characterAction +
-                '}';
+        return Objects.hash(action);
     }
 }

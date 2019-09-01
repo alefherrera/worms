@@ -1,7 +1,7 @@
 package worms.engine.actions.states;
 
-import worms.engine.actions.character.MoveLeftAction;
-import worms.engine.actions.character.MoveRightAction;
+import worms.engine.actions.movement.MoveLeftAction;
+import worms.engine.actions.movement.MoveRightAction;
 import worms.engine.actions.DeactivateAction;
 import worms.engine.actions.controller.ExecuteAction;
 import worms.engine.actions.controller.GameAction;

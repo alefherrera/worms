@@ -1,5 +1,7 @@
 package worms.model;
 
+import worms.model.units.Position;
+
 @FunctionalInterface
 public interface PlayerFactory {
 
