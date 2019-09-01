@@ -2,28 +2,10 @@ package worms.engine.actions.character;
 
 import worms.model.Character;
 
-import java.util.Objects;
-
-public class MoveLeftAction implements CharacterAction {
+public class MoveLeftAction extends AbstractCharacterAction {
     @Override
     public void execute(final Character character) {
         character.moveLeft();
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (o == null) {
-            return false;
-        }
-        if (this == o) {
-            return true;
-        }
-        return Objects.equals(getClass(), o.getClass());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getClass());
     }
 
     @Override

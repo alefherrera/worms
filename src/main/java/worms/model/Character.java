@@ -70,4 +70,8 @@ public class Character extends Element {
     public void remove(CharacterObserver observer) {
         observers.remove(observer);
     }
+
+    public void shot() {
+
+    }
 }

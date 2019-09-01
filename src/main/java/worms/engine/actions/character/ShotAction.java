@@ -2,15 +2,14 @@ package worms.engine.actions.character;
 
 import worms.model.Character;
 
-public class MoveRightAction extends AbstractCharacterAction {
-
+public class ShotAction extends AbstractCharacterAction {
     @Override
     public void execute(final Character character) {
-        character.moveRight();
+        character.shot();
     }
 
     @Override
     public String toString() {
-        return "MoveRightAction{}";
+        return "ShotAction{}";
     }
 }
