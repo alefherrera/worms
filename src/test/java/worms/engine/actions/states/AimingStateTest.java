@@ -1,8 +1,8 @@
 package worms.engine.actions.states;
 
 import org.junit.Test;
-import worms.engine.actions.character.LeftAngleAction;
-import worms.engine.actions.character.RightAngleAction;
+import worms.engine.actions.aim.DecreaseAngleAction;
+import worms.engine.actions.aim.IncreaseAngleAction;
 import worms.engine.actions.ActivateAction;
 import worms.engine.actions.controller.CancelAction;
 import worms.engine.actions.controller.ExecuteAction;
@@ -45,7 +45,7 @@ public class AimingStateTest {
     public void whenRightControllerActionThenRightAngle() {
         final PlayerState state = new AimingState();
         final PlayerAction action = state.getAction(new RightControllerAction());
-        final PlayerAction expected = new CharacterPlayerAction(new RightAngleAction());
+        final PlayerAction expected = new CharacterPlayerAction(new IncreaseAngleAction());
         assertEquals(expected, action);
     }
 
@@ -53,7 +53,7 @@ public class AimingStateTest {
     public void whenLeftControllerActionThenLeftAngle() {
         final PlayerState state = new AimingState();
         final PlayerAction action = state.getAction(new LeftControllerAction());
-        final PlayerAction expected = new CharacterPlayerAction(new LeftAngleAction());
+        final PlayerAction expected = new CharacterPlayerAction(new DecreaseAngleAction());
         assertEquals(expected, action);
     }
 

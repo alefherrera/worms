@@ -5,7 +5,7 @@ import worms.model.Player;
 import worms.model.PlayerFactory;
 import worms.model.units.Position;
 import worms.model.units.Size;
-import worms.engine.actions.states.WaitingState;
+import worms.engine.actions.states.IdleState;
 import worms.model.Character;
 
 import javax.inject.Inject;
@@ -26,7 +26,7 @@ public class DefaultPlayerFactory implements PlayerFactory {
     @Override
     public Player create(final String name, final Position position) {
         final Character character = new Character(defaultSize, position);
-        final Player player = new Player(name, character, new WaitingState());
+        final Player player = new Player(name, character, new IdleState());
         final PlayerRenderer playerRenderer = new PlayerRenderer(group, player);
         player.add(playerRenderer);
         character.add(playerRenderer);

@@ -1,7 +1,7 @@
 package worms.engine.actions.health;
 
 import org.junit.Test;
-import worms.model.Healthy;
+import worms.model.behaviors.Healthy;
 import worms.model.units.Health;
 
 import static org.junit.Assert.assertEquals;

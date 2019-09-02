@@ -35,6 +35,6 @@ public class MovingState extends PlayerState {
 
     @Override
     public PlayerAction getAction(final DeactivateAction action) {
-        return new ChangeStateAction(new WaitingState());
+        return new ChangeStateAction(new IdleState());
     }
 }

@@ -7,7 +7,7 @@ import worms.engine.actions.states.AimingState;
 import worms.engine.actions.states.MovingState;
 import worms.engine.actions.states.PlayerState;
 import worms.engine.actions.states.ShootingState;
-import worms.engine.actions.states.WaitingState;
+import worms.engine.actions.states.IdleState;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,7 +15,7 @@ public class ChangeStateActionTest {
 
     @Test
     public void whenChangeToWaitingStateThenPlayerWaitingState() {
-        final PlayerState newState = new WaitingState();
+        final PlayerState newState = new IdleState();
         ChangeStateAction changeStateAction = new ChangeStateAction(newState);
         Player player = new Player("", null, null);
         changeStateAction.execute(player);

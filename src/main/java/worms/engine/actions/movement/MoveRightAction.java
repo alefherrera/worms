@@ -1,7 +1,7 @@
 package worms.engine.actions.movement;
 
 import worms.engine.actions.Action;
-import worms.model.Movable;
+import worms.model.behaviors.Movable;
 
 import java.util.Objects;
 

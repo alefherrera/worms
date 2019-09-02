@@ -1,7 +1,7 @@
 package worms.engine.actions.movement;
 
 import org.junit.Test;
-import worms.model.Movable;
+import worms.model.behaviors.Movable;
 import worms.model.units.Position;
 
 import static org.junit.Assert.assertEquals;

@@ -1,8 +1,6 @@
 package worms.engine.actions.states;
 
 import org.junit.Test;
-import worms.engine.actions.character.LeftPowerAction;
-import worms.engine.actions.character.RightPowerAction;
 import worms.engine.actions.ActivateAction;
 import worms.engine.actions.controller.CancelAction;
 import worms.engine.actions.controller.ExecuteAction;
@@ -29,7 +27,7 @@ public class ShootingStateTest {
     public void whenExecuteActionThenChangeToWaitingState() {
         final PlayerState state = new ShootingState();
         final PlayerAction action = state.getAction(new ExecuteAction());
-        final PlayerAction expected = new ChangeStateAction(new WaitingState());
+        final PlayerAction expected = new ChangeStateAction(new IdleState());
         assertEquals(expected, action);
     }
 

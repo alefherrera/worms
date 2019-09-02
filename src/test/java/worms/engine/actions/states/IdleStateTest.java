@@ -12,11 +12,11 @@ import worms.engine.actions.player.PlayerAction;
 
 import static org.junit.Assert.assertEquals;
 
-public class WaitingStateTest {
+public class IdleStateTest {
 
     @Test
     public void whenActivateActionThenChangeToMovingState() {
-        final PlayerState state = new WaitingState();
+        final PlayerState state = new IdleState();
         final PlayerAction action = state.getAction(new ActivateAction());
         final PlayerAction expected = new ChangeStateAction(new MovingState());
         assertEquals(expected, action);
@@ -24,7 +24,7 @@ public class WaitingStateTest {
 
     @Test
     public void whenExecuteActionThenEmpty() {
-        final PlayerState state = new WaitingState();
+        final PlayerState state = new IdleState();
         final PlayerAction action = state.getAction(new ExecuteAction());
         final PlayerAction expected = new EmptyPlayerAction();
         assertEquals(expected, action);
@@ -32,7 +32,7 @@ public class WaitingStateTest {
 
     @Test
     public void whenCancelActionThenEmpty() {
-        final PlayerState state = new WaitingState();
+        final PlayerState state = new IdleState();
         final PlayerAction action = state.getAction(new CancelAction());
         final PlayerAction expected = new EmptyPlayerAction();
         assertEquals(expected, action);
@@ -40,7 +40,7 @@ public class WaitingStateTest {
 
     @Test
     public void whenRightControllerActionThenEmpty() {
-        final PlayerState state = new WaitingState();
+        final PlayerState state = new IdleState();
         final PlayerAction action = state.getAction(new RightControllerAction());
         final PlayerAction expected = new EmptyPlayerAction();
         assertEquals(expected, action);
@@ -48,7 +48,7 @@ public class WaitingStateTest {
 
     @Test
     public void whenLeftControllerActionThenEmpty() {
-        final PlayerState state = new WaitingState();
+        final PlayerState state = new IdleState();
         final PlayerAction action = state.getAction(new LeftControllerAction());
         final PlayerAction expected = new EmptyPlayerAction();
         assertEquals(expected, action);

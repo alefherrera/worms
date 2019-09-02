@@ -1,8 +1,17 @@
-package worms.engine.actions.character;
+package worms.engine.actions.aim;
+
+import worms.engine.actions.Action;
+import worms.model.behaviors.Aimeable;
 
 import java.util.Objects;
 
-public abstract class AbstractCharacterAction implements CharacterAction {
+public class DecreaseAngleAction implements Action<Aimeable> {
+
+    @Override
+    public Aimeable execute(final Aimeable target) {
+        target.decreaseAngle();
+        return target;
+    }
 
     @Override
     public boolean equals(final Object o) {
@@ -19,5 +28,4 @@ public abstract class AbstractCharacterAction implements CharacterAction {
     public int hashCode() {
         return Objects.hash(getClass());
     }
-
 }

@@ -1,15 +1,15 @@
-package worms.engine.actions.movement;
+package worms.engine.actions.aim;
 
 import worms.engine.actions.Action;
-import worms.model.behaviors.Movable;
+import worms.model.behaviors.Aimeable;
 
 import java.util.Objects;
 
-public class MoveLeftAction implements Action<Movable> {
+public class IncreaseAngleAction implements Action<Aimeable> {
 
     @Override
-    public Movable execute(final Movable target) {
-        target.moveLeft();
+    public Aimeable execute(final Aimeable target) {
+        target.increaseAngle();
         return target;
     }
 

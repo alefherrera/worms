@@ -1,4 +1,4 @@
-package worms.model;
+package worms.model.behaviors;
 
 import worms.model.units.Health;
 

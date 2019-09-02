@@ -1,7 +1,7 @@
 package worms.engine.actions.states;
 
-import worms.engine.actions.character.LeftAngleAction;
-import worms.engine.actions.character.RightAngleAction;
+import worms.engine.actions.aim.DecreaseAngleAction;
+import worms.engine.actions.aim.IncreaseAngleAction;
 import worms.engine.actions.controller.CancelAction;
 import worms.engine.actions.DeactivateAction;
 import worms.engine.actions.controller.ExecuteAction;
@@ -21,17 +21,17 @@ public class AimingState extends PlayerState {
 
     @Override
     public PlayerAction getAction(final RightControllerAction action) {
-        return new CharacterPlayerAction(new RightAngleAction());
+        return new CharacterPlayerAction(new IncreaseAngleAction());
     }
 
     @Override
     public PlayerAction getAction(final LeftControllerAction action) {
-        return new CharacterPlayerAction(new LeftAngleAction());
+        return new CharacterPlayerAction(new DecreaseAngleAction());
     }
 
     @Override
     public PlayerAction getAction(final DeactivateAction action) {
-        return new ChangeStateAction(new WaitingState());
+        return new ChangeStateAction(new IdleState());
     }
 
     @Override

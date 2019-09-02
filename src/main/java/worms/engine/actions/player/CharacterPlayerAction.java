@@ -7,7 +7,6 @@ import java.util.Objects;
 
 public class CharacterPlayerAction implements PlayerAction {
 
-
     private final Action action;
 
     public CharacterPlayerAction(final Action action) {

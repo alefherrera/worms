@@ -4,7 +4,7 @@ import worms.engine.actions.player.PlayerAction;
 import worms.engine.actions.states.AimingState;
 import worms.engine.actions.states.MovingState;
 import worms.engine.actions.states.ShootingState;
-import worms.engine.actions.states.WaitingState;
+import worms.engine.actions.states.IdleState;
 
 public class CancelAction extends ControllerAction {
     @Override
@@ -18,7 +18,7 @@ public class CancelAction extends ControllerAction {
     }
 
     @Override
-    public PlayerAction getAction(final WaitingState state) {
+    public PlayerAction getAction(final IdleState state) {
         return state.getAction(this);
     }
 

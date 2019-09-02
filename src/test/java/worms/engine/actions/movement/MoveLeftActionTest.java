@@ -1,10 +1,8 @@
 package worms.engine.actions.movement;
 
 import org.junit.Test;
-import worms.model.Character;
-import worms.model.Movable;
+import worms.model.behaviors.Movable;
 import worms.model.units.Position;
-import worms.model.units.Size;
 
 import static org.junit.Assert.*;
 

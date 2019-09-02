@@ -11,7 +11,9 @@ import worms.engine.actions.states.PlayerState;
 import worms.model.CharacterObserver;
 import worms.model.Player;
 import worms.model.Character;
+import worms.model.units.Aim;
 import worms.model.units.Position;
+import worms.model.units.Power;
 import worms.model.units.Size;
 import worms.model.PlayerObserver;
 
@@ -22,10 +24,11 @@ public class PlayerRenderer implements PlayerObserver, CharacterObserver {
     private final Pane pane;
     private final Rectangle aim;
     private final Text state;
+    private final Character character;
 
     @Inject
     public PlayerRenderer(final Group group, final Player player) {
-        final Character character = player.getCharacter();
+        character = player.getCharacter();
         final Position position = character.getPosition();
         final Size size = character.getSize();
         final Rectangle rectangle = new Rectangle(position.getX(), position.getY(), size.getWidth().doubleValue(), size.getHeight().doubleValue());
@@ -45,13 +48,9 @@ public class PlayerRenderer implements PlayerObserver, CharacterObserver {
     }
 
     @Override
-    public void update(final Position position) {
-        pane.setTranslateX(position.getX());
-    }
-
-    @Override
-    public void update(final Integer angle) {
-        aim.setRotate(angle);
+    public void update() {
+        pane.setTranslateX(character.getPosition().getX());
+        aim.setRotate(character.getAim().getValue());
     }
 
     @Override

@@ -1,61 +1,37 @@
 package worms.model;
 
-import worms.engine.actions.Action;
-import worms.engine.actions.character.CharacterAction;
-import worms.engine.actions.movement.MoveLeftAction;
+import worms.model.behaviors.Aimeable;
+import worms.model.behaviors.Healthy;
+import worms.model.behaviors.Measurable;
+import worms.model.behaviors.Movable;
+import worms.model.behaviors.Powerable;
+import worms.model.behaviors.Shooter;
+import worms.model.units.Aim;
 import worms.model.units.Health;
 import worms.model.units.Position;
+import worms.model.units.Power;
 import worms.model.units.Size;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Character implements Healthy, Measurable, Movable {
+public class Character implements Healthy, Measurable, Movable, Aimeable, Powerable, Shooter {
 
-    private static final int DELTA = 5;
-    public static final int INITIAL_HEALTH = 100;
+    private static final int INITIAL_HEALTH = 100;
     private final List<CharacterObserver> observers;
-    private Health health;
     private final Size size;
+    private Power power;
+    private Health health;
     private Position position;
-    private Integer angle;
+    private Aim aim;
 
     public Character(final Size size, final Position position) {
         this.size = size;
         this.position = position;
-        angle = 0;
         observers = new ArrayList<>();
         health = new Health(INITIAL_HEALTH);
-    }
-
-    public void increaseAngle() {
-        angle += DELTA;
-        updateAngle();
-    }
-
-    public void decreaseAngle() {
-        angle -= DELTA;
-        updateAngle();
-    }
-
-    public Integer getAngle() {
-        return angle;
-    }
-
-    private void updatePosition() {
-        observers.forEach(characterObserver -> {
-            characterObserver.update(position);
-        });
-    }
-
-    private void updateAngle() {
-        observers.forEach(characterObserver -> {
-            characterObserver.update(angle);
-        });
-    }
-
-    public void execute(final CharacterAction action) {
-        action.execute(this);
+        aim = new Aim(0);
+        power = new Power(0);
     }
 
     public void add(CharacterObserver observer) {
@@ -93,7 +69,35 @@ public class Character implements Healthy, Measurable, Movable {
     @Override
     public void setPosition(final Position position) {
         this.position = position;
-        updatePosition();
+        update();
+    }
+
+    @Override
+    public Aim getAim() {
+        return aim;
+    }
+
+    @Override
+    public void setAim(final Aim aim) {
+        this.aim = aim;
+        update();
+    }
+
+    @Override
+    public Power getPower() {
+        return power;
+    }
+
+    @Override
+    public void setPower(final Power power) {
+        this.power = power;
+        update();
+    }
+
+    private void update() {
+        observers.forEach(characterObserver -> {
+            characterObserver.update();
+        });
     }
 
 }

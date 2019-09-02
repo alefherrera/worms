@@ -5,11 +5,11 @@ import worms.engine.actions.player.PlayerAction;
 import worms.engine.actions.states.AimingState;
 import worms.engine.actions.states.MovingState;
 import worms.engine.actions.states.ShootingState;
-import worms.engine.actions.states.WaitingState;
+import worms.engine.actions.states.IdleState;
 
 public abstract class GameAction {
 
-    public PlayerAction getAction(WaitingState state) {
+    public PlayerAction getAction(IdleState state) {
         return new EmptyPlayerAction();
     }
 

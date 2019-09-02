@@ -1,7 +1,7 @@
 package worms.engine.actions.health;
 
 import worms.engine.actions.Action;
-import worms.model.Healthy;
+import worms.model.behaviors.Healthy;
 
 public class DamageAction implements Action<Healthy> {
 

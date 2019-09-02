@@ -8,7 +8,7 @@ import worms.engine.actions.controller.LeftControllerAction;
 import worms.engine.actions.controller.RightControllerAction;
 import worms.engine.actions.player.ChangeStateAction;
 import worms.engine.actions.states.MovingState;
-import worms.engine.actions.states.WaitingState;
+import worms.engine.actions.states.IdleState;
 import worms.model.ActionExecutionResult;
 import worms.model.Character;
 import worms.model.Player;
@@ -58,7 +58,7 @@ public class PlayerTest {
     public void activateAction() {
         final GameAction controllerAction = new ActivateAction();
         final Character character = mock(Character.class);
-        final Player player = new Player(PLAYER_NAME, character, new WaitingState());
+        final Player player = new Player(PLAYER_NAME, character, new IdleState());
         final ActionExecutionResult executionResult = player.execute(controllerAction);
         assertEquals(new ChangeStateAction(new MovingState()), executionResult.getPlayerAction());
     }

@@ -5,7 +5,7 @@ import worms.engine.actions.player.PlayerAction;
 import worms.engine.actions.ActivateAction;
 import worms.engine.actions.controller.GameAction;
 
-public class WaitingState extends PlayerState {
+public class IdleState extends PlayerState {
 
     @Override
     public PlayerAction getAction(final GameAction gameAction) {

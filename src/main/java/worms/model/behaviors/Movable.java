@@ -1,6 +1,5 @@
-package worms.model;
+package worms.model.behaviors;
 
-import worms.engine.actions.Action;
 import worms.model.units.Position;
 
 public interface Movable {
