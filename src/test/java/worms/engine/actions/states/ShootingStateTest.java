@@ -10,6 +10,9 @@ import worms.engine.actions.player.ChangeStateAction;
 import worms.engine.actions.player.CharacterPlayerAction;
 import worms.engine.actions.player.EmptyPlayerAction;
 import worms.engine.actions.player.PlayerAction;
+import worms.engine.actions.power.DecreasePowerAction;
+import worms.engine.actions.power.IncreasePowerAction;
+import worms.engine.actions.shot.ShotAction;
 
 import static org.junit.Assert.*;
 
@@ -24,10 +27,10 @@ public class ShootingStateTest {
     }
 
     @Test
-    public void whenExecuteActionThenChangeToWaitingState() {
+    public void whenExecuteActionThenShot() {
         final PlayerState state = new ShootingState();
         final PlayerAction action = state.getAction(new ExecuteAction());
-        final PlayerAction expected = new ChangeStateAction(new IdleState());
+        final PlayerAction expected = new CharacterPlayerAction(new ShotAction());
         assertEquals(expected, action);
     }
 
@@ -43,7 +46,7 @@ public class ShootingStateTest {
     public void whenRightControllerActionThenRightPower() {
         final PlayerState state = new ShootingState();
         final PlayerAction action = state.getAction(new RightControllerAction());
-        final PlayerAction expected = new CharacterPlayerAction(new RightPowerAction());
+        final PlayerAction expected = new CharacterPlayerAction(new IncreasePowerAction());
         assertEquals(expected, action);
     }
 
@@ -51,7 +54,7 @@ public class ShootingStateTest {
     public void whenLeftControllerActionThenLeftPower() {
         final PlayerState state = new ShootingState();
         final PlayerAction action = state.getAction(new LeftControllerAction());
-        final PlayerAction expected = new CharacterPlayerAction(new LeftPowerAction());
+        final PlayerAction expected = new CharacterPlayerAction(new DecreasePowerAction());
         assertEquals(expected, action);
     }
 
