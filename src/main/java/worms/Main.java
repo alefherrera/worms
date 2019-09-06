@@ -6,6 +6,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import worms.engine.actions.controller.DownControllerAction;
+import worms.engine.actions.controller.UpControllerAction;
 import worms.model.Game;
 import worms.model.Match;
 import worms.model.MatchConfiguration;
@@ -29,6 +31,8 @@ public class Main extends Application {
         final HashMap<KeyCode, ControllerAction> map = new HashMap<>();
         map.put(KeyCode.D, new RightControllerAction());
         map.put(KeyCode.A, new LeftControllerAction());
+        map.put(KeyCode.W, new UpControllerAction());
+        map.put(KeyCode.S, new DownControllerAction());
         map.put(KeyCode.SPACE, new ExecuteAction());
         map.put(KeyCode.ESCAPE, new CancelAction());
         return new KeyCodeController("controller1", map);
@@ -38,6 +42,8 @@ public class Main extends Application {
         final HashMap<KeyCode, ControllerAction> map = new HashMap<>();
         map.put(KeyCode.RIGHT, new RightControllerAction());
         map.put(KeyCode.LEFT, new LeftControllerAction());
+        map.put(KeyCode.UP, new UpControllerAction());
+        map.put(KeyCode.DOWN, new DownControllerAction());
         map.put(KeyCode.ENTER, new ExecuteAction());
         map.put(KeyCode.BACK_SPACE, new CancelAction());
         return new KeyCodeController("controller1", map);
