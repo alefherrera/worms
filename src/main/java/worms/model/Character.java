@@ -19,16 +19,19 @@ public class Character implements Healthy, Measurable, Movable, Aimeable, Powera
 
     private static final int INITIAL_HEALTH = 100;
     private final List<CharacterObserver> observers;
+    private final List<Weapon> weapons;
     private final Size size;
     private Power power;
     private Health health;
     private Position position;
     private Aim aim;
+    private Weapon weapon;
 
     public Character(final Size size, final Position position) {
         this.size = size;
         this.position = position;
         observers = new ArrayList<>();
+        weapons = new ArrayList<>();
         health = new Health(INITIAL_HEALTH);
         aim = new Aim(0);
         power = new Power(0);
@@ -43,7 +46,24 @@ public class Character implements Healthy, Measurable, Movable, Aimeable, Powera
     }
 
     public void shot() {
+        weapon.shot(aim, power);
+        update();
+    }
 
+    @Override
+    public List<Weapon> getWeapons() {
+        return weapons;
+    }
+
+    @Override
+    public void setWeapon(final Weapon weapon) {
+        this.weapon = weapon;
+        update();
+    }
+
+    @Override
+    public Weapon getWeapon() {
+        return weapon;
     }
 
     @Override
@@ -95,9 +115,7 @@ public class Character implements Healthy, Measurable, Movable, Aimeable, Powera
     }
 
     private void update() {
-        observers.forEach(characterObserver -> {
-            characterObserver.update();
-        });
+        observers.forEach(CharacterObserver::update);
     }
 
 }

@@ -3,9 +3,8 @@ package worms.engine.actions.aim;
 import org.junit.Test;
 import worms.model.behaviors.Aimeable;
 import worms.model.units.Aim;
-import worms.model.units.Health;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class DecreaseAngleActionTest {
 
