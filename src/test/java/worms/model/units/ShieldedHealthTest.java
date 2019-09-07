@@ -17,7 +17,7 @@ public class ShieldedHealthTest {
     public void testDamageShield() {
         final ShieldedHealth shieldedHealth = new ShieldedHealth(new Health(100), new Shield(10));
         final Health result = shieldedHealth.damage(5);
-        assertEquals(Integer.valueOf(115), result.getValue());
+        assertEquals(Integer.valueOf(105), result.getValue());
     }
 
 }

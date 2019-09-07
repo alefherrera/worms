@@ -22,6 +22,10 @@ public class Health {
         return value;
     }
 
+    public Health addShield(Shield shield) {
+        return new ShieldedHealth(this, shield);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {

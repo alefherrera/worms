@@ -1,8 +1,7 @@
 package worms.model.behaviors;
 
-import worms.model.units.Shield;
 import worms.model.units.Health;
-import worms.model.units.ShieldedHealth;
+import worms.model.units.Shield;
 
 public interface Healthy {
 
@@ -10,8 +9,10 @@ public interface Healthy {
 
     void setHealth(Health health);
 
-    default void addShield(final Shield shield) {
-        setHealth(new ShieldedHealth(getHealth(), shield));
+    default Health addShield(final Shield shield) {
+        final Health health = getHealth().addShield(shield);
+        setHealth(health);
+        return health;
     }
 
     default Health damage(final Integer value) {
