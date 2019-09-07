@@ -12,7 +12,7 @@ import java.util.List;
 public class Player implements ControllerListener {
 
     private final String name;
-    private final Character character;
+    private Character character;
     private PlayerState playerState;
     private final List<PlayerObserver> observers;
 
@@ -65,7 +65,7 @@ public class Player implements ControllerListener {
         execute(action);
     }
 
-    public void execute(final Action action) {
-        action.execute(character);
+    public void execute(final Action<Character> action) {
+        character = action.execute(character);
     }
 }

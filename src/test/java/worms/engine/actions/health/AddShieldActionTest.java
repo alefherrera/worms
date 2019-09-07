@@ -1,16 +1,17 @@
 package worms.engine.actions.health;
 
 import org.junit.Test;
+import worms.model.units.Shield;
 import worms.model.behaviors.Healthy;
 import worms.model.units.Health;
 
 import static org.junit.Assert.assertEquals;
 
-public class HealActionTest {
+public class AddShieldActionTest {
 
     @Test
     public void test() {
-        final HealAction action = new HealAction(10);
+        final AddShieldAction action = new AddShieldAction(new Shield(10));
         final Healthy target = new Healthy() {
 
             private Health health = new Health(100);
@@ -26,7 +27,7 @@ public class HealActionTest {
             }
         };
         final Healthy result = action.execute(target);
-        assertEquals(new Health(110), result.getHealth());
+        assertEquals(Integer.valueOf(110), result.getHealth().getValue());
     }
 
 }

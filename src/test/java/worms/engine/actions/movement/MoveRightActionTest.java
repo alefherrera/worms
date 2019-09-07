@@ -26,7 +26,7 @@ public class MoveRightActionTest {
             }
         };
         final Movable result = action.execute(target);
-        assertEquals(result.getPosition(), new Position(5, 0));
+        assertEquals(new Position(5, 0), result.getPosition());
     }
 
 }
