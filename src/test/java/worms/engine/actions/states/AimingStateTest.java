@@ -5,13 +5,17 @@ import worms.engine.actions.aim.DecreaseAngleAction;
 import worms.engine.actions.aim.IncreaseAngleAction;
 import worms.engine.actions.ActivateAction;
 import worms.engine.actions.controller.CancelAction;
+import worms.engine.actions.controller.DownControllerAction;
 import worms.engine.actions.controller.ExecuteAction;
 import worms.engine.actions.controller.LeftControllerAction;
 import worms.engine.actions.controller.RightControllerAction;
+import worms.engine.actions.controller.UpControllerAction;
 import worms.engine.actions.player.ChangeStateAction;
 import worms.engine.actions.player.CharacterPlayerAction;
 import worms.engine.actions.player.EmptyPlayerAction;
 import worms.engine.actions.player.PlayerAction;
+import worms.engine.actions.shot.SelectNextWeaponAction;
+import worms.engine.actions.shot.SelectPreviousWeaponAction;
 
 import static org.junit.Assert.*;
 
@@ -54,6 +58,22 @@ public class AimingStateTest {
         final PlayerState state = new AimingState();
         final PlayerAction action = state.getAction(new LeftControllerAction());
         final PlayerAction expected = new CharacterPlayerAction(new DecreaseAngleAction());
+        assertEquals(expected, action);
+    }
+
+    @Test
+    public void whenUpControllerControllerActionThenRightAngle() {
+        final PlayerState state = new AimingState();
+        final PlayerAction action = state.getAction(new UpControllerAction());
+        final PlayerAction expected = new CharacterPlayerAction(new SelectNextWeaponAction());
+        assertEquals(expected, action);
+    }
+
+    @Test
+    public void whenDownControllerActionThenLeftAngle() {
+        final PlayerState state = new AimingState();
+        final PlayerAction action = state.getAction(new DownControllerAction());
+        final PlayerAction expected = new CharacterPlayerAction(new SelectPreviousWeaponAction());
         assertEquals(expected, action);
     }
 

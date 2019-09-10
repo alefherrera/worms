@@ -4,13 +4,17 @@ import worms.engine.actions.aim.DecreaseAngleAction;
 import worms.engine.actions.aim.IncreaseAngleAction;
 import worms.engine.actions.controller.CancelAction;
 import worms.engine.actions.DeactivateAction;
+import worms.engine.actions.controller.DownControllerAction;
 import worms.engine.actions.controller.ExecuteAction;
 import worms.engine.actions.controller.LeftControllerAction;
+import worms.engine.actions.controller.UpControllerAction;
 import worms.engine.actions.player.ChangeStateAction;
 import worms.engine.actions.player.CharacterPlayerAction;
 import worms.engine.actions.player.PlayerAction;
 import worms.engine.actions.controller.GameAction;
 import worms.engine.actions.controller.RightControllerAction;
+import worms.engine.actions.shot.SelectNextWeaponAction;
+import worms.engine.actions.shot.SelectPreviousWeaponAction;
 
 public class AimingState extends PlayerState {
 
@@ -27,6 +31,16 @@ public class AimingState extends PlayerState {
     @Override
     public PlayerAction getAction(final LeftControllerAction action) {
         return new CharacterPlayerAction(new DecreaseAngleAction());
+    }
+
+    @Override
+    public PlayerAction getAction(final UpControllerAction action) {
+        return new CharacterPlayerAction(new SelectNextWeaponAction());
+    }
+
+    @Override
+    public PlayerAction getAction(final DownControllerAction action) {
+        return new CharacterPlayerAction(new SelectPreviousWeaponAction());
     }
 
     @Override
